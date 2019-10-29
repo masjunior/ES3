@@ -1,4 +1,4 @@
-package br.edu.fatec.Baby_Clothes.dao;
+package br.edu.Baby_Clothes.dao;
 
 import java.util.List;
 

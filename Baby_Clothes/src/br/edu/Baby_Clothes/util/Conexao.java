@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.edu.fatec.Baby_Clothes.dao;
+package br.edu.Baby_Clothes.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,8 @@ import java.sql.DriverManager;
  *
  */
 public class Conexao {
-public static Connection getConnection(){
+	
+	public static Connection getConnection(){
 		
 		try {
 			String servidor = "localhost";

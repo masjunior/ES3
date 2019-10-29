@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.edu.fatec.Baby_Clothes.dao;
+package br.edu.Baby_Clothes.dao;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
  * @author Marco_Aurelio_de_Sa_Junior 
  *
  */
-public class UsuarioDAO implements IDAO{
+public class RoupaDAO implements IDAO{
 
 	@Override
 	public boolean cadastrar(EntidadeDominio obj) {
@@ -31,14 +31,14 @@ public class UsuarioDAO implements IDAO{
 		return false;
 	}
 
-	@Override
-	public List<EntidadeDominio> listar() {
+	public EntidadeDominio listarPorEntidade(EntidadeDominio obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public EntidadeDominio listarPorEntidade(EntidadeDominio obj) {
-		// TODO Aqui validar por login e senha
+	@Override
+	public List<EntidadeDominio> listar() {
+
 		return null;
 	}
 
