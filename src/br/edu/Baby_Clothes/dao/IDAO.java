@@ -6,9 +6,9 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 
 public interface IDAO {
 
-	public boolean cadastrar(EntidadeDominio obj);
-	public boolean remover(EntidadeDominio obj);
-	public boolean alterar(EntidadeDominio obj);
-	public List<EntidadeDominio> listar();
+	public void cadastrar(EntidadeDominio entidade);
+	public void remover(EntidadeDominio entidade);
+	public void alterar(EntidadeDominio entidade);
+	public List<EntidadeDominio> listar(EntidadeDominio entidade);
 }
 	

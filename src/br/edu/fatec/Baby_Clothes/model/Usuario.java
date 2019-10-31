@@ -13,7 +13,7 @@ public class Usuario extends EntidadeDominio {
 	private String cpf;
 	private String email;
 	private String senha;
-	private NivelAcesso nivelAcesso;
+	
 	
 	public Usuario() {
 	}
@@ -42,19 +42,13 @@ public class Usuario extends EntidadeDominio {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public NivelAcesso getNivelAcesso() {
-		return nivelAcesso;
-	}
-	public void setNivelAcesso(NivelAcesso nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
-	}
+	
 
 	public Usuario(String nome, String cpf, String email, String senha, NivelAcesso nivelAcesso) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
-		this.nivelAcesso = nivelAcesso;
 	}
 
 

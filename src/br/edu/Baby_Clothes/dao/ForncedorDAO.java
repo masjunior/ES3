@@ -1,17 +1,10 @@
-/**
- * 
- */
 package br.edu.Baby_Clothes.dao;
 
 import java.util.List;
 
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 
-/**
- * @author Marco_Aurelio_de_Sa_Junior 
- *
- */
-public class RoupaDAO implements IDAO{
+public class ForncedorDAO implements IDAO {
 
 	@Override
 	public void cadastrar(EntidadeDominio entidade) {
@@ -36,7 +29,5 @@ public class RoupaDAO implements IDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }
