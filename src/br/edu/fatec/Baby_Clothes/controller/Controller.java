@@ -20,14 +20,14 @@ import br.edu.Baby_Clothes.viewHelper.IViewHelper;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebServlet(urlPatterns = {"/FuncionarioController"})
-public class FuncionarioController extends HttpServlet{
+@WebServlet(urlPatterns = {"/Controller"})
+public class Controller extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private Map<String, ICommand> commands;
 	private Map<String, IViewHelper> viewHelpers;
 	
-	public FuncionarioController() {
+	public Controller() {
 		commands = new HashMap<String, ICommand>();
 		commands.put("SALVAR", new SalvarCommand());
 		commands.put("ALTERAR", new AlterarCommand());
