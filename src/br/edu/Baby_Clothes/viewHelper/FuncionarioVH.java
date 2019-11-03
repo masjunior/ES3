@@ -26,34 +26,34 @@ public class FuncionarioVH implements IViewHelper{
 			throws IOException, ServletException {
 	
 		RequestDispatcher d = null;
-		String operacao  = request.getParameter("OPERACAO");
+		String operacao  = request.getParameter("operacao");
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
-			resultado.setMensagem("Cadastro do funcionário foi realizado com sucesso!");
+			resultado.setMensagem("Cadastro do funcionï¿½rio foi realizado com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("cadastrarProduto.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
-			resultado.setMensagem("Consulta de funcinário realizada com sucesso!");
+			resultado.setMensagem("Consulta de funcinï¿½rio realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
-			resultado.setMensagem("Alteração do funcionário foi realizada com sucesso!");
+			resultado.setMensagem("Alteraï¿½ï¿½o do funcionï¿½rio foi realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
-			resultado.setMensagem("O funcionário foi excluido com sucesso!");
+			resultado.setMensagem("O funcionï¿½rio foi excluido com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}
-		
+		 
 		d.forward(request, response);
 		
 	}
@@ -64,7 +64,7 @@ public class FuncionarioVH implements IViewHelper{
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
 		String email = request.getParameter("txtEmail");
-		String senha = request.getParameter("txtSenha");
+		String senha = request.getParameter("txtCPF");
 		String nivelAcesso = request.getParameter("txtNivelAcesso");
 		
 		if(nome != null || !nome.trim().equals("") || !nome.isEmpty()) {

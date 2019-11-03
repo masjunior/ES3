@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +34,6 @@ public class FuncionarioController extends HttpServlet{
 		commands.put("ALTERAR", new AlterarCommand());
 		commands.put("EXCLUIR", new ExcluirCommand());
 		commands.put("CONSULTAR", new ConsultarCommand());
-		
 		viewHelpers = new HashMap<String, IViewHelper>();
 		viewHelpers.put("/ES3/FuncionarioController", new FuncionarioVH());
 	}
@@ -42,7 +42,7 @@ public class FuncionarioController extends HttpServlet{
 	protected void Processar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	
 		String uri = request.getRequestURI();
-		String operacao = request.getParameter("OPERACAO");
+		String operacao = request.getParameter("operacao");
 		
 		IViewHelper viewHelper = viewHelpers.get(uri);
 		EntidadeDominio entidade = viewHelper.getEntidade(request);

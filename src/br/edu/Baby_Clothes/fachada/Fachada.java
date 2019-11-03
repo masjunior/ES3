@@ -8,7 +8,8 @@ public class Fachada implements IFachada {
 	@Override
 	public Resultado salvar(EntidadeDominio entidade) {
 		// TODO Auto-generated method stub
-		return null;
+		Resultado result = new Resultado();
+		return result;
 	}
 
 	@Override
