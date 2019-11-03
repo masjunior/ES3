@@ -16,19 +16,22 @@ import br.edu.Baby_Clothes.command.ConsultarCommand;
 import br.edu.Baby_Clothes.command.ExcluirCommand;
 import br.edu.Baby_Clothes.command.ICommand;
 import br.edu.Baby_Clothes.command.SalvarCommand;
+import br.edu.Baby_Clothes.viewHelper.FornecedorVH;
 import br.edu.Baby_Clothes.viewHelper.FuncionarioVH;
 import br.edu.Baby_Clothes.viewHelper.IViewHelper;
+import br.edu.Baby_Clothes.viewHelper.LoteVH;
+import br.edu.Baby_Clothes.viewHelper.RoupaVH;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebServlet(urlPatterns = {"/FuncionarioController"})
-public class FuncionarioController extends HttpServlet{
+@WebServlet(urlPatterns = {"/FuncionarioController", "/RoupaController", "/FornecedorController", "/LoteController"})
+public class Controller extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private Map<String, ICommand> commands;
 	private Map<String, IViewHelper> viewHelpers;
 	
-	public FuncionarioController() {
+	public Controller() {
 		commands = new HashMap<String, ICommand>();
 		commands.put("SALVAR", new SalvarCommand());
 		commands.put("ALTERAR", new AlterarCommand());
@@ -36,6 +39,9 @@ public class FuncionarioController extends HttpServlet{
 		commands.put("CONSULTAR", new ConsultarCommand());
 		viewHelpers = new HashMap<String, IViewHelper>();
 		viewHelpers.put("/ES3/FuncionarioController", new FuncionarioVH());
+		viewHelpers.put("/ES3/RoupaController", new RoupaVH());
+		viewHelpers.put("/ES3/FornecedorController", new FornecedorVH());
+		viewHelpers.put("/ES#/LoteController", new LoteVH());
 	}
 	
 	

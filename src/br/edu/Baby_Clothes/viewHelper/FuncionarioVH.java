@@ -1,11 +1,14 @@
 package br.edu.Baby_Clothes.viewHelper;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
@@ -61,12 +64,24 @@ public class FuncionarioVH implements IViewHelper{
 	private Funcionario criarFuncionario(HttpServletRequest request) {
 		Funcionario funcionario = new Funcionario();
 		
+		String id = request.getParameter("txtID");
+		String dtCadastro = request.getParameter("txtDtCadastro");
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
 		String email = request.getParameter("txtEmail");
 		String senha = request.getParameter("txtCPF");
 		String nivelAcesso = request.getParameter("txtNivelAcesso");
+		String operacao = request.getParameter("OPERACAO");
 		
+		if(id != null || !id.trim().equalsIgnoreCase("") || id.isEmpty()) {
+			funcionario.setId(Long.parseLong(id));
+		}
+		
+		if(dtCadastro != null || !dtCadastro.trim().equalsIgnoreCase("") || dtCadastro.isEmpty()) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM--dd HH:mm:ss");
+			funcionario.setDataCriacao(LocalDateTime.parse(dtCadastro, formatter));
+		}
+			
 		if(nome != null || !nome.trim().equals("") || !nome.isEmpty()) {
 			funcionario.setNome(nome);
 		}
@@ -85,6 +100,12 @@ public class FuncionarioVH implements IViewHelper{
 		
 		if(nivelAcesso != null || nivelAcesso.trim().equals("") || nivelAcesso.isEmpty()) {
 			funcionario.setNivelAcesso(NivelAcesso.valueOf(nivelAcesso));
+		}
+		
+		if(operacao.equalsIgnoreCase("SALVAR")) {
+			HttpSession sessao = request.getSession();
+			EntidadeDominio entidade = (EntidadeDominio) sessao.getAttribute("Resultado");
+			funcionario.setId(entidade.getId());
 		}
 	
 	
