@@ -9,19 +9,19 @@ package br.edu.fatec.Baby_Clothes.model;
  */
 public enum NivelAcesso {
 	
-	ADMINISTRADOR("Administrador")
-	,MODERADOR_JUNIOR("Moderador Junior")
-	,MODERADOR_PLENO("Moderador Pleno")
-	,MODERADOR_SENIOR("Moderador Senior");
+	ADMINISTRADOR(1)
+	,MODERADOR_JUNIOR(2)
+	,MODERADOR_PLENO(3)
+	,MODERADOR_SENIOR(4);
 	
-	private String descricao;
+	private int valor;
 	
-	NivelAcesso (String descricao) {
-		this.descricao = descricao;
+	NivelAcesso (int valor) {
+		this.valor = valor;
 	}
 	
-	public String getDescricao() {
-		return descricao;
+	public int getValor() {
+		return valor;
 	}
 
 }
