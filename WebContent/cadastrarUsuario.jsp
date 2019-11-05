@@ -73,7 +73,7 @@
 						</div>
 					</div>
 					<hr class="mb-4">
-					<button class="btn btn-primary btn-lg btn-block" name="operacao" id="operacao" type="submit" value="SALVAR">SALVAR</button>
+					<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button>
 				</form>
 			</div>
 		</div>
