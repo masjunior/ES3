@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import br.edu.Baby_Clothes.util.Conexao;
@@ -25,54 +24,41 @@ public class FuncionarioDAO implements IDAO{
 		
 		try {
 			connection = Conexao.getConnection();
+			connection.setAutoCommit(false);
 			
-			try {
-				connection = Conexao.getConnection();
-				connection.setAutoCommit(false);
-				
-				StringBuilder sqlUsu = new StringBuilder();
-				sqlUsu.append("INSERT INTO tb_usuario(usu_data_criacao, usu_habilitado, usu_login,usu_senha, usu_nivel_acesso) VALUES (?,?,?,?,?) ");
-				pst = connection.prepareStatement(sqlUsu.toString(), 
-						Statement.RETURN_GENERATED_KEYS);
-				
-				pst.setString(1, LocalDateTime.now().toString());
-				pst.setString(1, funcionario.getEmail());
-				pst.setString(1, funcionario.getEmail());
-				pst.setString(1, funcionario.getEmail());
-				pst.setString(2, funcionario.getSenha());
-				pst.setInt(3, funcionario.getNivelAcesso().getValor());
-				
-				pst.executeUpdate();		
-						
-				ResultSet rs = pst.getGeneratedKeys();
-				int idUsuario=0;
-				if(rs.next())
-					idUsuario = rs.getInt(1);
-				usuario.setId(idUsuario);
-				
-				
-				
-				
-				
-
-				StringBuilder sql = new StringBuilder();
-				sql.append("INSERT INTO usuario (fun_nome, fun_cpf, ");
-				sql.append("fun_car_id,fun_usu_id,fun_set_id,fun_dtcontratacao) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-
-				pst = connection.prepareStatement(sql.toString());
-
-				pst.setString(1, funcionario.getNome());
-				pst.setString(2, funcionario.getCpf());
-				pst.setString(3, funcionario.getEmail());
-				pst.setString(5, funcionario.getSenha());
-				pst.setString(11, new Date().toString());
-
-				pst.executeUpdate();
-
-				connection.commit();
+			StringBuilder sqlUsu = new StringBuilder();
+			sqlUsu.append("INSERT INTO tb_usuario(usu_data_criacao, usu_habilitado, usu_login,usu_senha, usu_nivel_acesso) VALUES (?,?,?,?,?) ");
+			pst = connection.prepareStatement(sqlUsu.toString(), 
+					Statement.RETURN_GENERATED_KEYS);
 			
+			pst.setString(1, LocalDateTime.now().toString());
+			pst.setBoolean(2, true );
+			pst.setString(3, funcionario.getEmail());
+			pst.setString(4, funcionario.getSenha());
+			pst.setInt(5, funcionario.getNivelAcesso().getValor());
 			
+			pst.executeUpdate();		
+					
+			ResultSet rs = pst.getGeneratedKeys();
+			int idUsuario=0;
+			if(rs.next()) {
+				idUsuario = rs.getInt(1);
+			}
 			
+			//salvar funcionario
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO usuario (fun_nome, fun_cpf, usu_id) VALUES (?,?,?)");
+	
+			pst = connection.prepareStatement(sql.toString());
+	
+			pst.setString(1, funcionario.getNome());
+			pst.setString(2, funcionario.getCpf());
+			pst.setInt(3, idUsuario );
+	
+			pst.executeUpdate();
+	
+			connection.commit();
+		
 		}catch (Exception e) {
 			try {
 				connection.rollback();
@@ -87,9 +73,8 @@ public class FuncionarioDAO implements IDAO{
 				e.printStackTrace();
 			}
 		}
-		
-		
 	}
+		
 
 	@Override
 	public void remover(EntidadeDominio entidade) {

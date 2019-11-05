@@ -6,9 +6,10 @@ USE site_roupa;
 CREATE TABLE `site_roupa`.`usuario` (
   `usu_id` INT NOT NULL,
   `usu_data_criacao` DATETIME NOT NULL,
-  `usu_nome` VARCHAR(100) NOT NULL,
-  `usu_cpf` VARCHAR(11) NOT NULL,
+  `usu_habilitado` BOOLEAN NOT NULL,
   `usu_email` VARCHAR(45) NOT NULL,
+  `usu_senha` VARCHAR(45) NOT NULL,
+  `usu_nivel_acesso` INT NOT NULL,
   PRIMARY KEY (`usu_id`));
 
 
@@ -23,8 +24,9 @@ CREATE TABLE `site_roupa`.`fornecedor` (
   PRIMARY KEY (`frn_id`));
 
 CREATE TABLE `site_roupa`.`funcionario` (
-  `fun_id` INT NOT NULL,
-  `fun_nivel_acesso` INT NOT NULL,
+  `fun_id` INT NOT NULL,	
+  `fun_nome` VARCHAR(100) NOT NULL,
+  `fun_cpf` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`fun_id`));
 
 
