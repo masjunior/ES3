@@ -112,5 +112,6 @@ public class Fachada implements IFachada {
 				sb.append(msg);
 			}
 		}
+		System.out.println("Fachada " + sb);
 	}
 }

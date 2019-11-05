@@ -38,7 +38,7 @@ public class FuncionarioVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do funcion�rio foi realizado com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("cadastrarProduto.jsp");
+			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			resultado.setMensagem("Consulta de funcin�rio realizada com sucesso!");
@@ -64,23 +64,23 @@ public class FuncionarioVH implements IViewHelper{
 	private Funcionario criarFuncionario(HttpServletRequest request) {
 		Funcionario funcionario = new Funcionario();
 		
-		String id = request.getParameter("txtID");
-		String dtCadastro = request.getParameter("txtDtCadastro");
+//		String id = request.getParameter("txtID");
+//		String dtCadastro = request.getParameter("txtDtCadastro");
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
 		String email = request.getParameter("txtEmail");
 		String senha = request.getParameter("txtCPF");
 		String nivelAcesso = request.getParameter("txtNivelAcesso");
-		String operacao = request.getParameter("OPERACAO");
+		String operacao = request.getParameter("operacao");
 		
-		if(id != null || !id.trim().equalsIgnoreCase("") || id.isEmpty()) {
-			funcionario.setId(Long.parseLong(id));
-		}
-		
-		if(dtCadastro != null || !dtCadastro.trim().equalsIgnoreCase("") || dtCadastro.isEmpty()) {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM--dd HH:mm:ss");
-			funcionario.setDataCriacao(LocalDateTime.parse(dtCadastro, formatter));
-		}
+//		if(id != null || !id.trim().equalsIgnoreCase("") || id.isEmpty()) {
+//			funcionario.setId(Long.parseLong(id));
+//		}
+//		
+//		if(dtCadastro != null || !dtCadastro.trim().equalsIgnoreCase("") || dtCadastro.isEmpty()) {
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM--dd HH:mm:ss");
+//			funcionario.setDataCriacao(LocalDateTime.parse(dtCadastro, formatter));
+//		}
 			
 		if(nome != null || !nome.trim().equals("") || !nome.isEmpty()) {
 			funcionario.setNome(nome);
@@ -105,7 +105,8 @@ public class FuncionarioVH implements IViewHelper{
 		if(operacao.equalsIgnoreCase("SALVAR")) {
 			HttpSession sessao = request.getSession();
 			EntidadeDominio entidade = (EntidadeDominio) sessao.getAttribute("Resultado");
-			funcionario.setId(entidade.getId());
+//			funcionario.setId(entidade.getId());
+			funcionario.setId(Long.parseLong("5"));
 		}
 	
 	

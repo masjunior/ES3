@@ -63,10 +63,10 @@
 								data-placeholder="Selecione o nível de acesso" required>
 								<option value="" selected="selected" disabled>Selecione
 									um nível de acesso</option>
-								<option value="1" name="Administrador">Administrador</option>
-								<option value="2" name="Moderador_Junior">Moderador Junior</option>
-								<option value="3" name="Moderador_Pleno">Moderador Pleno</option>
-								<option value="4" name="Moderador_Senior">Moderador Senior</option>
+								<option value="ADMINISTRADOR" name="Administrador">Administrador</option>
+								<option value="MODERADOR_JUNIOR" name="Moderador_Junior">Moderador Junior</option>
+								<option value="MODERADOR_PLENO" name="Moderador_Pleno">Moderador Pleno</option>
+								<option value="MODERADOR_SENIOR" name="Moderador_Senior">Moderador Senior</option>
 							</select>
 							<div class="invalid-feedback" style="width: 100%;">É
 								obrigatório inserir um nível de acesso.</div>

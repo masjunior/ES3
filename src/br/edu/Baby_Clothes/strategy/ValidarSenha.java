@@ -42,23 +42,23 @@ public class ValidarSenha implements IStrategy{
 		StringBuilder sb = new StringBuilder();
 		
 		if(senha.length() < 8) {
-			sb.append("A senha precisa ter o tamanho minimo de 8 caracteres");
+//			sb.append("A senha precisa ter o tamanho minimo de 8 caracteres");
 		}
 		
 		if(!numero) {
-			sb.append("Falta a presen�a de um n�mero");
+//			sb.append("Falta a presença de um número");
 		}
 		
 		if(!caracter) {
-			sb.append("Falta a presen�a de uma Letra");
+//			sb.append("Falta a presença de uma Letra");
 		}
 		
 		if(!caracterMaiusculo) {
-			sb.append("Falta a presen�a de uma Letra Maiuscula");
+//			sb.append("Falta a presença de uma Letra Maiuscula");
 		}
 		
 		if(!caracterEspecial) {
-			sb.append(", Falta a presen�a de um Caracter Especial");
+//			sb.append(", Falta a presença de um Caracter Especial");
 		}
 	
 		return sb.toString();

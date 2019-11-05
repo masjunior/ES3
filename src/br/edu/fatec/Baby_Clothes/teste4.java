@@ -18,7 +18,7 @@ public class teste4
                  Connection conn = DriverManager.getConnection(url, usuario, senha);
                  try
                  {
-                 String sql = "SELECT * FROM usuario";
+                 String sql = "SELECT * FROM site_roupa.usuario";
                  	
                     Statement stm = conn.createStatement();
                     try
@@ -27,11 +27,12 @@ public class teste4
                   while (rs.next())
                   {
                      int id = rs.getInt("usu_id");
-                	 String nome = rs.getString("usu_nome");
-                     String cpf = rs.getString("usu_cpf");
-                     String email = rs.getString("usu_email");
-                     String tipoUsuario = rs.getString("usu_tipo_usuario");
-                     System.out.println("id: " + id + "\nNome: " + nome + "\nCPF: " + cpf + "\nE-mail: " + email + "\nTipo Usuario: " + tipoUsuario);
+                     String dataCriacao = rs.getString("usu_data_criacao");
+                	 String habilitado = rs.getString("usu_habilitado");
+                	 String email = rs.getString("usu_email");
+                     String cpf = rs.getString("usu_senha");
+                     String nivelAcesso = rs.getString("usu_nivel_acesso");
+                     System.out.println("id: " + id + "\nCriacao: " + dataCriacao + "\nhabilitado: " + habilitado +   "\nCPF: " + cpf + "\nE-mail: " + email + "\nTipo Usuario: " + nivelAcesso);
                      System.out.println("---------------------------------------");
                   }
                   System.out.println("\nConsulta realizada com sucesso!!!\n");                    

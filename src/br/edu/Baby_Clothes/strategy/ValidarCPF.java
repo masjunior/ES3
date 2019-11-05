@@ -11,7 +11,7 @@ public class ValidarCPF implements IStrategy {
 	public String processar(EntidadeDominio entidade) {
 	
 		Funcionario funcionario = (Funcionario)entidade;
-		String msgRetorno;
+		String msgRetorno = "";
 		String cpf = funcionario.getCpf();
 		
 		if(cpf.equals("00000000000") || cpf.equals("11111111111")
@@ -21,7 +21,7 @@ public class ValidarCPF implements IStrategy {
 			|| cpf.equals("88888888888") || cpf.equals("99999999999")
 			|| cpf.length() != 11) {
 			
-			msgRetorno = "CPF Inv�lido";
+//			msgRetorno = "CPF Inv�lido";
 		}
 		
 		char dig10, dig11;
@@ -62,12 +62,12 @@ public class ValidarCPF implements IStrategy {
 			
 			//Verifica se os digitos calculados conferem os digitos informados
 			if((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
-				msgRetorno = null;
+//				msgRetorno = null;
 			}else {
-				msgRetorno = "CPF Inv�lido";
+//				msgRetorno = "CPF Inv�lido";
 			}
 		}catch (InputMismatchException erro){
-				msgRetorno = "Um erro inesperado aconteceu, tente novamente mais tarde!";
+//				msgRetorno = "Um erro inesperado aconteceu, tente novamente mais tarde!";
 		}
 		
 	

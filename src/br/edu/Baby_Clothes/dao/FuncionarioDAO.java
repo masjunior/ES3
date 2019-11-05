@@ -27,7 +27,7 @@ public class FuncionarioDAO implements IDAO{
 			connection.setAutoCommit(false);
 			
 			StringBuilder sqlUsu = new StringBuilder();
-			sqlUsu.append("INSERT INTO tb_usuario(usu_data_criacao, usu_habilitado, usu_login,usu_senha, usu_nivel_acesso) VALUES (?,?,?,?,?) ");
+			sqlUsu.append("INSERT INTO site_roupa.usuario(usu_data_criacao, usu_habilitado, usu_login,usu_senha, usu_nivel_acesso) VALUES (?,?,?,?,?) ");
 			pst = connection.prepareStatement(sqlUsu.toString(), 
 					Statement.RETURN_GENERATED_KEYS);
 			
@@ -47,7 +47,7 @@ public class FuncionarioDAO implements IDAO{
 			
 			//salvar funcionario
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO usuario (fun_nome, fun_cpf, usu_id) VALUES (?,?,?)");
+			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, usu_id) VALUES (?,?,?)");
 	
 			pst = connection.prepareStatement(sql.toString());
 	
