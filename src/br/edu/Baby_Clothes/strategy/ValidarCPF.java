@@ -3,16 +3,16 @@ package br.edu.Baby_Clothes.strategy;
 import java.util.InputMismatchException;
 
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
-import br.edu.fatec.Baby_Clothes.model.Usuario;
+import br.edu.fatec.Baby_Clothes.model.Funcionario;
 
 public class ValidarCPF implements IStrategy {
 
 	@Override
 	public String processar(EntidadeDominio entidade) {
 	
-		Usuario usuario = (Usuario)entidade;
+		Funcionario funcionario = (Funcionario)entidade;
 		String msgRetorno;
-		String cpf = usuario.getCpf();
+		String cpf = funcionario.getCpf();
 		
 		if(cpf.equals("00000000000") || cpf.equals("11111111111")
 			|| cpf.equals("22222222222") || cpf.equals("33333333333")
@@ -21,7 +21,7 @@ public class ValidarCPF implements IStrategy {
 			|| cpf.equals("88888888888") || cpf.equals("99999999999")
 			|| cpf.length() != 11) {
 			
-			msgRetorno = "CPF Inválido";
+			msgRetorno = "CPF Invï¿½lido";
 		}
 		
 		char dig10, dig11;
@@ -64,7 +64,7 @@ public class ValidarCPF implements IStrategy {
 			if((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
 				msgRetorno = null;
 			}else {
-				msgRetorno = "CPF Inválido";
+				msgRetorno = "CPF Invï¿½lido";
 			}
 		}catch (InputMismatchException erro){
 				msgRetorno = "Um erro inesperado aconteceu, tente novamente mais tarde!";

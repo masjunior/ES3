@@ -46,19 +46,19 @@ public class ValidarSenha implements IStrategy{
 		}
 		
 		if(!numero) {
-			sb.append("Falta a presença de um número");
+			sb.append("Falta a presenï¿½a de um nï¿½mero");
 		}
 		
 		if(!caracter) {
-			sb.append("Falta a presença de uma Letra");
+			sb.append("Falta a presenï¿½a de uma Letra");
 		}
 		
 		if(!caracterMaiusculo) {
-			sb.append("Falta a presença de uma Letra Maiuscula");
+			sb.append("Falta a presenï¿½a de uma Letra Maiuscula");
 		}
 		
 		if(!caracterEspecial) {
-			sb.append(", Falta a presença de um Caracter Especial");
+			sb.append(", Falta a presenï¿½a de um Caracter Especial");
 		}
 	
 		return sb.toString();

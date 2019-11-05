@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class EntidadeDominio{
 
 	protected Long id;
-
 	protected LocalDateTime dataCriacao;
+	protected Boolean habilitado;
 
 	public Long getId() {
 		return id;
@@ -28,5 +28,12 @@ public class EntidadeDominio{
 		this.dataCriacao = dataCriacao;
 	}
 
-	
+	public Boolean isHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
+	}
+
 } 

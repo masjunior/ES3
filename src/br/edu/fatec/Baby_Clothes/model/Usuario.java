@@ -9,27 +9,14 @@ package br.edu.fatec.Baby_Clothes.model;
  */
 public class Usuario extends EntidadeDominio {
 	
-	private String nome;
-	private String cpf;
 	private String email;
 	private String senha;
+	private NivelAcesso nivelAcesso;
 	
 	
 	public Usuario() {
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -44,11 +31,19 @@ public class Usuario extends EntidadeDominio {
 	}
 	
 
-	public Usuario(String nome, String cpf, String email, String senha, NivelAcesso nivelAcesso) {
-		this.nome = nome;
-		this.cpf = cpf;
+	public Usuario(String email, String senha, NivelAcesso nivelAcesso) {
 		this.email = email;
 		this.senha = senha;
+		this.nivelAcesso = nivelAcesso;
+		
+	}
+	
+	public NivelAcesso getNivelAcesso() {
+		return nivelAcesso;
+	}
+
+	public void setNivelAcesso(NivelAcesso nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
 	}
 
 
