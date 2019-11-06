@@ -1,5 +1,10 @@
 package br.edu.fatec.Baby_Clothes;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import br.edu.fatec.Baby_Clothes.model.NivelAcesso;
 
 public class teste4
 {
@@ -8,6 +13,8 @@ public class teste4
         String url = "jdbc:mysql://localhost:3306/site_roupa";
         String usuario = "ES3";
 		String senha = "root";
+		
+		
 
         try
         {

@@ -20,7 +20,7 @@ public class Conexao {
 			String usuario = "ES3";
 			String senha = "root";
 			
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			String path ="jdbc:mysql://"+servidor+ ":3306/"+banco;
 			
 			return 
