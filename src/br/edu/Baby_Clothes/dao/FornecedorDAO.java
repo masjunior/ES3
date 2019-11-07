@@ -13,7 +13,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Lote;
 
-public class ForncedorDAO implements IDAO {
+public class FornecedorDAO implements IDAO {
 
 	private Connection conexao = null;
 	

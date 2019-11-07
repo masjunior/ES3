@@ -1,6 +1,8 @@
 package br.edu.Baby_Clothes.dao.filtro;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
@@ -21,7 +23,8 @@ public class FiltroLote implements IFiltro {
 	public String gerarQuerry(EntidadeDominio entidade) {
 	
 		EntidadeDominio etd = entidades.get(entidade.getClass().getName());
-		
+		List<Integer> qtdCampos = null;
+		Map<Integer, String> campos = null;
 		String sql = "SELECT * FROM lote";
 		boolean flgWhere = false;
 		
@@ -39,38 +42,54 @@ public class FiltroLote implements IFiltro {
 		//Cria SQL para consultar o lote inteiro
 		}else if(etd.getClass().getName().equalsIgnoreCase(Lote.class.getName())) {
 			Lote lote = (Lote)etd;
+			qtdCampos = new ArrayList<Integer>();
+			campos = new HashMap<Integer, String>();
 			
 			if(lote.getId() > 0) {
 				if(!flgWhere) {
-					sql += " WHERE";
+					sql += " WHERE ";
 					flgWhere = true;
 				}
-				sql += " lot_id = " + lote.getId();
+				campos.put(0, "lot_id = " + lote.getId());
+				qtdCampos.add(0);
 			}
 			
 			if(lote.getDataCriacao() != null) {
 				if(!flgWhere) {
-					sql += " WHERE";
+					sql += " WHERE ";
 					flgWhere = true;
 				}
-				sql += " lot_data_criacao = " + lote.getDataCriacao();
+				campos.put(1, "lot_data_criacao = " + lote.getDataCriacao());
+				qtdCampos.add(1);
 			}
 			
 			if(lote.getPrecoCompraUnidade() != null) {
 				if(!flgWhere) {
-					sql += " WHERE";
+					sql += " WHERE ";
 					flgWhere = true;
 				}
-				sql += " lot_precoCompraUnidade = " + lote.getPrecoCompraUnidade();
+				campos.put(2, "lot_precoCompraUnidade = " + lote.getPrecoCompraUnidade());
+				qtdCampos.add(2);
 			}
 			
 			if(lote.getFornecedor() != null) {
 				if(!flgWhere) {
-					sql += " WHERE";
+					sql += " WHERE ";
 					flgWhere = true;
 				}
-				sql += " lot_fornecedor = " + lote.getFornecedor();
+				campos.put(3, "lot_fornecedor = " + lote.getFornecedor());
+				qtdCampos.add(3);
 			}
+			
+			for(Integer I : qtdCampos) {
+				if(I != qtdCampos.get(0)) {
+					sql += " AND ";
+				}
+				sql += campos.get(I);
+			}
+			
+			
+			
 			
 			return sql;
 			
