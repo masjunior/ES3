@@ -9,10 +9,10 @@ package br.edu.fatec.Baby_Clothes.model;
  */
 public enum NivelAcesso {
 	
-	ADMINISTRADOR(1)
-	,MODERADOR_JUNIOR(2)
-	,MODERADOR_PLENO(3)
-	,MODERADOR_SENIOR(4);
+	ADMINISTRADOR(4)
+	,MODERADOR_JUNIOR(1)
+	,MODERADOR_PLENO(2)
+	,MODERADOR_SENIOR(3);
 	
 	private int valor;
 	

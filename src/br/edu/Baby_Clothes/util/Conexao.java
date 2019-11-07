@@ -20,14 +20,14 @@ public class Conexao {
 			String banco = "site_roupa";
 			String usuario = "ES3";
 			String senha = "root";
-			String drive1 = "com.mysql.jdbc.Driver";
+			String drive = "com.mysql.jdbc.Driver";
 			String drive2 = "com.mysql.cj.jdbc.Driver";
 			
-//			String url = "jdbc:mysql://" + servidor + "/" + banco + "?serverTimezone=UTC";
 			String url = "jdbc:mysql://"+servidor+"/"+banco;
-			Class.forName(drive2);
+			Class.forName(drive);
 					   
 			return  DriverManager.getConnection(url,usuario,senha); 
+
 			
 		} catch (SQLException erroSQL) {  
             System.out.println("Erro na conexão com o Banco "+erroSQL.getMessage());  
