@@ -5,6 +5,7 @@ package br.edu.Baby_Clothes.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @author marco
@@ -15,20 +16,27 @@ public class Conexao {
 	public static Connection getConnection(){
 		
 		try {
-			String servidor = "localhost";
+			String servidor = "localhost:3306";
 			String banco = "site_roupa";
 			String usuario = "ES3";
 			String senha = "root";
+			String drive1 = "com.mysql.jdbc.Driver";
+			String drive2 = "com.mysql.cj.jdbc.Driver";
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			String path ="jdbc:mysql://"+servidor+ ":3306/"+banco;
+//			String url = "jdbc:mysql://" + servidor + "/" + banco + "?serverTimezone=UTC";
+			String url = "jdbc:mysql://"+servidor+"/"+banco;
+			Class.forName(drive2);
+					   
+			return  DriverManager.getConnection(url,usuario,senha); 
 			
-			return 
-				DriverManager.getConnection(path,
-						usuario,senha);
-			
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (SQLException erroSQL) {  
+            System.out.println("Erro na conexão com o Banco "+erroSQL.getMessage());  
+            return null;
+        } catch (ClassNotFoundException erroClass){  
+            System.out.println("Erro ao carregar o Driver "+erroClass.getMessage());
+            return null;
+        } catch (Exception e) {
+			System.err.println("DRIVE não carregado " + e.getMessage());
 			return null;
 		}
 		
@@ -45,5 +53,5 @@ public class Conexao {
 			}
 		}
 	}
-
+	
 }

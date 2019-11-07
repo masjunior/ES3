@@ -19,7 +19,6 @@ public class teste4
                  try
                  {
                  String sql = "SELECT * FROM site_roupa.usuario";
-                 	
                     Statement stm = conn.createStatement();
                     try
                     {
