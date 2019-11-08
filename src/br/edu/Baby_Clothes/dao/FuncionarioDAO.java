@@ -46,13 +46,15 @@ public class FuncionarioDAO implements IDAO{
 			
 			//salvar funcionario
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, usu_id) VALUES (?,?,?)");
+			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, fun_usuario,fun_id) VALUES (?,?,?,?)");
 	
 			pst = connection.prepareStatement(sql.toString(),Statement.RETURN_GENERATED_KEYS);
 	
 			pst.setString(1, funcionario.getNome());
 			pst.setString(2, funcionario.getCpf());
 			pst.setInt(3, idUsuario );
+			pst.setInt(4, 5 );
+			
 	
 			pst.executeUpdate();
 	
