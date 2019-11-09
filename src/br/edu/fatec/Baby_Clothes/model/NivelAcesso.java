@@ -23,5 +23,21 @@ public enum NivelAcesso {
 	public int getValor() {
 		return valor;
 	}
+	
+	public static NivelAcesso getByName(int num) {
+		switch (num) {
+		case 4:
+			return ADMINISTRADOR;
+		case 1:
+			return MODERADOR_JUNIOR;
+		case 2:
+			return MODERADOR_PLENO;
+		case 3:
+			return MODERADOR_SENIOR;
+		default:
+			return null;
+		}
+	
+	}
 
 }

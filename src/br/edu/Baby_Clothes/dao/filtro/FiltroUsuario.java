@@ -18,20 +18,18 @@ public class FiltroUsuario implements IFiltro{
 		boolean flgWhere = false;
 		String sql = "SELECT * FROM usuario";
 		
-		
-		
-		if(usuario.getId() != null || usuario.getId() > 0) {
+		if(usuario.getId() != null && usuario.getId() > 0) {
 			if(!flgWhere) {
-				sql += " WHERE ";
+				sql += " WHERE ( ";
 				flgWhere = true;
 			}
 			campos.put(0, "usu_id = " + usuario.getId());
 			qtdCampos.add(0);
 		}
 		
-		if(usuario != null) {
+		if(usuario.getDataCriacao() != null) {
 			if(!flgWhere) {
-				sql += " WHERE ";
+				sql += " WHERE ( ";
 				flgWhere = true;
 			}
 			campos.put(1, "usu_data_criacao = " + usuario.getDataCriacao());
@@ -40,7 +38,7 @@ public class FiltroUsuario implements IFiltro{
 		
 		if(usuario.isHabilitado() != null) {
 			if(!flgWhere) {
-				sql += " WHERE ";
+				sql += " WHERE ( ";
 				flgWhere = true;
 			}
 			campos.put(3, "usu_habilidato = " + usuario.isHabilitado());
@@ -50,10 +48,10 @@ public class FiltroUsuario implements IFiltro{
 		if(usuario.getEmail() != null) {
 			if(!usuario.getEmail().trim().equalsIgnoreCase("")) {
 				if(!flgWhere) {
-					sql += " WHERE ";
+					sql += " WHERE ( ";
 					flgWhere = true;
 				}
-				campos.put(4, "usu_email = " + usuario.getEmail());
+				campos.put(4, "usu_email = " + "'" + usuario.getEmail() + "'");
 				qtdCampos.add(4);
 			}
 		}
@@ -61,17 +59,17 @@ public class FiltroUsuario implements IFiltro{
 		if(usuario.getSenha() != null) {
 			if(!usuario.getSenha().trim().equals("")) {
 				if(!flgWhere) {
-					sql += " WHERE ";
+					sql += " WHERE ( ";
 					flgWhere = true;
 				}
-				campos.put(5, "usu_senha = " + usuario.getSenha());
+				campos.put(5, "usu_senha = " + usuario.getSenha() );
 				qtdCampos.add(5);
 			}
 		}
 		
 		if(usuario.getNivelAcesso() != null) {
 			if(!flgWhere) {
-				sql += " WHERE ";
+				sql += " WHERE ( ";
 				flgWhere = true;
 			}
 			campos.put(6, "usu_nivel_acesso = " + usuario.getNivelAcesso().ordinal());
@@ -84,8 +82,7 @@ public class FiltroUsuario implements IFiltro{
 			}
 			sql += campos.get(I);
 		}
-		
-		
+		sql +=" );";
 		return sql;
 	}
 

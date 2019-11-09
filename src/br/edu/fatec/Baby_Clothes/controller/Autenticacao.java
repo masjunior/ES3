@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.edu.Baby_Clothes.dao.UsuarioDAO;
 //import br.edu.Baby_Clothes.dao.UsuarioDAO;
 import br.edu.fatec.Baby_Clothes.model.Usuario;
 
@@ -43,13 +44,13 @@ public class Autenticacao extends HttpServlet {
 		usuario.setEmail(login);
 		usuario.setSenha(senha);
 
-//		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuarioAutenticado = null;
 		
-//		usuarioAutenticado = (Usuario) usuarioDAO.listarPorEntidade(usuario);
+		usuarioAutenticado = (Usuario) usuarioDAO.listarUsuario(usuario);
 
 		HttpSession sessao = request.getSession();
-
+		
 		if (usuarioAutenticado != null ) {
 			sessao.setAttribute("usuarioAutenticado", usuarioAutenticado);
 			request.getRequestDispatcher("logado.jsp").forward(request, response);

@@ -157,7 +157,10 @@ public class UsuarioDAO implements IDAO {
 			conexao = Conexao.getConnection();
 			listaUsuario = new ArrayList<EntidadeDominio>();
 			
+//			conexao.setAutoCommit(false);
 			pstm = conexao.prepareStatement(sql);
+			System.out.println(sql);
+//			conexao.commit();
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()) {
@@ -172,7 +175,7 @@ public class UsuarioDAO implements IDAO {
 				
 				int acesso = rs.getInt("usu_nivel_acesso");
 				String a = String.valueOf(acesso);
-				NivelAcesso NA = Enum.valueOf(NivelAcesso.class, a);
+				NivelAcesso NA = NivelAcesso.getByName(acesso);
 				
 				usr.setNivelAcesso(NA);
 				
@@ -184,11 +187,11 @@ public class UsuarioDAO implements IDAO {
 			
 			
 		}catch(Exception e) {
-			try {
-				conexao.rollback();
-			}catch(SQLException eSQL) {
-				eSQL.printStackTrace();
-			}
+//			try {
+//				conexao.rollback();
+//			}catch(SQLException eSQL) {
+//				eSQL.printStackTrace();
+//			}
 		e.printStackTrace();
 		}finally {
 			try {
@@ -202,5 +205,68 @@ public class UsuarioDAO implements IDAO {
 		
 		return null;
 	}
+	
+	
+	public EntidadeDominio listarUsuario(EntidadeDominio entidade) {
+		Usuario usuario = (Usuario)entidade;
+		FiltroUsuario filtro = new FiltroUsuario();
+		String sql = filtro.gerarQuerry(usuario);
+		EntidadeDominio listaUsuario = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			conexao = Conexao.getConnection();
+			listaUsuario = new EntidadeDominio();
+			
+//			conexao.setAutoCommit(false);
+			pstm = conexao.prepareStatement(sql);
+			System.out.println(sql);
+//			conexao.commit();
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				Usuario usr = new Usuario();
+				
+				usr.setId(rs.getLong("usu_id"));
+				usr.setHabilitado(rs.getBoolean("usu_habilitado"));
+				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				usr.setDataCriacao(date);
+				usr.setEmail(rs.getString("usu_email"));
+				usr.setSenha(rs.getString("usu_senha"));
+				
+				int acesso = rs.getInt("usu_nivel_acesso");
+				String a = String.valueOf(acesso);
+				NivelAcesso NA = NivelAcesso.getByName(acesso);
+				
+				usr.setNivelAcesso(NA);
+				
+				listaUsuario = usr;
+				
+			}
+			
+			return listaUsuario;
+			
+			
+		}catch(Exception e) {
+//			try {
+//				conexao.rollback();
+//			}catch(SQLException eSQL) {
+//				eSQL.printStackTrace();
+//			}
+		e.printStackTrace();
+		}finally {
+			try {
+				pstm.close();
+				Conexao.fechar(conexao);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return null;
+	}
+	
+	
 
 }
