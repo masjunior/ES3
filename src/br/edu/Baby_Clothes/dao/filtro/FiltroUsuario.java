@@ -32,7 +32,7 @@ public class FiltroUsuario implements IFiltro{
 				sql += " WHERE ( ";
 				flgWhere = true;
 			}
-			campos.put(1, "usu_data_criacao = " + usuario.getDataCriacao());
+			campos.put(1, "usu_data_criacao = " + "'" + usuario.getDataCriacao() + "'");
 			qtdCampos.add(1);
 		}
 		
@@ -62,7 +62,7 @@ public class FiltroUsuario implements IFiltro{
 					sql += " WHERE ( ";
 					flgWhere = true;
 				}
-				campos.put(5, "usu_senha = " + usuario.getSenha() );
+				campos.put(5, "usu_senha = " + "'" + usuario.getSenha() + "'" );
 				qtdCampos.add(5);
 			}
 		}
@@ -82,7 +82,11 @@ public class FiltroUsuario implements IFiltro{
 			}
 			sql += campos.get(I);
 		}
-		sql +=" );";
+		
+		if(flgWhere) {
+			sql +=" );";
+		}
+		
 		return sql;
 	}
 
