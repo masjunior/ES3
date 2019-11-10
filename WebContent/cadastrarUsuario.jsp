@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap Stack Path -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous">
+	</script>
 <title>Fomulario Usuário</title>
 
 </head>
@@ -90,47 +97,17 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write(
-								'<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-	</script>
-	<script src="../../assets/js/vendor/popper.min.js"></script>
-	<script src="../../dist/js/bootstrap.min.js"></script>
-	<script src="../../assets/js/vendor/holder.min.js"></script>
-	<!-- Bootstrap Stack Path -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous">
-	</script>
+<!-- 	<script> -->
+// 		window.jQuery
+// 				|| document
+// 						.write(
+// 								'<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+<!-- 	</script> -->
+<!-- 	<script src="../../assets/js/vendor/popper.min.js"></script> -->
+<!-- 	<script src="../../dist/js/bootstrap.min.js"></script> -->
+<!-- 	<script src="../../assets/js/vendor/holder.min.js"></script> -->
 	
-	<script>
-        // Exemplo de JavaScript para desativar o envio do formulário, se tiver algum campo inválido.
-        (function() {
-            'use strict';
-            window.addEventListener(
-                'load',function() {
-                    // Selecione todos os campos que nós queremos aplicar estilos Bootstrap de validação customizados.
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Faz um loop neles e previne envio
-                    var validation = Array.prototype.filter.call(
-                        forms, function(form) {
-                            form.addEventListener(
-                                'submit',function(event) {
-                                    if (form.checkValidity() === false) {
-                                        event.preventDefault();
-                                        event.stopPropagation();
-                                    }
-                                    form.classList.add('was-validated');
-                                },
-                            false);
-                        });
-                }, false);
-        })();
-    </script>
+	
 
 </body>
 

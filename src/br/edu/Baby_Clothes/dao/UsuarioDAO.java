@@ -211,22 +211,21 @@ public class UsuarioDAO implements IDAO {
 		Usuario usuario = (Usuario)entidade;
 		FiltroUsuario filtro = new FiltroUsuario();
 		String sql = filtro.gerarQuerry(usuario);
-		EntidadeDominio listaUsuario = null;
+		EntidadeDominio usuarioBanco = null;
 		PreparedStatement pstm = null;
 		
 		try {
 			conexao = Conexao.getConnection();
-			listaUsuario = new EntidadeDominio();
+			usuarioBanco = new EntidadeDominio();
 			
 //			conexao.setAutoCommit(false);
 			pstm = conexao.prepareStatement(sql);
-			System.out.println(sql);
 //			conexao.commit();
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()) {
 				Usuario usr = new Usuario();
-				
+
 				usr.setId(rs.getLong("usu_id"));
 				usr.setHabilitado(rs.getBoolean("usu_habilitado"));
 				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
@@ -240,11 +239,14 @@ public class UsuarioDAO implements IDAO {
 				
 				usr.setNivelAcesso(NA);
 				
-				listaUsuario = usr;
+				usuarioBanco = usr;
 				
 			}
+			if(usuarioBanco.getId() == null) {
+				return null;
+			}
 			
-			return listaUsuario;
+			return usuarioBanco;
 			
 			
 		}catch(Exception e) {
@@ -263,7 +265,7 @@ public class UsuarioDAO implements IDAO {
 			}
 		}
 		
-		
+		System.out.println("vou retornar null");
 		return null;
 	}
 	
