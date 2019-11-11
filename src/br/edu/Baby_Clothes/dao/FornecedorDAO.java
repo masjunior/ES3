@@ -1,9 +1,12 @@
 package br.edu.Baby_Clothes.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +27,22 @@ public class FornecedorDAO implements IDAO {
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "INSERT INTO fornecedor(frn_razaoSocial, frn_nomeFantasia, frn_razaoResponsavel, frn_cnpj, frn_email,"
-					+ " frn_telefone) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO fornecedor(frn_data_criacao, frn_habilitado, frn_razaoSocial, frn_nomeFantasia, frn_razaoResponsavel, frn_cnpj, frn_email,"
+					+ " frn_telefone) VALUES (?,?,?,?,?,?,?)";
 			
-			pstm = conexao.prepareStatement(sql);
-			pstm.setString(1, fornecedor.getRazaoSocial());
-			pstm.setString(2, fornecedor.getNomeFantasia());
-			pstm.setString(3, fornecedor.getRazaoResponsavel());
-			pstm.setString(4, fornecedor.getCnpj());
-			pstm.setString(5, fornecedor.getEmail());
-			pstm.setString(6, fornecedor.getTelefone());
+			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			LocalDateTime date = fornecedor.getDataCriacao();
+			Date sqlDate = Date.valueOf(date.toLocalDate());
+			pstm.setDate(1, sqlDate);
+			
+			pstm.setBoolean(2, true);
+			pstm.setString(3, fornecedor.getRazaoSocial());
+			pstm.setString(4, fornecedor.getNomeFantasia());
+			pstm.setString(5, fornecedor.getRazaoResponsavel());
+			pstm.setString(6, fornecedor.getCnpj());
+			pstm.setString(7, fornecedor.getEmail());
+			pstm.setString(8, fornecedor.getTelefone());
 					
 			pstm.executeUpdate();
 			
@@ -64,10 +73,12 @@ public class FornecedorDAO implements IDAO {
 		try {
 			conexao = Conexao.getConnection();
 			
-			String sql = "DELETE FROM fornecedor WHERE frn_id = ?";
+			String sql = "UPDATE fornecedor SET frn_halitado = ? WHERE frn_id = ?";
 			pstm = conexao.prepareStatement(sql);
 			
-			pstm.setLong(1, fornecedor.getId());
+			pstm.setBoolean(1, false);
+			
+			pstm.setLong(2, fornecedor.getId());
 			
 			pstm.executeUpdate();
 			
@@ -97,15 +108,16 @@ public class FornecedorDAO implements IDAO {
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE fornecedor SET frn_razaoSocial = ?, frn_nomeFantasia = ?, frn_razaoResponsavel = ?, frn_cnpj = ?, frn_email = ?, frn_telefone = ?";
+			String sql = "UPDATE fornecedor SET frn_habilitado = ?, frn_razaoSocial = ?, frn_nomeFantasia = ?, frn_razaoResponsavel = ?, frn_cnpj = ?, frn_email = ?, frn_telefone = ?";
 			pstm = conexao.prepareStatement(sql);
 			
-			pstm.setString(1, fornecedor.getRazaoSocial());
-			pstm.setString(2, fornecedor.getNomeFantasia());
-			pstm.setString(3, fornecedor.getRazaoResponsavel());
-			pstm.setString(4, fornecedor.getCnpj());
-			pstm.setString(5, fornecedor.getEmail());
-			pstm.setString(6, fornecedor.getTelefone());
+			pstm.setBoolean(1, fornecedor.isHabilitado());
+			pstm.setString(2, fornecedor.getRazaoSocial());
+			pstm.setString(3, fornecedor.getNomeFantasia());
+			pstm.setString(4, fornecedor.getRazaoResponsavel());
+			pstm.setString(5, fornecedor.getCnpj());
+			pstm.setString(6, fornecedor.getEmail());
+			pstm.setString(7, fornecedor.getTelefone());
 			
 			pstm.executeUpdate();
 			
@@ -147,7 +159,9 @@ public class FornecedorDAO implements IDAO {
 				Fornecedor frn = new Fornecedor();
 				
 				frn.setId(rs.getLong("fnr_id"));
-				//frn.setDataCriacao(rs.getString("fnr_dtCadastro"));
+				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				frn.setDataCriacao(date);
+				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
 				frn.setRazaoSocial(rs.getString("frn_razaoSocial"));
 				frn.setNomeFantasia(rs.getString("frn_nomeFantasia"));
 				frn.setRazaoResponsavel(rs.getString("frn_razaoResponsavel"));

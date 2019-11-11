@@ -29,8 +29,8 @@ public class LoteDAO implements IDAO{
 		try {
 			conexao = Conexao.getConnection();
 			
-			String sql = "INSERT INTO lote(lot_data_criacao, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
-					+ "(?,?,?,?)";
+			String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
+					+ "(?,?,?,?,?)";
 			
 			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -38,9 +38,10 @@ public class LoteDAO implements IDAO{
 			Date sqlDate = Date.valueOf(date.toLocalDate());
 			pstm.setDate(1, sqlDate);
 			
-			pstm.setDouble(2, lote.getPrecoCompraUnidade());
-			pstm.setInt(3, lote.getQuantidadePecas());
-			pstm.setInt(4, Math.toIntExact(lote.getFornecedor().getId()));
+			pstm.setBoolean(2, true);
+			pstm.setDouble(3, lote.getPrecoCompraUnidade());
+			pstm.setInt(4, lote.getQuantidadePecas());
+			pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
 			
 			pstm.executeUpdate();	
 			
@@ -69,11 +70,12 @@ public class LoteDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "DELETE FROM lote WHERE lot_id = ?";
+			String sql = "UPDATE lote SET lot_habilitado = ? WHERE lot_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
 			
-			pstm.setInt(1, Math.toIntExact(lote.getId()));
+			pstm.setBoolean(1, false);
+			pstm.setInt(2, Math.toIntExact(lote.getId()));
 			
 			pstm.executeUpdate();
 			
@@ -102,14 +104,15 @@ public class LoteDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE lote SET lot_precoCompraUnidade = ?, lot_quantidadePecas = ?, lot_fornecedor = ? WHERE lot_id = ?";
+			String sql = "UPDATE lote SET lot_habilitado = ?, lot_precoCompraUnidade = ?, lot_quantidadePecas = ?, lot_fornecedor = ? WHERE lot_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
 			
-			pstm.setDouble(1, lote.getPrecoCompraUnidade());
-			pstm.setInt(2, lote.getQuantidadePecas());
-			pstm.setInt(3, Math.toIntExact(lote.getFornecedor().getId()));
-			pstm.setInt(4, Math.toIntExact(lote.getId()));
+			pstm.setBoolean(1, lote.isHabilitado());
+			pstm.setDouble(2, lote.getPrecoCompraUnidade());
+			pstm.setInt(3, lote.getQuantidadePecas());
+			pstm.setInt(4, Math.toIntExact(lote.getFornecedor().getId()));
+			pstm.setInt(5, Math.toIntExact(lote.getId()));
 			
 			pstm.executeUpdate();
 			
@@ -154,6 +157,7 @@ public class LoteDAO implements IDAO{
 				lt.setId(rs.getLong("lot_id"));
 				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
 				lt.setDataCriacao(date);
+				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
 				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
 				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
 				

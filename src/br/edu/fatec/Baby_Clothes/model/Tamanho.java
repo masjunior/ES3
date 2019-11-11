@@ -9,20 +9,41 @@ package br.edu.fatec.Baby_Clothes.model;
  */
 public enum Tamanho {
 	
-	RN("Recém Nascido")
-	,P("0 a 3 meses")
-	,M("4 a 6 meses")
-	,G("7 a 10 meses")
-	,GG("11 a 12 meses");
+	RN(1)
+	,P(2)
+	,M(3)
+	,G(4)
+	,GG(5);
 	
-	private String descricao;
+	private int valor;
 	
-	Tamanho (String descricao) {
-		this.descricao = descricao;
+	Tamanho (int valor) {
+		this.valor = valor;
 	}
 	
-	public String getDescricao() {
-		return descricao;
+	public int getValor() {
+		return valor;
+	}
+
+
+	public static Tamanho getByName(int num) {
+		switch(num) {
+		case 1:
+			return RN;
+		case 2:
+			return P;
+		case 3:
+			return M;
+		case 4:
+			return G;
+		case 5:
+			return GG;
+		default:
+			return null;
+		
+		}
+		
+		
 	}
 
 //	Tamanho	Idade	Altura (menino)	Altura (menina)

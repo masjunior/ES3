@@ -18,6 +18,7 @@ import br.edu.Baby_Clothes.util.Conexao;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
+import br.edu.fatec.Baby_Clothes.model.Tamanho;
 
 /**
  * @author Marco_Aurelio_de_Sa_Junior 
@@ -34,8 +35,8 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "INSERT INTO roupa (rou_data_criacao,rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote)"
-					+ " VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote)"
+					+ " VALUES (?,?,?,?,?,?,?)";
 			
 			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -43,10 +44,12 @@ public class RoupaDAO implements IDAO{
 			Date sqlDate = Date.valueOf(date.toLocalDate());
 			pstm.setDate(1, sqlDate);
 			
-			pstm.setDouble(2, roupa.getPrecoVenda());
-			pstm.setInt(3, roupa.getQuantidadeDisponivel());
-			pstm.setInt(4, roupa.getTamanho().ordinal());
-			pstm.setLong(5, roupa.getLote().getId());
+			pstm.setBoolean(2, true);
+			pstm.setString(3, roupa.getMarca());
+			pstm.setDouble(4, roupa.getPrecoVenda());
+			pstm.setInt(5, roupa.getQuantidadeDisponivel());
+			pstm.setInt(6, roupa.getTamanho().ordinal());
+			pstm.setLong(7, roupa.getLote().getId());
 			
 			pstm.executeUpdate();
 			
@@ -77,10 +80,12 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "DELETE FROM roupa WHERE rou_id = ?";
+			String sql = "UPDATE roupa SET rou_habilitado = ? WHERE rou_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
-			pstm.setLong(1, roupa.getId());
+			
+			pstm.setBoolean(1, false);
+			pstm.setLong(2, roupa.getId());
 			
 			pstm.executeUpdate();
 			
@@ -110,15 +115,18 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE roupa SET rou_preco_venda = ?, rou_quantidade_diosponivel = ?, rou_tamanho = ?, rou_lote = ? WHERE"
+			String sql = "UPDATE roupa SET rou_habilitado = ?, rou_marca = ?, rou_preco_venda = ?, rou_quantidade_diosponivel = ?, rou_tamanho = ?, rou_lote = ? WHERE"
 					+ " rou_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
-			pstm.setDouble(1, roupa.getPrecoVenda());
-			pstm.setInt(2, roupa.getQuantidadeDisponivel());
-			pstm.setInt(3, roupa.getTamanho().ordinal());
-			pstm.setLong(4, roupa.getLote().getId());
-			pstm.setLong(5, roupa.getId());
+			
+			pstm.setBoolean(1, roupa.isHabilitado());
+			pstm.setString(2, roupa.getMarca());
+			pstm.setDouble(3, roupa.getPrecoVenda());
+			pstm.setInt(4, roupa.getQuantidadeDisponivel());
+			pstm.setInt(5, roupa.getTamanho().ordinal());
+			pstm.setLong(6, roupa.getLote().getId());
+			pstm.setLong(7, roupa.getId());
 			
 			pstm.executeUpdate();
 			
@@ -166,8 +174,14 @@ public class RoupaDAO implements IDAO{
 				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
 				rp.setDataCriacao(date);
 				
+				rp.setHabilitado(rs.getBoolean("rou_habilitado"));
+				rp.setMarca(rs.getString("rou_marca"));
 				rp.setPrecoVenda(rs.getDouble("rou_preco_venda"));
 				rp.setQuantidadeDisponivel(rs.getInt("rou_quantidade_disponivel"));
+				
+				int tamanho = rs.getInt("rou_tamaanho");
+				Tamanho tm = Tamanho.getByName(tamanho);
+				rp.setTamanho(tm);
 				
 				lote.setId(rs.getLong("rou_lote"));
 				rp.setLote(lote);

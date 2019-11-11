@@ -32,8 +32,26 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(1, "rou_data_criaca = " + roupa.getDataCriacao());
+			campos.put(1, "rou_data_criacao = " + roupa.getDataCriacao());
 			qtdCampos.add(1);
+		}
+		
+		if(roupa.isHabilitado() != null) {
+			if(!flgWhere) {
+				sql += " WHERE ";
+				flgWhere = true;
+			}
+			campos.put(2, "rou+habilitado = " + roupa.isHabilitado());
+			qtdCampos.add(2);
+		}
+		
+		if(roupa.getMarca() != null) {
+			if(!flgWhere) {
+				sql += " WHERE ";
+				flgWhere = true;
+			}
+			campos.put(3, "rou_marca = " + roupa.getMarca());
+			qtdCampos.add(3);
 		}
 		
 		if(roupa.getPrecoVenda() != null) {
@@ -41,8 +59,8 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(2, "rou_preco_venda = " + roupa.getPrecoVenda());
-			qtdCampos.add(2);
+			campos.put(4, "rou_preco_venda = " + roupa.getPrecoVenda());
+			qtdCampos.add(4);
 		}
 		
 		if(roupa.getQuantidadeDisponivel() >=0 ) {
@@ -50,8 +68,8 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(3, "rou_quantidade_disponivel = " + roupa.getQuantidadeDisponivel());
-			qtdCampos.add(3);
+			campos.put(5, "rou_quantidade_disponivel = " + roupa.getQuantidadeDisponivel());
+			qtdCampos.add(5);
 		}
 		
 		if(roupa.getTamanho() != null) {
@@ -59,8 +77,8 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(4, "rou_tamanho = " + roupa.getTamanho().getDescricao());
-			qtdCampos.add(4);
+			campos.put(6, "rou_tamanho = " + roupa.getTamanho().getValor());
+			qtdCampos.add(6);
 		}
 		
 		if(roupa.getLote() != null) {
@@ -68,8 +86,8 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(5, "rou_lote = " + roupa.getLote().getId());
-			qtdCampos.add(5);
+			campos.put(7, "rou_lote = " + roupa.getLote().getId());
+			qtdCampos.add(7);
 		}
 		
 		for(Integer I : qtdCampos) {

@@ -69,6 +69,7 @@
 								<option value="P">Pequeno</option>
 								<option value="M">Médio</option>
 								<option value="G">Grande</option>
+								<option value="GG">Extra Grande</option>
 							</select>
 							<div class="invalid-feedback">É necessário a escolha de um tamanho válido!</div>
 						</div>

@@ -28,20 +28,32 @@ public class FiltroFornecedor implements IFiltro{
 			qtdCampos.add(0);
 		}
 		
-		/*
-		 * if(fornecedor.getDataCriacao() != null) { if(!flgWhere) { querry += " WHERE";
-		 * flgWhere = true; }
-		 * 
-		 * querry += ", frn_dtCriacao = " + fornecedor.getDataCriacao(); }
-		 */
+		if(fornecedor.getDataCriacao() != null) {
+			if(!flgWhere) {
+				querry += " WHERE ";
+				flgWhere = true;
+			}
+			
+			campos.put(1, "frn_data_criacao = " + fornecedor.getDataCriacao());
+			qtdCampos.add(1);
+		}
 		
+		if(fornecedor.isHabilitado() != null) {
+			if(!flgWhere) {
+				querry += " WHERE ";
+				flgWhere = true;
+			}
+			campos.put(2, "frn_habilitado = " + fornecedor.isHabilitado());
+			qtdCampos.add(2);
+		}
+		  
 		if(fornecedor.getRazaoSocial() != null) {
 			if(!flgWhere) {
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(1, "frn_razaoSocial LIKE '%" + fornecedor.getRazaoSocial() + "%'");
-			qtdCampos.add(1);
+			campos.put(3, "frn_razaoSocial LIKE '%" + fornecedor.getRazaoSocial() + "%'");
+			qtdCampos.add(3);
 		}
 		
 		if(fornecedor.getNomeFantasia() != null) {
@@ -49,8 +61,8 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(2, "frn_nomeFantasia LIKE '%" + fornecedor.getNomeFantasia() + "%'");
-			qtdCampos.add(2);
+			campos.put(4, "frn_nomeFantasia LIKE '%" + fornecedor.getNomeFantasia() + "%'");
+			qtdCampos.add(4);
 		}
 		
 		if(fornecedor.getRazaoResponsavel() != null) {
@@ -58,8 +70,8 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(3, "frn_razaoResponsavel LIKE '%" + fornecedor.getRazaoResponsavel() + "%'");
-			qtdCampos.add(3);
+			campos.put(5, "frn_razaoResponsavel LIKE '%" + fornecedor.getRazaoResponsavel() + "%'");
+			qtdCampos.add(5);
 		}
 		
 		if(fornecedor.getCnpj() != null) {
@@ -67,8 +79,8 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(4, "frn_cnpj = " + fornecedor.getCnpj());
-			qtdCampos.add(4);
+			campos.put(6, "frn_cnpj = " + fornecedor.getCnpj());
+			qtdCampos.add(6);
 		}
 		
 		if(fornecedor.getEmail() != null) {
@@ -76,8 +88,8 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(5, "fnr_email = " + fornecedor.getEmail());
-			qtdCampos.add(5);
+			campos.put(7, "fnr_email = " + fornecedor.getEmail());
+			qtdCampos.add(7);
 		}
 		
 		if(fornecedor.getTelefone() != null) {
@@ -85,8 +97,8 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(6, "frn_telefone = " + fornecedor.getTelefone());
-			qtdCampos.add(6);
+			campos.put(8, "frn_telefone = " + fornecedor.getTelefone());
+			qtdCampos.add(8);
 		}
 		
 		for(Integer I : qtdCampos) {
