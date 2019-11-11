@@ -46,6 +46,7 @@ CREATE TABLE `site_roupa`.`roupa` (
   `rou_preco_venda` DOUBLE NOT NULL,
   `rou_quantidade_disponivel` INT NOT NULL,
   `rou_tamanho` INT NOT NULL,
+  `rou_cor` VARCHAR(45) NOT NULL,
   `rou_lote` INT NOT NULL);
 
 CREATE TABLE `site_roupa`.`tamanho` (

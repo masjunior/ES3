@@ -15,6 +15,7 @@ import java.util.List;
 
 import br.edu.Baby_Clothes.dao.filtro.FiltroRoupa;
 import br.edu.Baby_Clothes.util.Conexao;
+import br.edu.fatec.Baby_Clothes.model.Cor;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
@@ -35,8 +36,8 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote)"
-					+ " VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote, rou_cor)"
+					+ " VALUES (?,?,?,?,?,?,?,?)";
 			
 			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -50,6 +51,7 @@ public class RoupaDAO implements IDAO{
 			pstm.setInt(5, roupa.getQuantidadeDisponivel());
 			pstm.setInt(6, roupa.getTamanho().ordinal());
 			pstm.setLong(7, roupa.getLote().getId());
+			pstm.setString(8, roupa.getCor().getDescricao());
 			
 			pstm.executeUpdate();
 			
@@ -115,7 +117,7 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE roupa SET rou_habilitado = ?, rou_marca = ?, rou_preco_venda = ?, rou_quantidade_diosponivel = ?, rou_tamanho = ?, rou_lote = ? WHERE"
+			String sql = "UPDATE roupa SET rou_habilitado = ?, rou_marca = ?, rou_preco_venda = ?, rou_quantidade_diosponivel = ?, rou_tamanho = ?, rou_lote = ?, rou_cor = ? WHERE"
 					+ " rou_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
@@ -127,6 +129,7 @@ public class RoupaDAO implements IDAO{
 			pstm.setInt(5, roupa.getTamanho().ordinal());
 			pstm.setLong(6, roupa.getLote().getId());
 			pstm.setLong(7, roupa.getId());
+			pstm.setString(8, roupa.getCor().getDescricao());
 			
 			pstm.executeUpdate();
 			
@@ -185,6 +188,10 @@ public class RoupaDAO implements IDAO{
 				
 				lote.setId(rs.getLong("rou_lote"));
 				rp.setLote(lote);
+				
+				Cor cor = new Cor();
+				cor.setDescricao(rs.getString("rou_cor"));
+				rp.setCor(cor);
 				
 				listaRoupa.add(rp);
 			}
