@@ -36,25 +36,61 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote, rou_cor)"
-					+ " VALUES (?,?,?,?,?,?,?,?)";
 			
-			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			if(roupa.getLote().getId() != null || roupa.getLote().getId() > 0) {
 			
-			LocalDateTime date = roupa.getDataCriacao();
-			Date sqlDate = Date.valueOf(date.toLocalDate());
-			pstm.setDate(1, sqlDate);
-			
-			pstm.setBoolean(2, true);
-			pstm.setString(3, roupa.getMarca());
-			pstm.setDouble(4, roupa.getPrecoVenda());
-			pstm.setInt(5, roupa.getQuantidadeDisponivel());
-			pstm.setInt(6, roupa.getTamanho().ordinal());
-			pstm.setLong(7, roupa.getLote().getId());
-			pstm.setString(8, roupa.getCor().getDescricao());
-			
-			pstm.executeUpdate();
-			
+				String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote, rou_cor)"
+						+ " VALUES (?,?,?,?,?,?,?,?)";
+				
+				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+				LocalDateTime date = roupa.getDataCriacao();
+				Date sqlDate = Date.valueOf(date.toLocalDate());
+				pstm.setDate(1, sqlDate);
+				
+				pstm.setBoolean(2, true);
+				pstm.setString(3, roupa.getMarca());
+				pstm.setDouble(4, roupa.getPrecoVenda());
+				pstm.setInt(5, roupa.getQuantidadeDisponivel());
+				pstm.setInt(6, roupa.getTamanho().ordinal());
+				pstm.setLong(7, roupa.getLote().getId());
+				pstm.setString(8, roupa.getCor().getDescricao());
+				
+				pstm.executeUpdate();
+				
+			}else {
+				LoteDAO dao = new LoteDAO();
+				Lote lote = roupa.getLote();
+				
+				dao.cadastrar(lote);
+				
+				List<EntidadeDominio> lotes = new ArrayList<EntidadeDominio>();
+				lotes = dao.listar(lote);
+				
+				Long id = lotes.get(0).getId();
+	
+				roupa.getLote().setId(id);
+				
+				String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote, rou_cor)"
+						+ " VALUES (?,?,?,?,?,?,?,?)";
+				
+				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+				LocalDateTime date = roupa.getDataCriacao();
+				Date sqlDate = Date.valueOf(date.toLocalDate());
+				pstm.setDate(1, sqlDate);
+				
+				pstm.setBoolean(2, true);
+				pstm.setString(3, roupa.getMarca());
+				pstm.setDouble(4, roupa.getPrecoVenda());
+				pstm.setInt(5, roupa.getQuantidadeDisponivel());
+				pstm.setInt(6, roupa.getTamanho().ordinal());
+				pstm.setLong(7, roupa.getLote().getId());
+				pstm.setString(8, roupa.getCor().getDescricao());
+				
+				pstm.executeUpdate();
+				
+			}
 			
 		}catch(Exception e) {
 			try {

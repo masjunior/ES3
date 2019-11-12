@@ -29,21 +29,53 @@ public class LoteDAO implements IDAO{
 		try {
 			conexao = Conexao.getConnection();
 			
-			String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
-					+ "(?,?,?,?,?)";
-			
-			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			
-			LocalDateTime date = lote.getDataCriacao();
-			Date sqlDate = Date.valueOf(date.toLocalDate());
-			pstm.setDate(1, sqlDate);
-			
-			pstm.setBoolean(2, true);
-			pstm.setDouble(3, lote.getPrecoCompraUnidade());
-			pstm.setInt(4, lote.getQuantidadePecas());
-			pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
-			
-			pstm.executeUpdate();	
+			if(lote.getFornecedor().getId() != null || lote.getFornecedor().getId() > 0) {
+				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
+						+ "(?,?,?,?,?)";
+				
+				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+				LocalDateTime date = lote.getDataCriacao();
+				Date sqlDate = Date.valueOf(date.toLocalDate());
+				pstm.setDate(1, sqlDate);
+				
+				pstm.setBoolean(2, true);
+				pstm.setDouble(3, lote.getPrecoCompraUnidade());
+				pstm.setInt(4, lote.getQuantidadePecas());
+				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
+				
+				pstm.executeUpdate();
+				
+			}else {
+				Fornecedor fornecedor = lote.getFornecedor();
+				FornecedorDAO dao = new FornecedorDAO();
+				
+				dao.cadastrar(fornecedor);
+				
+				List<EntidadeDominio> fornecedores = new ArrayList<EntidadeDominio>();
+				fornecedores = dao.listar(fornecedor);
+				
+				Long id = fornecedores.get(0).getId();
+				
+				lote.getFornecedor().setId(id);
+				
+				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
+						+ "(?,?,?,?,?)";
+				
+				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+				LocalDateTime date = lote.getDataCriacao();
+				Date sqlDate = Date.valueOf(date.toLocalDate());
+				pstm.setDate(1, sqlDate);
+				
+				pstm.setBoolean(2, true);
+				pstm.setDouble(3, lote.getPrecoCompraUnidade());
+				pstm.setInt(4, lote.getQuantidadePecas());
+				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
+				
+				pstm.executeUpdate();
+				
+			}
 			
 		}catch(Exception e) {
 			try {
