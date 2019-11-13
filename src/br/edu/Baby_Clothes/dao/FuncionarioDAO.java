@@ -44,6 +44,10 @@ public class FuncionarioDAO implements IDAO{
 				idUsuario = rs.getInt(1);
 			}
 			
+			connection.commit();
+			
+			connection.setAutoCommit(false);
+			
 			//salvar funcionario
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, fun_usuario,fun_id) VALUES (?,?,?,?)");
