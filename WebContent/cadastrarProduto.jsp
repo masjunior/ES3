@@ -36,6 +36,30 @@
 			<div class="col-ml-12 order-md-1">
 				<form class="needs-validation" action="RoupaController" method="post" novalidate>
 				
+					<div class="row d-none">
+			 		
+			 			<div class="com-md-12 mb-3">
+			 				
+			 				<label for="txtId">ID</label>
+			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
+			 				<div class="invalid-feedback">É obragatório inserir um ID válido.</div>
+			 				
+			 			</div>
+			 		
+			 		</div>
+			 		
+			 		<div class="row d-none">
+			 		
+			 			<div class="com-md-12 mb-3">
+			 				
+			 				<label for="txtDataCadastro">Data de Cadastro</label>
+			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
+			 				<div class="invalid-feedback">É obragatório inserir uma Data de Cadastro válida.</div>
+			 				
+			 			</div>
+			 		
+			 		</div>
+				
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtMarca">Marca</label>
@@ -46,16 +70,16 @@
 					
 					<div class="row">
 						<div class="com-md-12 mb-3">
-							<label for="txtPreco">Preço de Venda</label>
-							<input type="text" class="form-control" name="txtPreco" id="txtPreco" placeholder="" value="" required>
+							<label for="txtPrecoVenda">Preço de Venda</label>
+							<input type="text" class="form-control" name="txtPrecoVenda" id="txtPrecoVenda" placeholder="" value="" required>
 							<div class="invalid-feedback">É necessário inserir um preço valido!</div>
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="com-md-12 mb-3">
-							<label for="txtQuantidade">Quantidade disponível</label>
-							<input type="number" class="form-control" name="txtQuantidade" id="txtQuantidade" min="0" step="1" placeholde="" value="" required>
+							<label for="txtQuantidadeDisponivel">Quantidade disponível</label>
+							<input type="number" class="form-control" name="txtQuantidadeDisponivel" id="txtQuantidadeDisponivel" min="0" step="1" placeholde="" value="" required>
 							<div class="invalid-feedback">É obrigatório inserir uma quantidade valida</div>
 						</div>
 					</div>
@@ -72,6 +96,14 @@
 								<option value="GG">Extra Grande</option>
 							</select>
 							<div class="invalid-feedback">É necessário a escolha de um tamanho válido!</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="com-md-12 mb-3">
+							<label for="txtCor">Cor</label>
+							<input type="text" class="form-control" name="txtCor" id="txtCor" placeholder="" value="" required>
+							<div class="invalid-feedback">Necessário inserir uma Cor válida!</div>
 						</div>
 					</div>
 					

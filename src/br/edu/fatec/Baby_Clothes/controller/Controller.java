@@ -41,7 +41,7 @@ public class Controller extends HttpServlet{
 		viewHelpers.put("/ES3/FuncionarioController", new FuncionarioVH());
 		viewHelpers.put("/ES3/RoupaController", new RoupaVH());
 		viewHelpers.put("/ES3/FornecedorController", new FornecedorVH());
-		viewHelpers.put("/ES#/LoteController", new LoteVH());
+		viewHelpers.put("/ES3/LoteController", new LoteVH());
 	}
 	
 	
