@@ -5,13 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.edu.Baby_Clothes.dao.FornecedorDAO;
 import br.edu.Baby_Clothes.dao.FuncionarioDAO;
 import br.edu.Baby_Clothes.dao.IDAO;
 import br.edu.Baby_Clothes.strategy.ComplementarDataCadastro;
 import br.edu.Baby_Clothes.strategy.IStrategy;
+import br.edu.Baby_Clothes.strategy.ValidarCNPJ;
 import br.edu.Baby_Clothes.strategy.ValidarCPF;
 import br.edu.Baby_Clothes.strategy.ValidarSenha;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
+import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
@@ -29,20 +32,41 @@ public class Fachada implements IFachada {
 	public Fachada() {
 		daos = new HashMap<String, IDAO>();
 		strategies = new HashMap<String, List<IStrategy>>();
-
+		IStrategy validarCPF;
+		IStrategy complementarDataCadastro;
+		IStrategy validarCNPJ;
+		IStrategy validarExistencia;
+		IStrategy validarPrecoVenda;
+		IStrategy validarQuantidadePeca;
+		IStrategy validarSenha;
 		
+		// FUNCIONARIO
 		daos.put(Funcionario.class.getName(), new FuncionarioDAO());
 
-		IStrategy cpf = new ValidarCPF();
-		IStrategy dataCadastro = new ComplementarDataCadastro();
-		IStrategy senha = new ValidarSenha();
+		validarCPF = new ValidarCPF();
+		complementarDataCadastro = new ComplementarDataCadastro();
+		validarSenha = new ValidarSenha();
 
-		List<IStrategy> genericStrategy = new ArrayList<IStrategy>();
-		genericStrategy.add(cpf);
-		genericStrategy.add(dataCadastro);
-		genericStrategy.add(senha);
+		List<IStrategy> funcionario = new ArrayList<IStrategy>();
+		funcionario.add(validarCPF);
+		funcionario.add(complementarDataCadastro);
+		funcionario.add(validarSenha);
 
-		strategies.put(Funcionario.class.getName(), genericStrategy);
+		strategies.put(Funcionario.class.getName(), funcionario);
+		
+		//FORNECEDOR
+		daos.put(Fornecedor.class.getName(), new FornecedorDAO());
+
+		validarCNPJ = new ValidarCNPJ();
+		complementarDataCadastro = new ComplementarDataCadastro();
+
+		List<IStrategy> fornecedor = new ArrayList<IStrategy>();
+//		TODO: tira o comentario da validacao
+//		fornecedor.add(validarCNPJ);
+		fornecedor.add(complementarDataCadastro);
+
+		strategies.put(Fornecedor.class.getName(), fornecedor);
+
 	}
 
 	@Override
@@ -57,6 +81,7 @@ public class Fachada implements IFachada {
 		// se tem msg de erro ele não salva
 		if (sb.length() == 0 || sb.toString().trim().equals("")) {
 			try {
+				//TODO: DAO ESTA NULL
 				dao = daos.get(nomeClasse);
 				dao.cadastrar(entidade);
 				resultado.adicionarEntidades(entidade);

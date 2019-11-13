@@ -27,8 +27,9 @@ public class FornecedorDAO implements IDAO {
 		
 		try {
 			conexao = Conexao.getConnection();
+			conexao.setAutoCommit(false);
 			String sql = "INSERT INTO fornecedor(frn_data_criacao, frn_habilitado, frn_razaoSocial, frn_nomeFantasia, frn_razaoResponsavel, frn_cnpj, frn_email,"
-					+ " frn_telefone) VALUES (?,?,?,?,?,?,?)";
+					+ " frn_telefone) VALUES (?,?,?,?,?,?,?,?)";
 			
 			pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -45,6 +46,12 @@ public class FornecedorDAO implements IDAO {
 			pstm.setString(8, fornecedor.getTelefone());
 					
 			pstm.executeUpdate();
+			
+			ResultSet rs = pstm.getGeneratedKeys();
+			
+			while(rs.next()) {
+				fornecedor.setId(rs.getLong(1));
+			}
 			
 		}catch(Exception e) {
 			try {

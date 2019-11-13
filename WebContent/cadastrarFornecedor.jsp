@@ -30,7 +30,7 @@
 		
 			 <div class="col-m1 order-md-1">
 			 
-			 	<form class="needs-validation" action="/FornecedorController" method="post" novalidate>
+			 	<form class="needs-validation" action="FornecedorController" method="post" novalidate>
 			 	
 			 		<div class="row">
 			 		
