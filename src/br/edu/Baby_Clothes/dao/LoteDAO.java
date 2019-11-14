@@ -29,7 +29,8 @@ public class LoteDAO implements IDAO{
 		try {
 			conexao = Conexao.getConnection();
 			
-			if(lote.getFornecedor().getId() != null || lote.getFornecedor().getId() > 0) {
+			if(lote.getFornecedor().getId() != null || lote.getFornecedor().getId() <= 0) {
+				conexao.setAutoCommit(false);
 				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
 						+ "(?,?,?,?,?)";
 				
@@ -45,6 +46,8 @@ public class LoteDAO implements IDAO{
 				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
 				
 				pstm.executeUpdate();
+				
+				conexao.commit();
 				
 			}else {
 				Fornecedor fornecedor = lote.getFornecedor();
@@ -59,6 +62,7 @@ public class LoteDAO implements IDAO{
 				
 				lote.getFornecedor().setId(id);
 				
+				conexao.setAutoCommit(false);
 				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
 						+ "(?,?,?,?,?)";
 				
@@ -74,6 +78,8 @@ public class LoteDAO implements IDAO{
 				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
 				
 				pstm.executeUpdate();
+				
+				conexao.commit();
 				
 			}
 			
@@ -102,6 +108,8 @@ public class LoteDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
+			conexao.setAutoCommit(false);
+			
 			String sql = "UPDATE lote SET lot_habilitado = ? WHERE lot_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
@@ -110,6 +118,7 @@ public class LoteDAO implements IDAO{
 			pstm.setInt(2, Math.toIntExact(lote.getId()));
 			
 			pstm.executeUpdate();
+			conexao.commit();
 			
 		}catch(Exception e) {
 			try {
@@ -136,6 +145,7 @@ public class LoteDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
+			conexao.setAutoCommit(false);
 			String sql = "UPDATE lote SET lot_habilitado = ?, lot_precoCompraUnidade = ?, lot_quantidadePecas = ?, lot_fornecedor = ? WHERE lot_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
@@ -147,6 +157,7 @@ public class LoteDAO implements IDAO{
 			pstm.setInt(5, Math.toIntExact(lote.getId()));
 			
 			pstm.executeUpdate();
+			conexao.commit();
 			
 		}catch(Exception e) {
 			try {

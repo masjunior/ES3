@@ -45,7 +45,7 @@ public class LoteVH implements IViewHelper{
 			d = request.getRequestDispatcher("cadastrpLote.jsp");
 			 
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
-			resultado.setMensagem("Alteração realizada com Sucesso.");
+			resultado.setMensagem("Alteraï¿½ï¿½o realizada com Sucesso.");
 			request.setAttribute("ResultadoAlterarLote", resultado);
 			d = request.getRequestDispatcher("cadastrpLote.jsp");
 		
@@ -63,11 +63,11 @@ public class LoteVH implements IViewHelper{
 		Fornecedor fornecedor = new Fornecedor();
 		
 		
-		Long id = Long.parseLong(request.getParameter("txtId"));
+//		Long id = Long.parseLong(request.getParameter("txtId"));
 		
-		String dataString = request.getParameter("txtData");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime data = LocalDateTime.parse(dataString, formatter);
+//		String dataString = request.getParameter("txtData");
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//		LocalDateTime data = LocalDateTime.parse(dataString, formatter);
 		
 		String habilitadoString = request.getParameter("txtHabilitado");
 		boolean habilitado = Boolean.getBoolean(habilitadoString);
@@ -80,13 +80,13 @@ public class LoteVH implements IViewHelper{
 		
 		Long idFornecedor = Long.parseLong(request.getParameter("txtFornecedor"));
 		
-		if(id != null || !id.equals("") || id >=0) {
-			lote.setId(id);
-		}
+//		if(id != null || !id.equals("") || id >=0) {
+//			lote.setId(id);
+//		}
 		
-		if(data != null || !data.equals("")) {
-			lote.setDataCriacao(data);
-		}
+//		if(data != null || !data.equals("")) {
+			lote.setDataCriacao(LocalDateTime.now());
+//		}
 		
 		if(habilitado == true || habilitado == false) {
 			lote.setHabilitado(habilitado);

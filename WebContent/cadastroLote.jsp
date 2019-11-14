@@ -73,7 +73,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtQuantidadePecas">Quantidade de Peças</label>
-			 				<input type="text" class="form-control" name="txtQUantidadePecas" id="txtQuantidadePecas" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder="" value="" required>		
 			 				<div class="invalid-feedback">É obragatório inserir uma Quantidade válida.</div>
 			 				
 			 			</div>

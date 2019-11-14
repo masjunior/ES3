@@ -8,6 +8,7 @@ import java.util.Map;
 import br.edu.Baby_Clothes.dao.FornecedorDAO;
 import br.edu.Baby_Clothes.dao.FuncionarioDAO;
 import br.edu.Baby_Clothes.dao.IDAO;
+import br.edu.Baby_Clothes.dao.LoteDAO;
 import br.edu.Baby_Clothes.strategy.ComplementarDataCadastro;
 import br.edu.Baby_Clothes.strategy.IStrategy;
 import br.edu.Baby_Clothes.strategy.ValidarCNPJ;
@@ -16,6 +17,7 @@ import br.edu.Baby_Clothes.strategy.ValidarSenha;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
+import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
 public class Fachada implements IFachada {
@@ -64,8 +66,19 @@ public class Fachada implements IFachada {
 //		TODO: tira o comentario da validacao
 //		fornecedor.add(validarCNPJ);
 		fornecedor.add(complementarDataCadastro);
-
+		
 		strategies.put(Fornecedor.class.getName(), fornecedor);
+		
+		//LOTES
+		daos.put(Lote.class.getName(), new LoteDAO());
+		
+		complementarDataCadastro = new ComplementarDataCadastro();
+		
+		List<IStrategy> lote = new ArrayList<IStrategy>();
+		
+		lote.add(complementarDataCadastro);
+		
+		strategies.put(Lote.class.getName(), lote);
 
 	}
 
