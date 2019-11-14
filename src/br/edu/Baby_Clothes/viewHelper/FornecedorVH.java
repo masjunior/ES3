@@ -1,6 +1,8 @@
 package br.edu.Baby_Clothes.viewHelper;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +68,12 @@ public class FornecedorVH implements IViewHelper{
 		Fornecedor fornecedor = new Fornecedor();
 		
 		String operacao = request.getParameter("operacao");
+		String idString = request.getParameter("txtId");
+		Long id =Long.parseLong(request.getParameter("txtId"));
+		
+		String dataString = request.getParameter("txtData");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime date = LocalDateTime.parse(dataString, formatter);
 		
 		String razaoSocial = request.getParameter("txtRazaoSocial");
 		String cnpj = request.getParameter("txtCNPJ");
@@ -74,6 +82,14 @@ public class FornecedorVH implements IViewHelper{
 		String email = request.getParameter("txtEmail");
 		String telefone = request.getParameter("txtTelefone");
 		List<Lote> lotes = new ArrayList<Lote>(); 
+		
+		if(id != null || !id.equals("") || id >= 0) {
+			fornecedor.setId(id);
+		}
+		
+		if(date != null || !date.equals("") ) {
+			fornecedor.setDataCriacao(date);
+		}
 		
 		if(razaoSocial != null || !razaoSocial.trim().equals("") || !razaoSocial.isEmpty()) {
 			fornecedor.setRazaoSocial(razaoSocial);

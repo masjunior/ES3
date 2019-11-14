@@ -98,7 +98,7 @@ public class FuncionarioVH implements IViewHelper{
 			funcionario.setSenha(senha);
 		}
 		
-		if(nivelAcesso != null || nivelAcesso.trim().equals("") || nivelAcesso.isEmpty()) {
+		if(nivelAcesso != null) {
 			funcionario.setNivelAcesso(NivelAcesso.valueOf(nivelAcesso));
 		}
 		

@@ -32,6 +32,30 @@
 			 
 			 	<form class="needs-validation" action="LoteController" method="post" novalidate>
 			 	
+			 		<div class="row d-none">
+			 		
+			 			<div class="com-md-12 mb-3">
+			 				
+			 				<label for="txtId">ID</label>
+			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
+			 				<div class="invalid-feedback">É obragatório inserir um ID válido.</div>
+			 				
+			 			</div>
+			 		
+			 		</div>
+			 		
+			 		<div class="row d-none">
+			 		
+			 			<div class="com-md-12 mb-3">
+			 				
+			 				<label for="txtDataCadastro">Data de Cadastro</label>
+			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
+			 				<div class="invalid-feedback">É obragatório inserir uma Data de Cadastro válida.</div>
+			 				
+			 			</div>
+			 		
+			 		</div>
+			 	
 			 		<div class="row">
 			 		
 			 			<div class="com-md-12 mb-3">
