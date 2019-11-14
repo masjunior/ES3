@@ -35,26 +35,26 @@ public class FornecedorVH implements IViewHelper{
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			System.out.println(resultado.getMensagem());
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFornecedor", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do fornecedor foi realizado com sucesso!");
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFornecedorSalvar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			resultado.setMensagem("Consulta de fornecedorrealizada com sucesso!");
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Alteração do fornecedor foi realizada com sucesso!");
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFornecedorAlterar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O fornecedor foi excluido com sucesso!");
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFornecedorExcluir", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}
