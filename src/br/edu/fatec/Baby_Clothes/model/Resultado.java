@@ -7,6 +7,7 @@ public class Resultado {
 
 	private String mensagem;
 	private List<EntidadeDominio> entidades;
+	
 	public String getMensagem() {
 		return mensagem;
 	}

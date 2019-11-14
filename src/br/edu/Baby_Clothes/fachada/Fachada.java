@@ -9,16 +9,21 @@ import br.edu.Baby_Clothes.dao.FornecedorDAO;
 import br.edu.Baby_Clothes.dao.FuncionarioDAO;
 import br.edu.Baby_Clothes.dao.IDAO;
 import br.edu.Baby_Clothes.dao.LoteDAO;
+import br.edu.Baby_Clothes.dao.RoupaDAO;
 import br.edu.Baby_Clothes.strategy.ComplementarDataCadastro;
 import br.edu.Baby_Clothes.strategy.IStrategy;
 import br.edu.Baby_Clothes.strategy.ValidarCNPJ;
 import br.edu.Baby_Clothes.strategy.ValidarCPF;
+import br.edu.Baby_Clothes.strategy.ValidarExistencia;
+import br.edu.Baby_Clothes.strategy.ValidarPrecoVenda;
+import br.edu.Baby_Clothes.strategy.ValidarQuantidadePeca;
 import br.edu.Baby_Clothes.strategy.ValidarSenha;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
 import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
+import br.edu.fatec.Baby_Clothes.model.Roupa;
 
 public class Fachada implements IFachada {
 	
@@ -34,51 +39,51 @@ public class Fachada implements IFachada {
 	public Fachada() {
 		daos = new HashMap<String, IDAO>();
 		strategies = new HashMap<String, List<IStrategy>>();
-		IStrategy validarCPF;
-		IStrategy complementarDataCadastro;
-		IStrategy validarCNPJ;
-		IStrategy validarExistencia;
-		IStrategy validarPrecoVenda;
-		IStrategy validarQuantidadePeca;
-		IStrategy validarSenha;
+		IStrategy validarCPF = new ValidarCPF();
+		IStrategy complementarDataCadastro = new ComplementarDataCadastro();
+		IStrategy validarCNPJ = new ValidarCNPJ();
+		IStrategy validarExistencia = new ValidarExistencia();
+		IStrategy validarPrecoVenda =  new ValidarPrecoVenda();
+		IStrategy validarQuantidadePeca = new ValidarQuantidadePeca();
+		IStrategy validarSenha = new ValidarSenha();
 		
 		// FUNCIONARIO
 		daos.put(Funcionario.class.getName(), new FuncionarioDAO());
 
-		validarCPF = new ValidarCPF();
-		complementarDataCadastro = new ComplementarDataCadastro();
-		validarSenha = new ValidarSenha();
+		List<IStrategy> funcionarioRns = new ArrayList<IStrategy>();
+		funcionarioRns.add(validarCPF);
+		funcionarioRns.add(complementarDataCadastro);
+		funcionarioRns.add(validarSenha);
+		funcionarioRns.add(validarExistencia);
 
-		List<IStrategy> funcionario = new ArrayList<IStrategy>();
-		funcionario.add(validarCPF);
-		funcionario.add(complementarDataCadastro);
-		funcionario.add(validarSenha);
-
-		strategies.put(Funcionario.class.getName(), funcionario);
+		strategies.put(Funcionario.class.getName(), funcionarioRns);
 		
 		//FORNECEDOR
 		daos.put(Fornecedor.class.getName(), new FornecedorDAO());
 
-		validarCNPJ = new ValidarCNPJ();
-		complementarDataCadastro = new ComplementarDataCadastro();
-
-		List<IStrategy> fornecedor = new ArrayList<IStrategy>();
+		List<IStrategy> fornecedorRns = new ArrayList<IStrategy>();
 //		TODO: tira o comentario da validacao
-//		fornecedor.add(validarCNPJ);
-		fornecedor.add(complementarDataCadastro);
+		fornecedorRns.add(validarCNPJ);
+		fornecedorRns.add(complementarDataCadastro);
+		fornecedorRns.add(validarExistencia);
 		
-		strategies.put(Fornecedor.class.getName(), fornecedor);
+		strategies.put(Fornecedor.class.getName(), fornecedorRns);
 		
 		//LOTES
 		daos.put(Lote.class.getName(), new LoteDAO());
 		
-		complementarDataCadastro = new ComplementarDataCadastro();
+		List<IStrategy> loteRns = new ArrayList<IStrategy>();
 		
-		List<IStrategy> lote = new ArrayList<IStrategy>();
+		loteRns.add(complementarDataCadastro);
 		
-		lote.add(complementarDataCadastro);
+		strategies.put(Lote.class.getName(), loteRns);
 		
-		strategies.put(Lote.class.getName(), lote);
+		//ROUPA
+		daos.put(Roupa.class.getName(), new RoupaDAO());
+		List<IStrategy> roupaRns = new ArrayList<IStrategy>();
+		roupaRns.add(validarPrecoVenda);
+		roupaRns.add(validarQuantidadePeca);
+		roupaRns.add(complementarDataCadastro);
 
 	}
 
@@ -113,14 +118,42 @@ public class Fachada implements IFachada {
 
 	@Override
 	public Resultado alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		resultado = new Resultado();
+		sb.setLength(0);
+		
+		nomeClasse = entidade.getClass().getName();
+		executarMensagem(strategies.get(nomeClasse), entidade);
+		
+		if(sb.toString().trim().equalsIgnoreCase("")) {
+			try {
+				dao = daos.get(nomeClasse);
+				dao.alterar(entidade);
+				resultado.adicionarEntidades(entidade);
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+				resultado.setMensagem(sb + "Não foi possível alterar...");
+			}
+		}
+		
+		return resultado;
 	}
 
 	@Override
 	public Resultado excluir(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		resultado = new Resultado();
+		String nomeClasse = entidade.getClass().getName();
+		dao = daos.get(nomeClasse);
+		
+		try {
+			dao.remover(entidade);
+			resultado.adicionarEntidades(entidade);
+		}catch (Exception e) {
+			e.printStackTrace();
+			resultado.setMensagem("Nâo foi possível excluir...");
+		}
+		
+		return resultado;
 	}
 
 	@Override
