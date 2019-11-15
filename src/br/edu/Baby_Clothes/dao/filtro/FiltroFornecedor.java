@@ -18,7 +18,7 @@ public class FiltroFornecedor implements IFiltro{
 		boolean flgWhere = false;
 		
 		String querry = "SELECT * FROM fornecedor";
-		fornecedor.setId(Long.parseLong("5"));
+		
 		
 		System.out.println("inicio IFS filtroFornecedor");
 		
@@ -90,7 +90,7 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(6, "frn_cnpj = " + fornecedor.getCnpj());
+			campos.put(6, "frn_cnpj LIKE '%" + fornecedor.getCnpj() + "%'");
 			qtdCampos.add(6);
 		}
 		
@@ -99,7 +99,7 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(7, "fnr_email = " + fornecedor.getEmail());
+			campos.put(7, "frn_email LIKE '%" + fornecedor.getEmail() + "%'");
 			qtdCampos.add(7);
 		}
 		
@@ -108,7 +108,7 @@ public class FiltroFornecedor implements IFiltro{
 				querry += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(8, "frn_telefone = " + fornecedor.getTelefone());
+			campos.put(8, "frn_telefone LIKE '%" + fornecedor.getTelefone() + "%'");
 			qtdCampos.add(8);
 		}
 		

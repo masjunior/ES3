@@ -60,7 +60,8 @@
 					
 					
 	
-				out.println("<th scope = 'row'>" + Math.toIntExact(fornecedor.getId()) + "</th>");
+				out.println("<tr scope = 'row'></th>");
+				out.println("<td> " + Math.toIntExact(fornecedor.getId()) + "</td>");
 				out.println("<td>"+ fornecedor.getRazaoSocial()+"</td>");
 				out.println("<td>"+fornecedor.getCnpj()+"</td>");
 				out.println("<td>"+fornecedor.getNomeFantasia()+"</td>");
