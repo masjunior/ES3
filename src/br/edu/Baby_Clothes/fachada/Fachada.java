@@ -63,9 +63,9 @@ public class Fachada implements IFachada {
 
 		List<IStrategy> fornecedorRns = new ArrayList<IStrategy>();
 //		TODO: tira o comentario da validacao
-		fornecedorRns.add(validarCNPJ);
+//		fornecedorRns.add(validarCNPJ);
 		fornecedorRns.add(complementarDataCadastro);
-		fornecedorRns.add(validarExistencia);
+//		fornecedorRns.add(validarExistencia);
 		
 		strategies.put(Fornecedor.class.getName(), fornecedorRns);
 		
@@ -132,7 +132,7 @@ public class Fachada implements IFachada {
 				
 			}catch (Exception e) {
 				e.printStackTrace();
-				resultado.setMensagem(sb + "Não foi possível alterar...");
+				resultado.setMensagem(sb + "Nï¿½o foi possï¿½vel alterar...");
 			}
 		}
 		
@@ -150,7 +150,7 @@ public class Fachada implements IFachada {
 			resultado.adicionarEntidades(entidade);
 		}catch (Exception e) {
 			e.printStackTrace();
-			resultado.setMensagem("Nâo foi possível excluir...");
+			resultado.setMensagem("Nï¿½o foi possï¿½vel excluir...");
 		}
 		
 		return resultado;

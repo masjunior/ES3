@@ -18,8 +18,9 @@ public class FiltroFornecedor implements IFiltro{
 		boolean flgWhere = false;
 		
 		String querry = "SELECT * FROM fornecedor";
+		fornecedor.setId(Long.parseLong("5"));
 		
-		if(fornecedor.getId() > 0) {
+		if(fornecedor.getId() > 0 && fornecedor.getId() != null ) {
 			if(!flgWhere) {
 				querry += " WHERE ";
 				flgWhere = true;

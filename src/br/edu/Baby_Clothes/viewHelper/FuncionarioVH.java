@@ -41,9 +41,9 @@ public class FuncionarioVH implements IViewHelper{
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
-			resultado.setMensagem("Consulta de funcin�rio realizada com sucesso!");
+			resultado.setMensagem("Consulta de funcionário realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Altera��o do funcion�rio foi realizada com sucesso!");

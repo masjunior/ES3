@@ -32,29 +32,31 @@ public class LoteVH implements IViewHelper{
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			request.setAttribute("ResutladoLote", resultado);
-			d = request.getRequestDispatcher("cadastrpLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro de Lote realizado com Sucesso.");
 			request.setAttribute("ResultadoLoteSalvo", resultado);
-			d = request.getRequestDispatcher("cadastrpLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Consulta Realizada");
 			request.setAttribute("ResultadoConsultaLote", resultado);
-			d = request.getRequestDispatcher("cadastrpLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 			 
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Altera��o realizada com Sucesso.");
 			request.setAttribute("ResultadoAlterarLote", resultado);
-			d = request.getRequestDispatcher("cadastrpLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 		
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("Lote excluido com Sucesso.");
 			request.setAttribute("ResultadoExcluirLote", resultado);
-			d = request.getRequestDispatcher("cadastrpLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 			
 		}
+		
+		d.forward(request, response);
 		
 	}
 

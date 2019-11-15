@@ -132,6 +132,11 @@
 			 		<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button> 
 			 		
 			 	</form>
+			 	
+			 	<form class="needs-validation" action="listarFornecedor.jsp" method="post" novalidate>
+			 	<button class="btn btn-primary btn-lg btn-block" name="operacao" id="CONSULTAR" type="submit" value="CONSULTAR">CONSULTAR</button>
+			 	</form>
+			 
 			 
 			 </div>
 			

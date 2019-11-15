@@ -16,7 +16,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebFilter(urlPatterns = {"/cadastroFornecedor.jsp"})
+@WebFilter(urlPatterns = {"/listarFornecedor.jsp"})
 public class FilterListarTodos implements Filter {
 
 	@Override
@@ -28,13 +28,13 @@ public class FilterListarTodos implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		System.out.println("passei no filter");
 		
 		
 		
-		
-		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
-		
-		if(resultado.getEntidades().size() <= 0) {
+//		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
+		Resultado resultado = new Resultado ();
+//		if(resultado.getEntidades().size() <= 0) {
 			FornecedorDAO dao = new FornecedorDAO();
 			Fornecedor fornecedor = new Fornecedor();
 			List<EntidadeDominio> fornecedores = dao.listar(fornecedor); 
@@ -44,7 +44,7 @@ public class FilterListarTodos implements Filter {
 			}
 			
 			request.setAttribute("ResultadoFornecedorConsultar", resultado);
-		}
+//		}
 		
 		chain.doFilter(request, response);
 	}

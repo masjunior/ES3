@@ -55,6 +55,19 @@
 			 			</div>
 			 		
 			 		</div>
+			 		
+			 		<div class="row ">
+			 		
+			 			<div class="com-md-12 mb-3">
+	 				        <c:set var = "teste" scope = "session" value = "${ResultadoLoteSalvo.mensagem}"/>
+						    <c:if test = "${teste.length() != 0}">
+						    	<p>Mensagem de retorno:  <c:out value = "${teste}"/><p>
+						    </c:if>
+						    <c:set var = "teste" scope = "session" value = ""/>
+						    <c:out value="${teste.length() }"/>
+			 			</div>
+			 		
+			 		</div>
 			 	
 			 		<div class="row">
 			 		
@@ -96,7 +109,7 @@
 			 		<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button> 
 			 		
 			 	</form>
-			 
+			 	
 			 </div>
 			
 		</div>

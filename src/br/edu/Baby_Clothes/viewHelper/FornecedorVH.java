@@ -43,6 +43,7 @@ public class FornecedorVH implements IViewHelper{
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
+			System.out.println("passei no consultar do fornecedor");
 			resultado.setMensagem("Consulta de fornecedorrealizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
