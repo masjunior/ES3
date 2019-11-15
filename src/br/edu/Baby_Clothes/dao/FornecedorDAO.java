@@ -167,7 +167,7 @@ public class FornecedorDAO implements IDAO {
 			while(rs.next()) {
 				Fornecedor frn = new Fornecedor();
 				
-				frn.setId(rs.getLong("fnr_id"));
+				frn.setId(rs.getLong("frn_id"));
 				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
 				frn.setDataCriacao(date);
 				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
@@ -180,7 +180,12 @@ public class FornecedorDAO implements IDAO {
 				
 				LoteDAO loteDao = new LoteDAO();
 				List<EntidadeDominio> lotesEntidade = loteDao.listar(frn);
-				List<Lote> lotes = (List<Lote>)(Lote)lotesEntidade;
+				List<Lote> lotes = new ArrayList<Lote>();
+				
+				for(EntidadeDominio entidade1 : lotesEntidade) {
+					Lote lote = (Lote)entidade1;
+					lotes.add(lote);
+				}
 				
 				frn.setLotes(lotes);
 				
@@ -193,15 +198,24 @@ public class FornecedorDAO implements IDAO {
 			
 		}catch(Exception e) {
 			try {
-				conexao.rollback();
+				if(conexao != null) {
+					conexao.rollback();
+				}
+				
 			}catch(SQLException eSQL) {
 				eSQL.printStackTrace();
 			}
 			e.printStackTrace();
 		}finally {
 			try {
-				pstm.close();
-				conexao.close();
+				if(pstm != null) {
+					pstm.close();
+				}
+				
+				if(conexao != null) {
+					conexao.close();
+				}
+				
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}

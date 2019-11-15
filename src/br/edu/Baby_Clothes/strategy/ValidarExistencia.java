@@ -1,5 +1,7 @@
 package br.edu.Baby_Clothes.strategy;
 
+import java.util.List;
+
 import br.edu.Baby_Clothes.dao.FornecedorDAO;
 import br.edu.Baby_Clothes.dao.FuncionarioDAO;
 import br.edu.Baby_Clothes.dao.IDAO;
@@ -18,7 +20,14 @@ public class ValidarExistencia implements IStrategy{
 			Fornecedor fornecedor = (Fornecedor)entidade;
 			dao = new FornecedorDAO();
 			
-			if(dao.listar(fornecedor).size() != 0) {
+			System.out.println("ID FORNECEDOR " + fornecedor.getId());
+			
+			List<EntidadeDominio>entidadesRetorno = dao.listar(fornecedor);
+			
+			//System.out.println("ID ENTIDADE 0" + entidadesRetorno.get(0).getId());
+			
+			if(entidadesRetorno != null && !entidadesRetorno.isEmpty()) {
+				System.out.println("FORNECEDOR CADASTRADO");
 				retorno += "Fornecedor já cadastrado";
 			}
 		}else if(entidade.getClass().getName().equals(Funcionario.class.getName())) {
