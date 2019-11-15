@@ -18,7 +18,6 @@ public class FiltroFornecedor implements IFiltro{
 		boolean flgWhere = false;
 		
 		String querry = "SELECT * FROM fornecedor";
-		fornecedor.setId(Long.parseLong("5"));
 		
 		System.out.println("inicio IFS filtroFornecedor");
 		
