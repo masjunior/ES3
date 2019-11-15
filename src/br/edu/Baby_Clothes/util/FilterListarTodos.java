@@ -29,22 +29,38 @@ public class FilterListarTodos implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("passei no filter");
+		System.out.println("Entrou FIlter");
 		
+		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 		
-		
-//		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
-		Resultado resultado = new Resultado ();
-//		if(resultado.getEntidades().size() <= 0) {
-			FornecedorDAO dao = new FornecedorDAO();
-			Fornecedor fornecedor = new Fornecedor();
-			List<EntidadeDominio> fornecedores = dao.listar(fornecedor); 
+		if(resultado == null) {
+			System.out.println("primero if");
+			resultado = new Resultado();
+			/*
+			 * List<EntidadeDominio> entidades = resultado.getEntidades();
+			 * 
+			 * if(entidades == null) { System.out.println("entidade nula"); }
+			 */
 			
-			for(EntidadeDominio entidade : fornecedores) {
-				resultado.adicionarEntidades(entidade);
+			
+			if(resultado.getEntidades() == null) {
+				System.out.println("Segundo if");
+				FornecedorDAO dao = new FornecedorDAO();
+				Fornecedor fornecedor = new Fornecedor();
+				List<EntidadeDominio> fornecedores = dao.listar(fornecedor); 
+				
+				if(fornecedores != null && !fornecedores.isEmpty()) {
+					for(EntidadeDominio entidade : fornecedores) {
+						resultado.adicionarEntidades(entidade);
+					}
+				}
+				
+				
+				System.out.println("final segundo if");
+				request.setAttribute("ResultadoFornecedorConsultar", resultado);
 			}
-			
-			request.setAttribute("ResultadoFornecedorConsultar", resultado);
-//		}
+		}
+		
 		
 		chain.doFilter(request, response);
 	}

@@ -35,16 +35,7 @@
 		
 			 <div class="col-m1 order-md-1">
 			 
-				<%
-				
-				Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
-				List<EntidadeDominio> entidades = resultado.getEntidades();
-				
-				for(EntidadeDominio entidade : entidades){
-					Fornecedor fornecedor = (Fornecedor)entidade;
-	
-				%>
-				<table class="table">
+			 <table class="table">
 					<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -58,22 +49,39 @@
 					</thead>
 					
 					<tbody>
-						<th scope="row"><%Math.toIntExact(fornecedor.getId());%></th>
-						<td><%fornecedor.getRazaoSocial(); %></td>
-						<td><%fornecedor.getCnpj(); %></td>
-						<td><%fornecedor.getNomeFantasia(); %></td>
-						<td><%fornecedor.getRazaoResponsavel(); %></td>
-						<td><%fornecedor.getEmail(); %></td>
-						<td><%fornecedor.getTelefone(); %></td>
+			 
+				<%		
+					Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
+					List<EntidadeDominio> entidades = resultado.getEntidades();
+					
+					if(entidades != null && !entidades.isEmpty()){
+						for(EntidadeDominio entidade : entidades){
+							Fornecedor fornecedor = (Fornecedor)entidade;	
+					
+					
+	
+				out.println("<th scope = 'row'>" + Math.toIntExact(fornecedor.getId()) + "</th>");
+				out.println("<td>"+ fornecedor.getRazaoSocial()+"</td>");
+				out.println("<td>"+fornecedor.getCnpj()+"</td>");
+				out.println("<td>"+fornecedor.getNomeFantasia()+"</td>");
+				out.println("<td>"+fornecedor.getRazaoResponsavel()+"</td>");
+				out.println("<td>"+fornecedor.getEmail()+"</td>");
+				out.println("<td>"+fornecedor.getTelefone()+"</td>");
+				
+						
+						
+						
+						}
+						out.println("<br>");
+					}
+				%>
 					</tbody>
 				
 				</table>
 	
 	
 						
-				<%		
-				}
-				%>				
+								
 			 
 			 </div>
 			

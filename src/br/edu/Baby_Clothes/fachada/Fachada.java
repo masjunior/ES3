@@ -63,9 +63,10 @@ public class Fachada implements IFachada {
 
 		List<IStrategy> fornecedorRns = new ArrayList<IStrategy>();
 //		TODO: tira o comentario da validacao
-//		fornecedorRns.add(validarCNPJ);
+		fornecedorRns.add(validarExistencia);
+		fornecedorRns.add(validarCNPJ);
 		fornecedorRns.add(complementarDataCadastro);
-//		fornecedorRns.add(validarExistencia);
+		
 		
 		strategies.put(Fornecedor.class.getName(), fornecedorRns);
 		

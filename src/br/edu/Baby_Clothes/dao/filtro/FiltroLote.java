@@ -45,7 +45,9 @@ public class FiltroLote implements IFiltro {
 			qtdCampos = new ArrayList<Integer>();
 			campos = new HashMap<Integer, String>();
 			
-			if(lote.getId() > 0) {
+			if(lote.getId() == null) {
+				System.out.println("ID LOTE NULO");
+			}else {
 				if(!flgWhere) {
 					sql += " WHERE ";
 					flgWhere = true;

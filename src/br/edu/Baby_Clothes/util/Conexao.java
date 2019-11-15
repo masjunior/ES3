@@ -23,8 +23,8 @@ public class Conexao {
 			String drive = "com.mysql.jdbc.Driver";
 			String drive2 = "com.mysql.cj.jdbc.Driver";
 			
-			String url = "jdbc:mysql://"+servidor+"/"+banco;
-			Class.forName(drive);
+			String url = "jdbc:mysql://"+servidor+"/"+banco+"?serverTimezone=UTC";
+			Class.forName(drive2);
 					   
 			return  DriverManager.getConnection(url,usuario,senha); 
 
