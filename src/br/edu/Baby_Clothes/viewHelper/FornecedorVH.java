@@ -142,7 +142,6 @@ public class FornecedorVH implements IViewHelper{
 			HttpSession sessao = request.getSession();
 			EntidadeDominio entidade = (EntidadeDominio) sessao.getAttribute("Resultado");
 //			fornecedor.setId(entidade.getId());
-			fornecedor.setId(Long.parseLong("5"));
 		}
 		
 		
