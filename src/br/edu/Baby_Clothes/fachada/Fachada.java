@@ -95,6 +95,8 @@ public class Fachada implements IFachada {
 		strategy = strategies.get(nomeClasse);
 		sb.setLength(0);
 
+		System.out.println("ID FACHADA " + entidade.getId());
+		
 		executarMensagem(strategy, entidade);
 
 		// se tem msg de erro ele não salva

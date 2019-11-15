@@ -81,6 +81,7 @@ public class FornecedorVH implements IViewHelper{
 			fornecedor.setId(id);
 		}
 		
+		System.out.println("ID DPS IF " + fornecedor.getId());
 		
 		
 		String dataString = request.getParameter("txtData");
@@ -137,12 +138,6 @@ public class FornecedorVH implements IViewHelper{
 		}
 		
 		fornecedor.setLotes(lotes);
-		
-		if(operacao.equalsIgnoreCase("SALVAR")) {
-			HttpSession sessao = request.getSession();
-			EntidadeDominio entidade = (EntidadeDominio) sessao.getAttribute("Resultado");
-//			fornecedor.setId(entidade.getId());
-		}
 		
 		
 		return fornecedor;

@@ -59,7 +59,10 @@
 							Fornecedor fornecedor = (Fornecedor)entidade;	
 					
 					
-				out.println("<tr scope = 'row'></tr>");
+
+	
+				out.println("<tr scope = 'row'></th>");
+
 				out.println("<td> " + Math.toIntExact(fornecedor.getId()) + "</td>");
 				out.println("<td>"+ fornecedor.getRazaoSocial()+"</td>");
 				out.println("<td>"+fornecedor.getCnpj()+"</td>");

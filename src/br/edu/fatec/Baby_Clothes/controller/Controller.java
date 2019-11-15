@@ -51,7 +51,12 @@ public class Controller extends HttpServlet{
 		String operacao = request.getParameter("operacao");
 		
 		IViewHelper viewHelper = viewHelpers.get(uri);
+		
+		System.out.println("ID CONTROLLER " + request.getParameter("txtId"));
+		
 		EntidadeDominio entidade = viewHelper.getEntidade(request);
+		
+		System.out.println("ID CONTROLLER 2 " + entidade.getId());
 		
 		ICommand command = commands.get(operacao);
 		Resultado resultado = command.executar(entidade);

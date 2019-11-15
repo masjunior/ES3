@@ -153,6 +153,8 @@ public class FornecedorDAO implements IDAO {
 		Fornecedor fornecedor =(Fornecedor)entidade;
 		PreparedStatement pstm = null;
 		
+		System.out.println("ID FORNECEDOR DAO" + fornecedor.getId());
+		
 		List<EntidadeDominio> listaFornecedores = null;
 		FiltroFornecedor filtro = new FiltroFornecedor();
 		String sql = filtro.gerarQuerry(fornecedor);
