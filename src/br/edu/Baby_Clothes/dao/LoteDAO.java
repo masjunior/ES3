@@ -216,22 +216,35 @@ public class LoteDAO implements IDAO{
 				
 				Fornecedor frn = new Fornecedor();
 				frn.setId(rs.getLong("lot_fornecedor"));
+				//lt.setFornecedor(frn);
 				
-				FornecedorDAO dao = new FornecedorDAO();
-				List<EntidadeDominio> fornecedores = dao.listar(frn);
-				Fornecedor fornecedor = (Fornecedor)fornecedores.get(0);
-				lt.setFornecedor(fornecedor);
+			
+				  FornecedorDAO dao = new FornecedorDAO(); 
+				  List<EntidadeDominio> fornecedores = dao.listar(frn);
+				  
+				  if(fornecedores != null && !fornecedores.isEmpty()) { 
+					  for(EntidadeDominio entidade3 : fornecedores) {
+						  Fornecedor frn2 = (Fornecedor)entidade3;
+						  lt.setFornecedor(frn2);
+					  }
+				  }
+				 
 				
 				
-				RoupaDAO rDao = new RoupaDAO();
-				List<EntidadeDominio> roupas = rDao.listar(lt);
-				List<Roupa> listaRoupas = (List<Roupa>)(Roupa)roupas;
-				lt.setRoupas(listaRoupas);
+				
+				
+				/*
+				 * RoupaDAO rDao = new RoupaDAO(); List<EntidadeDominio> roupas =
+				 * rDao.listar(lt); List<Roupa> listaRoupas = (List<Roupa>)(Roupa)roupas;
+				 * lt.setRoupas(listaRoupas);
+				 * 
+				 * listaLotes.add(lt);
+				 */
 				
 				listaLotes.add(lt);
 				
 			}
-			
+			System.out.println("TAMANHO LISTA" + listaLotes.size());
 			return listaLotes;
 			
 		}catch(Exception e) {

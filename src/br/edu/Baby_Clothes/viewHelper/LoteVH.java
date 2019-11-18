@@ -32,7 +32,7 @@ public class LoteVH implements IViewHelper{
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			request.setAttribute("ResutladoLote", resultado);
-			d = request.getRequestDispatcher("cadastroLote.jsp");
+			d = request.getRequestDispatcher("listarLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro de Lote realizado com Sucesso.");
@@ -42,17 +42,17 @@ public class LoteVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Consulta Realizada");
 			request.setAttribute("ResultadoConsultaLote", resultado);
-			d = request.getRequestDispatcher("cadastroLote.jsp");
+			d = request.getRequestDispatcher("listarLote.jsp");
 			 
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Altera��o realizada com Sucesso.");
 			request.setAttribute("ResultadoAlterarLote", resultado);
-			d = request.getRequestDispatcher("cadastroLote.jsp");
+			d = request.getRequestDispatcher("listarLote.jsp");
 		
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("Lote excluido com Sucesso.");
 			request.setAttribute("ResultadoExcluirLote", resultado);
-			d = request.getRequestDispatcher("cadastroLote.jsp");
+			d = request.getRequestDispatcher("listarLote.jsp");
 			
 		}
 		
@@ -82,7 +82,7 @@ public class LoteVH implements IViewHelper{
 		
 		Long idFornecedor = Long.parseLong(request.getParameter("txtFornecedor"));
 		
-//		if(id != null || !id.equals("") || id >=0) {
+//		if(id != null || !id.equals("") || id > 0) {
 //			lote.setId(id);
 //		}
 		
@@ -102,7 +102,7 @@ public class LoteVH implements IViewHelper{
 			lote.setQuantidadePecas(quantidadePecas);
 		}
 		
-		if(idFornecedor != null || !idFornecedor.equals("") || idFornecedor >= 0) {
+		if(idFornecedor != null || !idFornecedor.equals("") || idFornecedor > 0) {
 			fornecedor.setId(idFornecedor);
 			lote.setFornecedor(fornecedor);
 		}

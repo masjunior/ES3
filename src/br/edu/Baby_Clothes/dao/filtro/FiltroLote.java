@@ -32,10 +32,13 @@ public class FiltroLote implements IFiltro {
 		if(etd.getClass().getName().equalsIgnoreCase(Fornecedor.class.getName())) {
 			Fornecedor fornecedor = (Fornecedor)etd;
 			
-			if(fornecedor.getId() > 0) {
+			if(fornecedor == null) {
+				System.out.println("fornecedor nulo");
+			}else if(fornecedor.getId() > 0) {
 				sql += " WHERE lot_fornecedor = " + fornecedor.getId();
 				
-			}
+			}		
+			
 			
 			return sql;
 			
@@ -48,13 +51,16 @@ public class FiltroLote implements IFiltro {
 			if(lote.getId() == null) {
 				System.out.println("ID LOTE NULO");
 			}else {
-				if(!flgWhere) {
-					sql += " WHERE ";
-					flgWhere = true;
+				if(lote.getId() > 0) {
+					if(!flgWhere) {
+						sql += " WHERE ";
+						flgWhere = true;
+					}
+					campos.put(0, "lot_id = " + lote.getId());
+					qtdCampos.add(0);
 				}
-				campos.put(0, "lot_id = " + lote.getId());
-				qtdCampos.add(0);
 			}
+				
 			
 			if(lote.getDataCriacao() != null) {
 				if(!flgWhere) {
@@ -84,7 +90,7 @@ public class FiltroLote implements IFiltro {
 				qtdCampos.add(3);
 			}
 			
-			if(lote.getQuantidadePecas() >= 0) {
+			if(lote.getQuantidadePecas() > 0) {
 				if(!flgWhere) {
 					sql += " WHERE ";
 					flgWhere = true;
@@ -98,7 +104,7 @@ public class FiltroLote implements IFiltro {
 					sql += " WHERE ";
 					flgWhere = true;
 				}
-				campos.put(5, "lot_fornecedor = " + lote.getFornecedor());
+				campos.put(5, "lot_fornecedor = " + lote.getFornecedor().getId());
 				qtdCampos.add(5);
 			}
 			
@@ -111,7 +117,7 @@ public class FiltroLote implements IFiltro {
 			
 			
 			
-			
+			System.out.println(sql);
 			return sql;
 			
 		}

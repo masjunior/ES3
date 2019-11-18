@@ -16,8 +16,8 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebFilter(urlPatterns = {"/listarFornecedor.jsp"})
-public class FilterListarTodos implements Filter {
+@WebFilter(urlPatterns = {"/listarFornecedor.jsp", "/cadastroLote.jsp"})
+public class FilterListarFornecedor implements Filter {
 
 	@Override
 	public void destroy() {
@@ -36,13 +36,6 @@ public class FilterListarTodos implements Filter {
 		if(resultado == null) {
 			System.out.println("primero if");
 			resultado = new Resultado();
-			/*
-			 * List<EntidadeDominio> entidades = resultado.getEntidades();
-			 * 
-			 * if(entidades == null) { System.out.println("entidade nula"); }
-			 */
-			
-			
 			if(resultado.getEntidades() == null) {
 				System.out.println("Segundo if");
 				FornecedorDAO dao = new FornecedorDAO();

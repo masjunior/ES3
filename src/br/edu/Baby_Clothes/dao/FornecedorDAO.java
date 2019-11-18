@@ -180,16 +180,19 @@ public class FornecedorDAO implements IDAO {
 				frn.setEmail(rs.getString("frn_email"));
 				frn.setTelefone(rs.getString("frn_telefone"));
 				
-				LoteDAO loteDao = new LoteDAO();
-				List<EntidadeDominio> lotesEntidade = loteDao.listar(frn);
-				List<Lote> lotes = new ArrayList<Lote>();
+				/*
+				 * LoteDAO loteDao = new LoteDAO(); List<EntidadeDominio> lotesEntidade =
+				 * loteDao.listar(frn); List<Lote> lotes = new ArrayList<Lote>();
+				 * 
+				 * if(lotesEntidade != null && !lotesEntidade.isEmpty()) { for(EntidadeDominio
+				 * entidade1 : lotesEntidade) { Lote lote = (Lote)entidade1; lotes.add(lote); }
+				 * 
+				 * }
+				 */
 				
-				for(EntidadeDominio entidade1 : lotesEntidade) {
-					Lote lote = (Lote)entidade1;
-					lotes.add(lote);
-				}
 				
-				frn.setLotes(lotes);
+				
+				//frn.setLotes(lotes);
 				
 				
 				

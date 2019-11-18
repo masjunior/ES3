@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Fornecedor" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,6 +24,13 @@
 </head>
 
 <body>
+
+	<%
+	
+		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");	
+		List<EntidadeDominio> fornecedores = resultado.getEntidades();
+	%>
+
 	<div class="row">
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
@@ -98,7 +109,24 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtFornecedor">Fornecedor</label>
-			 				<input type="text" class="form-control" name="txtFornecedor" id="txtFornecedor" placeholder="" value="" required>		
+			 			<!-- 	<input type="text" class="form-control" name="txtFornecedor" id="txtFornecedor" placeholder="" value="" required> -->
+			 				<select class="form-control" name="txtFornecedor" id="txtFornecedor" required>
+			 				<option value="">Selecione</option>
+			 				
+			 				<%
+			 				if(fornecedores != null && !fornecedores.isEmpty()){
+			 					for(EntidadeDominio entidade : fornecedores){
+			 						Fornecedor fornecedor = (Fornecedor)entidade;
+			 						
+			 						out.println("<option value= '" + fornecedor.getId() +"'>"+ fornecedor.getNomeFantasia() +"</option>");
+			 					}
+			 						
+			 				}
+			 				
+			 				%>
+			 				
+			 				
+			 				</select>		
 			 				<div class="invalid-feedback">É obragatório inserir um Fornecedor válido.</div>
 			 				
 			 			</div>
