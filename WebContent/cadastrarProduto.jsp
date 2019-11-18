@@ -4,6 +4,8 @@
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Funcionario" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Lote" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +26,9 @@
 			response.sendRedirect("acessoNegado.jsp");
 		}
 		 */
+		 
+		 Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
+		 List<EntidadeDominio>lotes = resultado.getEntidades();
 	
 	%>
 	<div>
@@ -110,7 +115,20 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtLote">Lote</label>
-							<input type="text" class="form-control" name="txtLote" id="txtLote" placeholder="" value="" required>
+							<select class="form-control" nake="txtLote" id="txtLote" required>
+								<opiton value="">Selecione</opiton>
+								<%
+								if(lotes != null && !lotes.isEmpty()){
+									for(EntidadeDominio entidade : lotes){
+										Lote lote = (Lote)entidade;
+										
+										out.println("<option value='" + lote.getId() + "'>" + lote.getId() + "</option>");
+									}
+								}
+								
+								%>
+							</select>
+							<!-- <input type="text" class="form-control" name="txtLote" id="txtLote" placeholder="" value="" required> -->
 							<div class="invalid-feedback">Necessário inserir um lote válido!</div>
 						</div>
 					</div>
