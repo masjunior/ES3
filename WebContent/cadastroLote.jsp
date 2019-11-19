@@ -28,7 +28,10 @@
 	<%
 	
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");	
-		List<EntidadeDominio> fornecedores = resultado.getEntidades();
+		List<EntidadeDominio> fornecedores = null;
+		if(resultado.getEntidades() != null){
+			fornecedores = resultado.getEntidades();
+		};
 	%>
 
 	<div class="row">
@@ -49,7 +52,7 @@
 			 				
 			 				<label for="txtId">ID</label>
 			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um ID válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um ID válido.</div>
 			 				
 			 			</div>
 			 		
@@ -61,7 +64,7 @@
 			 				
 			 				<label for="txtDataCadastro">Data de Cadastro</label>
 			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir uma Data de Cadastro válida.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir uma Data de Cadastro válida.</div>
 			 				
 			 			</div>
 			 		
@@ -86,7 +89,7 @@
 			 			
 			 				<label for="txtPrecoCompraUnidade">Preço por Unidade</label>
 			 				<input type="text" class="form-control" name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidadel" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um Preço válido</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Preço válido</div>
 			 				
 			 			</div>
 			 		
@@ -98,7 +101,7 @@
 			 			
 			 				<label for="txtQuantidadePecas">Quantidade de Peças</label>
 			 				<input type="text" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir uma Quantidade válida.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir uma Quantidade válida.</div>
 			 				
 			 			</div>
 			 		
@@ -127,7 +130,7 @@
 			 				
 			 				
 			 				</select>		
-			 				<div class="invalid-feedback">É obragatório inserir um Fornecedor válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Fornecedor válido.</div>
 			 				
 			 			</div>
 			 		
@@ -144,7 +147,7 @@
 	
 	</div>
 
-	<div class="row" style="margin-top: 8%;">
+	<div class="" style="margin-top: 8%;">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 	

@@ -92,7 +92,7 @@
 	
 	</div>
 
-	<div class="row" style="margin-top: 8%;">
+	<div class="" style="margin-top: 8%;">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 	

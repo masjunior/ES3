@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.edu.Baby_Clothes.dao.UsuarioDAO;
+import br.edu.fatec.Baby_Clothes.model.NivelAcesso;
 //import br.edu.Baby_Clothes.dao.UsuarioDAO;
 import br.edu.fatec.Baby_Clothes.model.Usuario;
 
@@ -53,7 +54,13 @@ public class Autenticacao extends HttpServlet {
 		
 		if (usuarioAutenticado != null ) {
 			sessao.setAttribute("usuarioAutenticado", usuarioAutenticado);
-			request.getRequestDispatcher("logado.jsp").forward(request, response);
+//			sessao.setAttribute("ResultadoFornecedorConsultar", resultado);
+			
+			if(usuarioAutenticado.getNivelAcesso().equals(NivelAcesso.ADMINISTRADOR)) {
+				request.getRequestDispatcher("listarFuncionario.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("listarFornecedor.jsp").forward(request, response);
+			}
 
 		} else {
 			response.sendRedirect("login.jsp");

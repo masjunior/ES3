@@ -218,9 +218,7 @@ public class UsuarioDAO implements IDAO {
 			conexao = Conexao.getConnection();
 			usuarioBanco = new EntidadeDominio();
 			
-//			conexao.setAutoCommit(false);
 			pstm = conexao.prepareStatement(sql);
-//			conexao.commit();
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()) {

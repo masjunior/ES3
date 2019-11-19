@@ -139,7 +139,6 @@ public class FornecedorVH implements IViewHelper{
 		
 		fornecedor.setLotes(lotes);
 		
-		
 		return fornecedor;
 	}
 

@@ -19,7 +19,7 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous">
 	</script>
-<title>Cadastro de Fornecedor</title>
+<title>Listar de Fornecedores</title>
 
 </head>
 
@@ -47,14 +47,21 @@
 						<th scope="col">Telefone</th>
 					</tr>
 					</thead>
-					
 					<tbody>
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
+				
 			 
 				<%		
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
-					List<EntidadeDominio> entidades = resultado.getEntidades();
+					List<EntidadeDominio> entidades = null;
+					out.println("<h1> " + "TESTE1" + "</h1>");
+					if(resultado != null){
+						entidades = resultado.getEntidades();	
+						out.println("<h1> " + "TESTE2" + "</h1>");
+					}
 					
 					if(entidades != null && !entidades.isEmpty()){
+						out.println("<h1> " + "TESTE3" + "</h1>");
 						for(EntidadeDominio entidade : entidades){
 							Fornecedor fornecedor = (Fornecedor)entidade;	
 					
@@ -78,6 +85,8 @@
 						out.println("<br>");
 					}
 				%>
+				</c:if>
+				
 					</tbody>
 				
 				</table>
@@ -92,7 +101,7 @@
 	
 	</div>
 
-	<div class="row" style="margin-top: 8%;">
+	<div class="" style="margin-top: 8%;">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 	

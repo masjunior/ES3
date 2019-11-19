@@ -50,7 +50,7 @@
 			 				
 			 				<label for="txtDataCadastro">Data de Cadastro</label>
 			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir uma Data de Cadastro válida.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir uma Data de Cadastro válida.</div>
 			 				
 			 			</div>
 			 		
@@ -62,7 +62,7 @@
 			 				
 			 				<label for="txtRazaoSocial">Razão Social</label>
 			 				<input type="text" class="form-control" name="txtRazaoSocial" id="txtRazaoSocial" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir uma Razão Social válida.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir uma Razão Social válida.</div>
 			 				
 			 			</div>
 			 		
@@ -74,7 +74,7 @@
 			 			
 			 				<label for="txtCNPJ">CNPJ</label>
 			 				<input type="text" class="form-control" name="txtCNPJ" id="txtCNPJ" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um CNPJ válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um CNPJ válido.</div>
 			 				
 			 			</div>
 			 		
@@ -86,7 +86,7 @@
 			 			
 			 				<label for="txtNomeFantasia">Nome Fantasia</label>
 			 				<input type="text" class="form-control" name="txtNomeFantasia" id="txtNomeFantasia" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um Nome Fantasia válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Nome Fantasia válido.</div>
 			 				
 			 			</div>
 			 		
@@ -98,7 +98,7 @@
 			 			
 			 				<label for="txtRazaoResponsavel">Nome do Responsável</label>
 			 				<input type="text" class="form-control" name="txtRazaoResponsavel" id="txtRazaoResponsavel" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um Nome de Responsável válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Nome de Responsável válido.</div>
 			 				
 			 			</div>
 			 		
@@ -110,7 +110,7 @@
 			 			
 			 				<label for="txtEmail">Email</label>
 			 				<input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um Email válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Email válido.</div>
 			 				
 			 			</div>
 			 		
@@ -122,7 +122,7 @@
 			 			
 			 				<label for="txtTelefone">Telefone</label>
 			 				<input type="text" class="form-control" name="txtTelefone" id="txtTelefone" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um Telefone válido.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir um Telefone válido.</div>
 			 				
 			 			</div>
 			 		
@@ -131,20 +131,13 @@
 			 		<hr class="mb-4">
 			 		<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button> 
 			 		
-			 	</form>
-			 	
-			 	<form class="needs-validation" action="listarFornecedor.jsp" method="post" novalidate>
-			 	<button class="btn btn-primary btn-lg btn-block" name="operacao" id="CONSULTAR" type="submit" value="CONSULTAR">CONSULTAR</button>
-			 	</form>
-			 
-			 
 			 </div>
 			
 		</div>
 	
 	</div>
 
-	<div class="row" style="margin-top: 8%;">
+	<div class="" style="margin-top: 8%;">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 	
