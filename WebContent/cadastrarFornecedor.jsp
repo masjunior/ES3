@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Fornecedor" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,6 +34,32 @@
 		
 			 <div class="col-m1 order-md-1">
 			 
+			 <%
+			 
+			 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoFornecedor");
+			 List<EntidadeDominio> entidades = null;
+			 Fornecedor fornecedor = null;
+			 
+			 if(resultado != null){
+				 
+				 out.println("<div class='col-m1 order-md-1'>");
+				 	out.println("<p style='color:red; font-size:32px;'>"+resultado.getMensagem()+"</p>");
+				 
+				 out.println("</div");
+				 
+				 
+				 entidades = resultado.getEntidades();
+				 
+				 if(entidades != null && !entidades.isEmpty()){
+					 fornecedor = (Fornecedor)entidades.get(0);
+				 }
+				 
+				
+				 
+			 }
+			 
+			 
+			 %>
 			 	<form class="needs-validation" action="FornecedorController" method="post" novalidate>
 			 	
 			 		<div class="row d-none">
@@ -61,7 +91,7 @@
 			 			<div class="com-md-12 mb-3">
 			 				
 			 				<label for="txtRazaoSocial">Razão Social</label>
-			 				<input type="text" class="form-control" name="txtRazaoSocial" id="txtRazaoSocial" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtRazaoSocial" id="txtRazaoSocial" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getRazaoSocial());} %>" required>		
 			 				<div class="invalid-feedback">É obragatório inserir uma Razão Social válida.</div>
 			 				
 			 			</div>
@@ -73,7 +103,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtCNPJ">CNPJ</label>
-			 				<input type="text" class="form-control" name="txtCNPJ" id="txtCNPJ" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtCNPJ" id="txtCNPJ" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getCnpj());} %>" required minlength="14" maxlength="14">		
 			 				<div class="invalid-feedback">É obragatório inserir um CNPJ válido.</div>
 			 				
 			 			</div>
@@ -85,7 +115,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtNomeFantasia">Nome Fantasia</label>
-			 				<input type="text" class="form-control" name="txtNomeFantasia" id="txtNomeFantasia" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtNomeFantasia" id="txtNomeFantasia" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getNomeFantasia());} %>" required>		
 			 				<div class="invalid-feedback">É obragatório inserir um Nome Fantasia válido.</div>
 			 				
 			 			</div>
@@ -97,7 +127,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtRazaoResponsavel">Nome do Responsável</label>
-			 				<input type="text" class="form-control" name="txtRazaoResponsavel" id="txtRazaoResponsavel" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtRazaoResponsavel" id="txtRazaoResponsavel" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getRazaoResponsavel());} %>" required>		
 			 				<div class="invalid-feedback">É obragatório inserir um Nome de Responsável válido.</div>
 			 				
 			 			</div>
@@ -109,7 +139,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtEmail">Email</label>
-			 				<input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getEmail());} %>" required>		
 			 				<div class="invalid-feedback">É obragatório inserir um Email válido.</div>
 			 				
 			 			</div>
@@ -121,13 +151,13 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtTelefone">Telefone</label>
-			 				<input type="text" class="form-control" name="txtTelefone" id="txtTelefone" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtTelefone" id="txtTelefone" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getTelefone());} %>" required>		
 			 				<div class="invalid-feedback">É obragatório inserir um Telefone válido.</div>
 			 				
 			 			</div>
 			 		
 			 		</div>
-			 		
+			 		<%session.removeAttribute("ResultadoFornecedor"); %>
 			 		<hr class="mb-4">
 			 		<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button> 
 			 		
