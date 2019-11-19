@@ -95,10 +95,12 @@ public class Fachada implements IFachada {
 		strategy = strategies.get(nomeClasse);
 		sb.setLength(0);
 
-		System.out.println("ID FACHADA " + entidade.getId());
+		
 		
 		executarMensagem(strategy, entidade);
-
+		
+		System.out.println("tamanho SB " + sb.length());
+		
 		// se tem msg de erro ele não salva
 		if (sb.length() == 0 || sb.toString().trim().equals("")) {
 			try {

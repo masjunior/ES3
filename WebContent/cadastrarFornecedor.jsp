@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Fornecedor" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,6 +34,32 @@
 		
 			 <div class="col-m1 order-md-1">
 			 
+			 <%
+			 
+			 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoFornecedor");
+			 List<EntidadeDominio> entidades = null;
+			 Fornecedor fornecedor = null;
+			 
+			 if(resultado != null){
+				 
+				 out.println("<div class='col-m1 order-md-1'>");
+				 	out.println("<p style='color:red; font-size:32px;'>"+resultado.getMensagem()+"</p>");
+				 
+				 out.println("</div");
+				 
+				 
+				 entidades = resultado.getEntidades();
+				 
+				 if(entidades != null && !entidades.isEmpty()){
+					 fornecedor = (Fornecedor)entidades.get(0);
+				 }
+				 
+				
+				 
+			 }
+			 
+			 
+			 %>
 			 	<form class="needs-validation" action="FornecedorController" method="post" novalidate>
 			 	
 			 		<div class="row d-none">
@@ -127,7 +157,7 @@
 			 			</div>
 			 		
 			 		</div>
-			 		
+			 		<%session.removeAttribute("ResultadoFornecedor"); %>
 			 		<hr class="mb-4">
 			 		<button class="btn btn-primary btn-lg btn-block" name="operacao" id="SALVAR" type="submit" value="SALVAR">SALVAR</button> 
 			 		
