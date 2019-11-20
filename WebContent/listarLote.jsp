@@ -19,6 +19,9 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous">
 	</script>
+	<!-- https://materializecss.com/icons.html -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 <title>Lista de Lotes</title>
 
 </head>
@@ -46,7 +49,9 @@
 					</thead>
 					
 					<tbody>
-			 
+				
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
+				
 				<%		
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				List<EntidadeDominio> entidades = null;
@@ -64,20 +69,37 @@
 					
 
 	
-				out.println("<tr scope = 'row'></th>");
+				out.println("<tr scope = 'row'>");
 				out.println("<td> " + Math.toIntExact(lote.getId()) + "</td>");
 				out.println("<td> R$"+ lote.getPrecoCompraUnidade()+"</td>");
 				out.println("<td>"+lote.getQuantidadePecas()+"</td>");
 				out.println("<td>"+lote.getFornecedor().getNomeFantasia()+"</td>");
+				%>
 				
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
+				<td>
+					<a href="/LoteController" class="botao-remover" value="">
+					  <i class="material-icons small">delete</i>
+					</a>
+				</td>
+				</c:if>	
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
+				<td>SOU PLENO</td>
+				</c:if>	
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
+				<td>SOU JUNIOR</td>
+				</c:if>	
+						
+				<%
 				
 						
 						
 						
 						}
-						out.println("<br>");
+						out.println("</th>");
 					}
 				%>
+				</c:if>
 					</tbody>
 				
 				</table>

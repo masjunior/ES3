@@ -50,7 +50,6 @@
 					<tbody>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
-			 
 				<%		
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 					List<EntidadeDominio> entidades = null;
@@ -77,10 +76,19 @@
 				out.println("<td>"+fornecedor.getRazaoResponsavel()+"</td>");
 				out.println("<td>"+fornecedor.getEmail()+"</td>");
 				out.println("<td>"+fornecedor.getTelefone()+"</td>");
+				%>
 				
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
+				<td>SOU SENIOR</td>
+				</c:if>	
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
+				<td>SOU PLENO</td>
+				</c:if>	
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
+				<td>SOU JUNIOR</td>
+				</c:if>	
 						
-						
-						
+				<%		
 						}
 						out.println("<br>");
 					}

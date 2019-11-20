@@ -56,10 +56,13 @@ public class Autenticacao extends HttpServlet {
 			sessao.setAttribute("usuarioAutenticado", usuarioAutenticado);
 //			sessao.setAttribute("ResultadoFornecedorConsultar", resultado);
 			
+			
 			if(usuarioAutenticado.getNivelAcesso().equals(NivelAcesso.ADMINISTRADOR)) {
-				request.getRequestDispatcher("listarFuncionario.jsp").forward(request, response);
+				response.sendRedirect("listarFuncionario.jsp");
 			}else {
-				request.getRequestDispatcher("listarFornecedor.jsp").forward(request, response);
+//				request.getRequestDispatcher("listarFornecedor.jsp").forward(request, response);
+				
+				response.sendRedirect("listarFornecedor.jsp");
 			}
 
 		} else {
