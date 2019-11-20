@@ -22,10 +22,9 @@
 </head>
 
 <body>
-
-	<div class="row">
 		<c:import url="pedacos/navbar.jsp" />
-	</div>
+<div class="" style="height: 90vh">
+	
 
 	<div class="row">
 		
@@ -95,13 +94,13 @@
 				  		<i class="material-icons small text-danger">delete</i>
 					</a>
 				</td>
-				</c:if>	
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td>
 					<a href="/LoteController" class="botao-remover" value="testedobotao">
 				  		<i class="material-icons small text-danger">delete</i>
 					</a>
 				</td>
+				</c:if>	
 				</c:if>	
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
 				<td>SOU JUNIOR</td>
@@ -117,22 +116,11 @@
 					</tbody>
 				
 				</table>
-	
-	
-						
-								
-			 
 			 </div>
-			
 		</div>
-	
 	</div>
-
-	<div class="" style="margin-top: 8%;">
+</div>
 		<c:import url="pedacos/footer.jsp" />
-	</div>
-	
-
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
@@ -144,7 +132,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="JAVASCRIPT/listarFornecedor.js"></script>
-
+	
 </body>
 
 </html>

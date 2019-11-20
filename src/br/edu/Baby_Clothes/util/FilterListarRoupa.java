@@ -9,15 +9,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 
-import br.edu.Baby_Clothes.dao.LoteDAO;
+import br.edu.Baby_Clothes.dao.RoupaDAO;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
-import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
+import br.edu.fatec.Baby_Clothes.model.Roupa;
 
-@WebFilter(urlPatterns= {"/listarLote.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp", "/cadastrarFornecedor.jsp", "/listarFornecedor.jsp", "/listarRoupa.jsp"})
-public class FilterListarLote implements Filter {
+public class FilterListarRoupa implements Filter{
 
 	@Override
 	public void destroy() {
@@ -28,32 +26,26 @@ public class FilterListarLote implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
-		Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
+Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 		
 		if(resultado == null) {
 			resultado = new Resultado();
-			
 			if(resultado.getEntidades() == null) {
-				System.out.println("ENTROU IF CONSULTA");
-				LoteDAO dao = new LoteDAO();
-				Lote lote = new Lote();
-				List<EntidadeDominio>lotes = dao.listar(lote);
+				RoupaDAO dao = new RoupaDAO();
+				Roupa roupa = new Roupa();
+				List<EntidadeDominio> fornecedores = dao.listar(roupa); 
 				
-				if(lotes == null || lotes.isEmpty()) {
-					System.out.println("LISTA NULA");
-				}
-				
-				if(lotes != null && !lotes.isEmpty()) {
-					for(EntidadeDominio entidade : lotes) {
-						System.out.println("ID LOTE" + entidade.getId());
+				if(fornecedores != null && !fornecedores.isEmpty()) {
+					for(EntidadeDominio entidade : fornecedores) {
 						resultado.adicionarEntidades(entidade);
 					}
 				}
-			//System.out.println("Tamanho LIsta" + resultado.getEntidades().size());
-			request.setAttribute("ResultadoLoteConsulta", resultado);
+				
+				
+				request.setAttribute("ResultadoFornecedorConsultar", resultado);
 			}
 		}
+		
 		
 		chain.doFilter(request, response);
 		

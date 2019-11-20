@@ -54,7 +54,7 @@ public class Fachada implements IFachada {
 		funcionarioRns.add(validarCPF);
 		funcionarioRns.add(complementarDataCadastro);
 		funcionarioRns.add(validarSenha);
-		funcionarioRns.add(validarExistencia);
+		//funcionarioRns.add(validarExistencia);
 
 		strategies.put(Funcionario.class.getName(), funcionarioRns);
 		
