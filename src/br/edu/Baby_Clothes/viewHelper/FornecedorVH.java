@@ -44,14 +44,14 @@ public class FornecedorVH implements IViewHelper{
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			System.out.println("passei no consultar do fornecedor");
-			resultado.setMensagem("Consulta de fornecedorrealizada com sucesso!");
+			resultado.setMensagem("Consulta de fornecedor realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Alteração do fornecedor foi realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorAlterar", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFornecedor.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O fornecedor foi excluido com sucesso!");
@@ -113,28 +113,40 @@ public class FornecedorVH implements IViewHelper{
 		 * if(date != null) { fornecedor.setDataCriacao(date); }
 		 */
 		
-		if(razaoSocial != null || !razaoSocial.trim().equals("") || !razaoSocial.isEmpty()) {
+		if(razaoSocial != null ) {
+			if(!razaoSocial.trim().equals("") || !razaoSocial.isEmpty()) {
 			fornecedor.setRazaoSocial(razaoSocial);
+			}
 		}
 		
-		if(cnpj != null || !cnpj.trim().equals("") || !cnpj.isEmpty()) {
+		if(cnpj != null) {
+			if( !cnpj.trim().equals("") || !cnpj.isEmpty()) {
 			fornecedor.setCnpj(cnpj);
+			}
 		}
 	
-		if(nomeFantasia != null || !nomeFantasia.trim().equals("") || !nomeFantasia.isEmpty()) {
+		if(nomeFantasia != null ) {
+			if(!nomeFantasia.trim().equals("") || !nomeFantasia.isEmpty()) {
 			fornecedor.setNomeFantasia(nomeFantasia);
+			}
 		}
 			
-		if(razaoResponsavel != null || !razaoResponsavel.trim().equals("") || !razaoResponsavel.isEmpty()) {
+		if(razaoResponsavel != null) {
+			if( !razaoResponsavel.trim().equals("") || !razaoResponsavel.isEmpty()) {
 			fornecedor.setRazaoResponsavel(razaoResponsavel);
+			}
 		}
 		
-		if(email != null || !email.trim().equals("") || !email.isEmpty()) {
+		if(email != null) {
+			if( !email.trim().equals("") || !email.isEmpty()) {
 			fornecedor.setEmail(email);
+			}
 		}
 		
-		if(telefone != null || !telefone.trim().equals("") || !telefone.isEmpty()) {
+		if(telefone != null) {
+			if( !telefone.trim().equals("") || !telefone.isEmpty()) {
 			fornecedor.setTelefone(telefone);
+			}
 		}
 		
 		fornecedor.setLotes(lotes);
