@@ -11,13 +11,13 @@
         <div class="collapse navbar-collapse" id="navbarsExample09">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Consultar <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="listarFornecedor.jsp">Fornecedor <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cadastrar</a>
+              <a class="nav-link" href="listarLote.jsp">Lote</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="#">Alterar minha senha</a>
+              <a class="nav-link " href="listarRoupa.jsp">Roupa</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-md-0">

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
-<%@ page import="br.edu.fatec.Baby_Clothes.model.Fornecedor" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Roupa" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,7 +22,7 @@
 	</script>
 	<!-- https://materializecss.com/icons.html -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<title>Listar de Fornecedores</title>
+<title>Listar Roupas</title>
 
 </head>
 
@@ -42,12 +42,12 @@
 					<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Razão Social</th>
-						<th scope="col">CNPJ</th>
-						<th scope="col">Nome Fantasia</th>
-						<th scope="col">Nome Responsável</th>
-						<th scope="col">Email</th>
-						<th scope="col">Telefone</th>
+						<th scope="col">Marca</th>
+						<th scope="col">Preço de Venda</th>
+						<th scope="col">Quantidade Disponível</th>
+						<th scope="col">Tamanho</th>
+						<th scope="col">Cor</th>
+						<th scope="col">Lote</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -62,19 +62,19 @@
 					
 					if(entidades != null && !entidades.isEmpty()){
 						for(EntidadeDominio entidade : entidades){
-							Fornecedor fornecedor = (Fornecedor)entidade;	
+							Roupa roupa = (Roupa)entidade;	
 					
 					
 
 	
 				out.println("<tr scope = 'row'>");
-				out.println("<td class='id' name='id'> " + Math.toIntExact(fornecedor.getId()) + "</td>");
-				out.println("<td class='razaoSocial' name='razaoSocial'>"+ fornecedor.getRazaoSocial()+"</td>");
-				out.println("<td class='cnpj' name='cnpj'>"+fornecedor.getCnpj()+"</td>");
-				out.println("<td class='nomeFantasia' name='nomeFantasia'>"+fornecedor.getNomeFantasia()+"</td>");
-				out.println("<td class='razaoResponsavel' name='razaoResponsavel'>"+fornecedor.getRazaoResponsavel()+"</td>");
-				out.println("<td class='email' name='email'>"+fornecedor.getEmail()+"</td>");
-				out.println("<td class='telefone' name='telefone'>"+fornecedor.getTelefone()+"</td>");
+				out.println("<td class='id' name='id'> " + Math.toIntExact(roupa.getId()) + "</td>");
+				out.println("<td class='marca' name='marca'>"+ roupa.getMarca()+"</td>");
+				out.println("<td class='precoVenda' name='precoVenda' R$>"+roupa.getPrecoVenda()+"</td>");
+				out.println("<td class='quantidadeDisponivel' name='quantidadeDisponivel'>"+roupa.getQuantidadeDisponivel()+"</td>");
+				out.println("<td class='tamanho' name='tamanho'>"+roupa.getTamanho()+"</td>");
+				out.println("<td class='cor' name='cor'>"+roupa.getCor().getDescricao()+"</td>");
+				out.println("<td class='lote' name='lote'>"+roupa.getLote().getId()+"</td>");
 				%>
 				
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
