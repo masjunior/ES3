@@ -28,16 +28,12 @@ public class FilterListarFornecedor implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("passei no filter");
-		System.out.println("Entrou FIlter");
 		
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 		
 		if(resultado == null) {
-			System.out.println("primero if");
 			resultado = new Resultado();
 			if(resultado.getEntidades() == null) {
-				System.out.println("Segundo if");
 				FornecedorDAO dao = new FornecedorDAO();
 				Fornecedor fornecedor = new Fornecedor();
 				List<EntidadeDominio> fornecedores = dao.listar(fornecedor); 
@@ -49,7 +45,6 @@ public class FilterListarFornecedor implements Filter {
 				}
 				
 				
-				System.out.println("final segundo if");
 				request.setAttribute("ResultadoFornecedorConsultar", resultado);
 			}
 		}

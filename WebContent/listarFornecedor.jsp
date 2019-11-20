@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,6 +20,8 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous">
 	</script>
+	<!-- https://materializecss.com/icons.html -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>Listar de Fornecedores</title>
 
 </head>
@@ -53,36 +56,40 @@
 				<%		
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 					List<EntidadeDominio> entidades = null;
-					out.println("<h1> " + "TESTE1" + "</h1>");
 					if(resultado != null){
 						entidades = resultado.getEntidades();	
-						out.println("<h1> " + "TESTE2" + "</h1>");
 					}
 					
 					if(entidades != null && !entidades.isEmpty()){
-						out.println("<h1> " + "TESTE3" + "</h1>");
 						for(EntidadeDominio entidade : entidades){
 							Fornecedor fornecedor = (Fornecedor)entidade;	
 					
 					
 
 	
-				out.println("<tr scope = 'row'></th>");
-
-				out.println("<td> " + Math.toIntExact(fornecedor.getId()) + "</td>");
-				out.println("<td>"+ fornecedor.getRazaoSocial()+"</td>");
-				out.println("<td>"+fornecedor.getCnpj()+"</td>");
-				out.println("<td>"+fornecedor.getNomeFantasia()+"</td>");
-				out.println("<td>"+fornecedor.getRazaoResponsavel()+"</td>");
-				out.println("<td>"+fornecedor.getEmail()+"</td>");
-				out.println("<td>"+fornecedor.getTelefone()+"</td>");
+				out.println("<tr scope = 'row'>");
+				out.println("<td class='id' name='id'> " + Math.toIntExact(fornecedor.getId()) + "</td>");
+				out.println("<td class='razaoSocial' name='razaoSocial'>"+ fornecedor.getRazaoSocial()+"</td>");
+				out.println("<td class='cnpj' name='cnpj'>"+fornecedor.getCnpj()+"</td>");
+				out.println("<td class='nomeFantasia' name='nomeFantasia'>"+fornecedor.getNomeFantasia()+"</td>");
+				out.println("<td class='razaoResponsavel' name='razaoResponsavel'>"+fornecedor.getRazaoResponsavel()+"</td>");
+				out.println("<td class='email' name='email'>"+fornecedor.getEmail()+"</td>");
+				out.println("<td class='telefone' name='telefone'>"+fornecedor.getTelefone()+"</td>");
 				%>
 				
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
-				<td>SOU SENIOR</td>
+				<td>
+					<a href="/LoteController" class="botao-remover" value="">
+				  		<i class="material-icons small">delete</i>
+					</a>
+				</td>
 				</c:if>	
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
-				<td>SOU PLENO</td>
+				<td>
+					<a href="/LoteController" class="botao-remover" value="testedobotao">
+				  		<i class="material-icons small">delete</i>
+					</a>
+				</td>
 				</c:if>	
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
 				<td>SOU JUNIOR</td>
@@ -90,7 +97,7 @@
 						
 				<%		
 						}
-						out.println("<br>");
+						out.println("</th>");
 					}
 				%>
 				</c:if>
@@ -121,7 +128,7 @@
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	
-	
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
 
 </body>
 
