@@ -40,17 +40,23 @@ public class FilterListarLote implements Filter {
 				Lote lote = new Lote();
 				List<EntidadeDominio>lotes = dao.listar(lote);
 				
+				
+				
 				if(lotes == null || lotes.isEmpty()) {
 					System.out.println("LISTA NULA");
 				}
 				
 				if(lotes != null && !lotes.isEmpty()) {
 					for(EntidadeDominio entidade : lotes) {
-						System.out.println("ID LOTE" + entidade.getId());
-						resultado.adicionarEntidades(entidade);
+						if(entidade.isHabilitado()) {
+							resultado.adicionarEntidades(entidade);
+						}
+						
 					}
 				}
-			//System.out.println("Tamanho LIsta" + resultado.getEntidades().size());
+				
+				
+			System.out.println("Tamanho LIsta Filter" + resultado.getEntidades().size());
 			request.setAttribute("ResultadoLoteConsulta", resultado);
 			}
 		}

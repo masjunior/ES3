@@ -47,7 +47,7 @@
 					</thead>
 					<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
 						<div class="row text-right" >
-							<a href="/ES3/cadastrarLote.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+							<a href="/ES3/cadastroLote.jsp" class="botao-cadastrar col-12 text-truncate " value="">
 				  				NOVO LOTE <i class="material-icons large text-right">add</i>
 							</a>
 						</div>
@@ -57,7 +57,7 @@
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
 				<%	
-				out.println(request.getAttributeNames().nextElement());
+				//out.println(request.getAttributeNames().nextElement());
 				Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				List<EntidadeDominio> entidades = null;
 				if(resultado != null){

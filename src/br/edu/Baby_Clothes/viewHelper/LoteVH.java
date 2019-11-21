@@ -32,13 +32,13 @@ public class LoteVH implements IViewHelper{
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			request.setAttribute("ResutladoLote", resultado);
-			d = request.getRequestDispatcher("listarLote.jsp");
+			d = request.getRequestDispatcher("cadastroLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro de Lote realizado com Sucesso.");
 			request.setAttribute("ResultadoLoteSalvo", resultado);
-//			response.sendRedirect("cadastroLote.jsp");
-			d = request.getRequestDispatcher("cadastroLote.jsp");
+			response.sendRedirect("listarLote.jsp");
+//			d = request.getRequestDispatcher("cadastroLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Consulta Realizada");

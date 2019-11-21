@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 	<title>Cadastro de Roupa</title>
 </head>
-<body>
+<body style="margin-top:30px">
 
 	<%
 		/* HttpSession sessao = request.getSession();
