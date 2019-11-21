@@ -17,21 +17,21 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- 	CSS BOOTSTRAP -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>Listar de Fornecedores</title>
-
-</head>
-
-<body>
-		<c:import url="pedacos/navbar.jsp" />
-<div class="" style="height: 90vh">
+	
 	
 
+	<title>Listar de Fornecedores</title>
+</head>
+
+<body onload="window.location.reload">
+	<div>
+		<c:import url="pedacos/navbar.jsp" />
+	</div>
+<div class="" style="height: 90vh">
+	
 	<div class="row">
-		
 		<div class="container" style="margin-top: 4%">
-		
 			 <div class="col-m1 order-md-1">
-			 
 			 <table class="table">
 					<thead>
 					<tr>
@@ -44,6 +44,12 @@
 						<th scope="col">Telefone</th>
 					</tr>
 					</thead>
+					
+				<div class="row text-right" >
+					<a href="/ES3/cadastrarFornecedor.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+		  				NOVO FORNECEDOR <i class="material-icons large text-right">add</i>
+					</a>
+				</div>
 					<tbody>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
