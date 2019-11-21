@@ -9,14 +9,12 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap Stack Path -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- https://materializecss.com/icons.html -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!-- 	CSS BOOTSTRAP -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="_CSS/materialIcons.css" >
+	<!-- 	CSS BOOTSTRAP -->
+	<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 	<title>Cadastro de Fornecedor</title>
 
 </head>
@@ -135,13 +133,14 @@
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
+	
 	<!-- 	https://sweetalert2.github.io/-->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
+	<script src="plugins/sweetalert2.js"></script>
+	<script src="plugins/jquery-3.1.1.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/bootstrap.min.js"></script>
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
+
 	
 </body>
 

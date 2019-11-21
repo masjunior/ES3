@@ -9,13 +9,11 @@
 <html lang="pt-br">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- https://materializecss.com/icons.html -->
-	<link rel="stylesheet" href="css/materialIcons.css" >
-	<!-- 	CSS BOOTSTRAP -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<!-- https://materializecss.com/icons.html -->
+		<link rel="stylesheet" href="_CSS/materialIcons.css" >
+		<!-- 	CSS BOOTSTRAP -->
+		<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 	<title>Cadastro de Lote</title>
 
 </head>
@@ -152,7 +150,7 @@
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
 	
-<!-- 	https://sweetalert2.github.io/-->
+	<!-- 	https://sweetalert2.github.io/-->
 	<script src="plugins/sweetalert2.js"></script>
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>

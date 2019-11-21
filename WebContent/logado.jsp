@@ -4,19 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<!-- https://materializecss.com/icons.html -->
+		<link rel="stylesheet" href="_CSS/materialIcons.css" >
+		<!-- 	CSS BOOTSTRAP -->
+		<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 
-<!-- Bootstrap Stack Path -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous">
-	</script>
-
-<title> Usuario Logado</title>
+	<title> Usuario Logado</title>
 </head>
 <body>
 
@@ -26,7 +22,18 @@
 		<h1> Logado </h1>
 		
 		<c:out value="${usuarioAutenticado.nivelAcesso}"></c:out>
-		
+
+	<!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+	<!-- Foi colocado no final para a página carregar mais rápido -->
+	
+	<!-- 	https://sweetalert2.github.io/-->
+	<script src="plugins/sweetalert2.js"></script>
+	<script src="plugins/jquery-3.1.1.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/bootstrap.min.js"></script>
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
+	
 
 </body>
 </html>

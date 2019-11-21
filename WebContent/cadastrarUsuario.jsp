@@ -5,17 +5,13 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap Stack Path -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous">
-	</script>
-<title>Fomulario Usuário</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- https://materializecss.com/icons.html -->
+	<link rel="stylesheet" href="_CSS/materialIcons.css" >
+	<!-- 	CSS BOOTSTRAP -->
+	<link rel="stylesheet" href="_CSS/bootstrap.min.css">
+	<title>Fomulario Usuário</title>
 
 </head>
 
@@ -115,24 +111,16 @@
 	</div>
 	
 
-	<!-- Principal JavaScript do Bootstrap
+		<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-<!-- 	<script> -->
-// 		window.jQuery
-// 				|| document
-// 						.write(
-// 								'<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-<!-- 	</script> -->
-<!-- 	<script src="../../assets/js/vendor/popper.min.js"></script> -->
-<!-- 	<script src="../../dist/js/bootstrap.min.js"></script> -->
-<!-- 	<script src="../../assets/js/vendor/holder.min.js"></script> -->
 	
-	
-
+	<!-- 	https://sweetalert2.github.io/-->
+	<script src="plugins/sweetalert2.js"></script>
+	<script src="plugins/jquery-3.1.1.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/bootstrap.min.js"></script>
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
 </body>
 
 </html>

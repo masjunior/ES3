@@ -113,13 +113,12 @@
 </div>
 		<div class="footer-bar" >
 			<c:import url="pedacos/footer.jsp" />
-		
 		</div>
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
 	
-<!-- 	https://sweetalert2.github.io/-->
+	<!-- 	https://sweetalert2.github.io/-->
 	<script src="plugins/sweetalert2.js"></script>
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
