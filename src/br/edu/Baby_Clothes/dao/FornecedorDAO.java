@@ -81,8 +81,9 @@ public class FornecedorDAO implements IDAO {
 		
 		try {
 			conexao = Conexao.getConnection();
+			conexao.setAutoCommit(false);
 			
-			String sql = "UPDATE fornecedor SET frn_halitado = ? WHERE frn_id = ?";
+			String sql = "UPDATE fornecedor SET frn_habilitado = ? WHERE frn_id = ?";
 			pstm = conexao.prepareStatement(sql);
 			
 			pstm.setBoolean(1, false);
@@ -90,6 +91,8 @@ public class FornecedorDAO implements IDAO {
 			pstm.setLong(2, fornecedor.getId());
 			
 			pstm.executeUpdate();
+			
+			conexao.commit();
 			
 		}catch(Exception e) {
 			try {

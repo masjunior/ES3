@@ -23,6 +23,9 @@
           <form class="form-inline my-2 my-md-0">
             <input class="form-control" type="text" placeholder="Search" aria-label="Search">
           </form>
+          <form method="link" action="logout.jsp" class="form-inline my-2 my-md-0">
+    		<input type="submit" class="form-control" value="Logout"/>
+		  </form>
         </div>
     </nav>
     

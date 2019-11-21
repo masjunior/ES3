@@ -9,73 +9,79 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap Stack Path -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous">
-	</script>
-	<!-- https://materializecss.com/icons.html -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	
-<title>Lista de Lotes</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<!-- https://materializecss.com/icons.html -->
+		<link rel="stylesheet" href="_CSS/materialIcons.css" >
+		<!-- 	CSS BOOTSTRAP -->
+		<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 
+	<title>Lista de Lotes</title>
 </head>
 
 <body>
 
-	<div class="row">
+	<div class="">
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
 
+<div class"">
 	<div class="row">
 		
-		<div class="container" style="margin-top: 4%">
+		<div class="container" style="margin-top: 5%">
 		
 			 <div class="col-m1 order-md-1">
 			 
-			 <table class="table">
+			 <table id="tabela-fornecedores" class="table table-striped table-bordered table-sm">
 					<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Preço por unidade</th>
-						<th scope="col">Quantidade de Peças</th>
-						<th scope="col">Fornecedor</th>
+					<tr class="text-center">
+						<c:if test="${usuarioAutenticado.nivelAcesso != 'MODERADOR_JUNIOR' }">
+							<th class="th-sm" scope="col">#</th>
+						</c:if>
+						<th class="th-sm" scope="col">Preço por unidade</th>
+						<th class="th-sm" scope="col">Quantidade de Peças</th>
+						<th class="th-sm" scope="col">Fornecedor</th>
+						<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' }">
+							<th class="th-sm" scope="col">Excluir</th>
+						</c:if>
 					</tr>
 					</thead>
-					
+					<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
+						<div class="row text-right" >
+							<a href="/ES3/cadastrarLote.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+				  				NOVO LOTE <i class="material-icons large text-right">add</i>
+							</a>
+						</div>
+					</c:if>
 					<tbody>
 				
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
-				<%		
-					Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
+				<%	
+				out.println(request.getAttributeNames().nextElement());
+				Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				List<EntidadeDominio> entidades = null;
-					
 				if(resultado != null){
 						entidades = resultado.getEntidades();	
 					}
+				if(entidades != null && !entidades.isEmpty()){
+					for(EntidadeDominio entidade : entidades){
+						Lote lote = (Lote)entidade;	
 					
-					
-					
-					if(entidades != null && !entidades.isEmpty()){
-						for(EntidadeDominio entidade : entidades){
-							Lote lote = (Lote)entidade;	
-					
-					
-
-	
 				out.println("<tr scope = 'row'>");
-				out.println("<td> " + Math.toIntExact(lote.getId()) + "</td>");
-				out.println("<td> R$"+ lote.getPrecoCompraUnidade()+"</td>");
-				out.println("<td>"+lote.getQuantidadePecas()+"</td>");
-				out.println("<td>"+lote.getFornecedor().getNomeFantasia()+"</td>");
 				%>
-				
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
+				<td class="text-center">
+					<a href="#" class="botao-remover" value="">
+				  		<i class="material-icons medium ">update</i>
+					</a>
+				</td>
+				</c:if>	
+				<%
+				out.println("<input type='hidden' value='" + Math.toIntExact(lote.getId()) + "' class='id'>");
+				out.println("<td class='precoCompraUnidade text-center'> R$"+ lote.getPrecoCompraUnidade()+"</td>");
+				out.println("<td class='quantidadePecas text-center'>"+lote.getQuantidadePecas()+"</td>");
+				out.println("<td class='nomeFantasia text-center'>"+lote.getFornecedor().getNomeFantasia()+"</td>");
+				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
 				<td>
 					<a href="/LoteController" class="botao-remover" value="">
@@ -83,50 +89,32 @@
 					</a>
 				</td>
 				</c:if>	
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
-				<td>SOU PLENO</td>
-				</c:if>	
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
-				<td>SOU JUNIOR</td>
-				</c:if>	
-						
 				<%
-				
-						
-						
-						
 						}
 						out.println("</th>");
 					}
 				%>
 				</c:if>
 					</tbody>
-				
 				</table>
-	
-	
-						
-								
-			 
 			 </div>
-			
 		</div>
-	
 	</div>
-
-	<div class="" style="margin-top: 8%;">
+</div>
+	<div class="footer-bar">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
-	
 
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
 	
-	
+	<!-- 	https://sweetalert2.github.io/-->
+	<script src="plugins/sweetalert2.js"></script>
+	<script src="plugins/jquery-3.1.1.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/bootstrap.min.js"></script>
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
 
 </body>
 

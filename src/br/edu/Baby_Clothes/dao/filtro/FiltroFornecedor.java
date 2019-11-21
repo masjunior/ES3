@@ -23,7 +23,7 @@ public class FiltroFornecedor implements IFiltro{
 		System.out.println("inicio IFS filtroFornecedor");
 		
 		if(fornecedor == null) {
-			System.out.println("forncedor nulo");
+			System.out.println("fornecedor nulo");
 		}
 		
 		if(fornecedor.getId() == null) {
