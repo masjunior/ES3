@@ -9,29 +9,27 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap Stack Path -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous">
-	</script>
-<title>Cadastro de Lote</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- https://materializecss.com/icons.html -->
+	<link rel="stylesheet" href="css/materialIcons.css" >
+	<!-- 	CSS BOOTSTRAP -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	
+	<title>Cadastro de Lote</title>
 
 </head>
 
 <body>
 
 	<%
-	
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");	
 		List<EntidadeDominio> fornecedores = null;
-		if(resultado.getEntidades() != null){
-			fornecedores = resultado.getEntidades();
-		};
+		if(resultado != null){
+			if(resultado.getEntidades() != null){
+				fornecedores = resultado.getEntidades();
+			}
+		}
 	%>
 
 	<div class="row">
@@ -72,14 +70,9 @@
 			 		
 			 		<div class="row ">
 			 		
-			 			<div class="com-md-12 mb-3">
-	 				        <c:set var = "teste" scope = "session" value = "${ResultadoLoteSalvo.mensagem}"/>
-						    <c:if test = "${teste.length() != 0}">
-						    	<p>Mensagem de retorno:  <c:out value = "${teste}"/><p>
+						    <c:if test = "${ResultadoLoteSalvo.mensagem != null}">
+						    	<p><c:out value = "${ResultadoLoteSalvo.mensagem}"/><p>
 						    </c:if>
-						    <c:set var = "teste" scope = "session" value = ""/>
-						    <c:out value="${teste.length() }"/>
-			 			</div>
 			 		
 			 		</div>
 			 	
@@ -100,7 +93,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtQuantidadePecas">Quantidade de Peças</label>
-			 				<input type="text" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder="" value="" required>		
+			 				<input type="number" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder="" value="" min="1" max="6" required>		
 			 				<div class="invalid-feedback">É obrigatório inserir uma Quantidade válida.</div>
 			 				
 			 			</div>
@@ -117,6 +110,7 @@
 			 				<option value="">Selecione</option>
 			 				
 			 				<%
+			 				
 			 				if(fornecedores != null && !fornecedores.isEmpty()){
 			 					for(EntidadeDominio entidade : fornecedores){
 			 						Fornecedor fornecedor = (Fornecedor)entidade;
@@ -131,7 +125,9 @@
 			 				
 			 				</select>		
 			 				<div class="invalid-feedback">É obrigatório inserir um Fornecedor válido.</div>
-			 				
+			 				<%
+// 			 				out.println(request.getAttributeNames().nextElement());
+			 				%>
 			 			</div>
 			 		
 			 		</div>
@@ -155,11 +151,14 @@
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
 	
-
+<!-- 	https://sweetalert2.github.io/-->
+	<script src="plugins/sweetalert2.js"></script>
+	<script src="plugins/jquery-3.1.1.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/bootstrap.min.js"></script>
+	<script src="JAVASCRIPT/listarFornecedor.js"></script>
+	
 </body>
 
 </html>

@@ -205,29 +205,41 @@ public class LoteDAO implements IDAO{
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()) {
+				Fornecedor frn = new Fornecedor();
+				frn.setId(rs.getLong("lot_fornecedor"));
+				frn.setId(rs.getLong("frn_id"));
+				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				frn.setDataCriacao(date);
+				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
+				frn.setRazaoSocial(rs.getString("frn_razaoSocial"));
+				frn.setNomeFantasia(rs.getString("frn_nomeFantasia"));
+				frn.setRazaoResponsavel(rs.getString("frn_razaoResponsavel"));
+				frn.setCnpj(rs.getString("frn_cnpj"));
+				frn.setEmail(rs.getString("frn_email"));
+				frn.setTelefone(rs.getString("frn_telefone"));
+
+				
 				Lote lt = new Lote();
 				
+				
 				lt.setId(rs.getLong("lot_id"));
-				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				date = rs.getTimestamp(2).toLocalDateTime();
 				lt.setDataCriacao(date);
 				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
 				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
 				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
-				
-				Fornecedor frn = new Fornecedor();
-				frn.setId(rs.getLong("lot_fornecedor"));
-				//lt.setFornecedor(frn);
+				lt.setFornecedor(frn);
 				
 			
-				  FornecedorDAO dao = new FornecedorDAO(); 
-				  List<EntidadeDominio> fornecedores = dao.listar(frn);
+//				  FornecedorDAO dao = new FornecedorDAO(); 
+//				  List<EntidadeDominio> fornecedores = dao.listar(frn);
 				  
-				  if(fornecedores != null && !fornecedores.isEmpty()) { 
-					  for(EntidadeDominio entidade3 : fornecedores) {
-						  Fornecedor frn2 = (Fornecedor)entidade3;
-						  lt.setFornecedor(frn2);
-					  }
-				  }
+//				  if(fornecedores != null && !fornecedores.isEmpty()) { 
+//					  for(EntidadeDominio entidade3 : fornecedores) {
+//						  Fornecedor frn2 = (Fornecedor)entidade3;
+//						  lt.setFornecedor(frn2);
+//					  }
+//				  }
 				 
 				
 				

@@ -34,7 +34,7 @@ public class FornecedorVH implements IViewHelper{
 		String operacao  = request.getParameter("operacao");
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
-			System.out.println(resultado.getMensagem());
+			System.out.println("mensagem no fornecedor VH " + resultado.getMensagem());
 			request.getSession().setAttribute("ResultadoFornecedor", resultado);
 			response.sendRedirect("cadastrarFornecedor.jsp");
 			//d = request.getRequestDispatcher("cadastrarFornecedor.jsp");
@@ -42,23 +42,26 @@ public class FornecedorVH implements IViewHelper{
 			resultado.setMensagem("Cadastro do fornecedor foi realizado com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorSalvar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d.forward(request, response);
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			System.out.println("passei no consultar do fornecedor");
 			resultado.setMensagem("Consulta de fornecedor realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Alteração do fornecedor foi realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorAlterar", resultado);
 			d = request.getRequestDispatcher("listarFornecedor.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O fornecedor foi excluido com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorExcluir", resultado);
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
-			
+			d.forward(request, response);
 		}
 		//d.forward(request, response);
 		

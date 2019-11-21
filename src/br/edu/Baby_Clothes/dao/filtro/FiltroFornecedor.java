@@ -49,15 +49,14 @@ public class FiltroFornecedor implements IFiltro{
 			qtdCampos.add(1);
 		}
 		
-//		if(fornecedor.isHabilitado() != null) {
-//			if(!flgWhere) {
+		if(fornecedor.isHabilitado() != null) {
+			if(!flgWhere) {
 				querry += " WHERE ";
 				flgWhere = true;
-//			}
-//			campos.put(2, "frn_habilitado = " + fornecedor.isHabilitado());
-			campos.put(2, "frn_habilitado = true");
+			}
+			campos.put(2, "frn_habilitado = " + fornecedor.isHabilitado());
 			qtdCampos.add(2);
-//		}
+		}
 		  
 		if(fornecedor.getRazaoSocial() != null) {
 			if(!flgWhere) {

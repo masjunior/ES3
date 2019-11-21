@@ -25,7 +25,7 @@ public class FiltroLote implements IFiltro {
 		EntidadeDominio etd = entidades.get(entidade.getClass().getName());
 		List<Integer> qtdCampos = null;
 		Map<Integer, String> campos = null;
-		String sql = "SELECT * FROM lote";
+		String sql = "SELECT * FROM lote JOIN fornecedor ON lot_fornecedor = frn_id ";
 		boolean flgWhere = false;
 		
 		//Cria SQL para a consultar os lotes de determinado fornecedor
@@ -114,8 +114,6 @@ public class FiltroLote implements IFiltro {
 				}
 				sql += campos.get(I);
 			}
-			
-			
 			
 			System.out.println(sql);
 			return sql;
