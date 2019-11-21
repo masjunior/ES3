@@ -36,8 +36,8 @@ public class FornecedorVH implements IViewHelper{
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			System.out.println("mensagem no fornecedor VH " + resultado.getMensagem());
 			request.getSession().setAttribute("ResultadoFornecedor", resultado);
-			response.sendRedirect("cadastrarFornecedor.jsp");
-			//d = request.getRequestDispatcher("cadastrarFornecedor.jsp");
+//			response.sendRedirect("cadastrarFornecedor.jsp");
+			d = request.getRequestDispatcher("cadastrarFornecedor.jsp");
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do fornecedor foi realizado com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorSalvar", resultado);
@@ -63,7 +63,7 @@ public class FornecedorVH implements IViewHelper{
 			d = request.getRequestDispatcher("InicialFuncionario.jsp");
 			d.forward(request, response);
 		}
-		//d.forward(request, response);
+		d.forward(request, response);
 		
 	}
 		

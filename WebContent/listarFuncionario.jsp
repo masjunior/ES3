@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta charset="UTF-8">
 		<!-- https://materializecss.com/icons.html -->
 		<link rel="stylesheet" href="_CSS/materialIcons.css" >
 		<!-- 	CSS BOOTSTRAP -->

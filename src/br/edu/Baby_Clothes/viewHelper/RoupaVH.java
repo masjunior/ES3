@@ -59,6 +59,7 @@ public class RoupaVH implements IViewHelper{
 			
 		}
 		
+		d.forward(request, response);
 		
 	}
 
