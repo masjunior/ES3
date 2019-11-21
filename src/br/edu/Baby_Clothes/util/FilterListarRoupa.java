@@ -9,12 +9,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 
 import br.edu.Baby_Clothes.dao.RoupaDAO;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
 
+@WebFilter(urlPatterns= {"/listarLote.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp", "/cadastrarFornecedor.jsp", "/listarFornecedor.jsp", "/listarRoupa.jsp", "/listarRoupa.jsp"})
 public class FilterListarRoupa implements Filter{
 
 	@Override
@@ -37,7 +39,10 @@ Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsul
 				
 				if(fornecedores != null && !fornecedores.isEmpty()) {
 					for(EntidadeDominio entidade : fornecedores) {
-						resultado.adicionarEntidades(entidade);
+						if(entidade.isHabilitado()) {
+							resultado.adicionarEntidades(entidade);
+						}
+						
 					}
 				}
 				

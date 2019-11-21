@@ -46,8 +46,10 @@ public class FilterListarLote implements Filter {
 				
 				if(lotes != null && !lotes.isEmpty()) {
 					for(EntidadeDominio entidade : lotes) {
-						System.out.println("ID LOTE" + entidade.getId());
-						resultado.adicionarEntidades(entidade);
+						if(entidade.isHabilitado()) {
+							resultado.adicionarEntidades(entidade);
+						}
+						
 					}
 				}
 			//System.out.println("Tamanho LIsta" + resultado.getEntidades().size());

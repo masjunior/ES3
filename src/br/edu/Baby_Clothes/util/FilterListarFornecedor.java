@@ -16,7 +16,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebFilter(urlPatterns = {"/listarFornecedor.jsp", "/cadastroLote.jsp", "/login.jsp"})
+@WebFilter(urlPatterns = {"/listarLote.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp", "/cadastrarFornecedor.jsp", "/listarFornecedor.jsp", "/listarRoupa.jsp", "/listarRoupa.jsp"})
 public class FilterListarFornecedor implements Filter {
 
 	@Override
@@ -40,7 +40,10 @@ public class FilterListarFornecedor implements Filter {
 				
 				if(fornecedores != null && !fornecedores.isEmpty()) {
 					for(EntidadeDominio entidade : fornecedores) {
-						resultado.adicionarEntidades(entidade);
+						if(entidade.isHabilitado()) {
+							resultado.adicionarEntidades(entidade);
+						}
+						
 					}
 				}
 				
