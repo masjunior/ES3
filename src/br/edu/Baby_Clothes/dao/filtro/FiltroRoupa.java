@@ -90,15 +90,19 @@ public class FiltroRoupa implements IFiltro{
 			qtdCampos.add(7);
 		}
 		
-		if(roupa.getCor().getDescricao() != null) {
-			if(!roupa.getCor().getDescricao().trim().equals("")) {
-				if(!flgWhere) {
-					sql += " WHERE ";
-					flgWhere = true;
+
+		if(roupa.getCor() != null) {
+			if(roupa.getCor().getDescricao() != null) {
+				if(!roupa.getCor().getDescricao().trim().equals("")) {
+					if(!flgWhere) {
+						sql += " WHERE ";
+						flgWhere = true;
+					}
+					campos.put(8, "rou_cor LIKE '%" + roupa.getCor().getDescricao() + "%'");
+					qtdCampos.add(8);
 				}
-				campos.put(8, "rou_cor LIKE '%" + roupa.getCor().getDescricao() + "%'");
-				qtdCampos.add(8);
 			}
+			
 		}
 		
 		for(Integer I : qtdCampos) {

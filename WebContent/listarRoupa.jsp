@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body style="margin-top:30px">
 
 	<div class="row">
 		<c:import url="pedacos/navbar.jsp" />

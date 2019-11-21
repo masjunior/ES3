@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body style="margin-top:30px">
 
 	<%
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");	

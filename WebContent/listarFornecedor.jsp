@@ -14,9 +14,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<!-- https://materializecss.com/icons.html -->
-	<link rel="stylesheet" href="css/materialIcons.css" >
+	<link rel="stylesheet" href="_CSS/materialIcons.css" >
 	<!-- 	CSS BOOTSTRAP -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 
 	<title>Listar de Fornecedores</title>
 </head>

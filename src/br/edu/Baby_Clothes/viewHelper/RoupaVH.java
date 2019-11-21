@@ -40,22 +40,22 @@ public class RoupaVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Roupa Cadastrada com Sucesso.");
 			request.setAttribute("ResultadoRoupaSalvar", resultado);
-			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Roupa Consultada.");
 			request.setAttribute("ResultadoRoupaConsultar", resultado);
-			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Roupa Alterada com Sucesso.");
 			request.setAttribute("ResultadoRoupaAlterar", resultado);
-			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("Roupa Excluida com Sucesso.");
 			request.setAttribute("ResultadoRoupaExcluir", resultado);
-			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}
 		

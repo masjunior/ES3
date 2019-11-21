@@ -41,14 +41,14 @@ public class FornecedorVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do fornecedor foi realizado com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorSalvar", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFornecedor.jsp");
 			d.forward(request, response);
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			System.out.println("passei no consultar do fornecedor");
 			resultado.setMensagem("Consulta de fornecedor realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFornecedor.jsp");
 			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
@@ -60,7 +60,7 @@ public class FornecedorVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O fornecedor foi excluido com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorExcluir", resultado);
-			d = request.getRequestDispatcher("InicialFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFornecedor.jsp");
 			d.forward(request, response);
 		}
 		//d.forward(request, response);

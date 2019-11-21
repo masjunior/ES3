@@ -40,6 +40,8 @@ public class FilterListarLote implements Filter {
 				Lote lote = new Lote();
 				List<EntidadeDominio>lotes = dao.listar(lote);
 				
+				
+				
 				if(lotes == null || lotes.isEmpty()) {
 					System.out.println("LISTA NULA");
 				}
@@ -52,7 +54,9 @@ public class FilterListarLote implements Filter {
 						
 					}
 				}
-			//System.out.println("Tamanho LIsta" + resultado.getEntidades().size());
+				
+				
+			System.out.println("Tamanho LIsta Filter" + resultado.getEntidades().size());
 			request.setAttribute("ResultadoLoteConsulta", resultado);
 			}
 		}
