@@ -11,14 +11,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import br.edu.Baby_Clothes.dao.RoupaDAO;
+import br.edu.Baby_Clothes.dao.FuncionarioDAO;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
+import br.edu.fatec.Baby_Clothes.model.Funcionario;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
-import br.edu.fatec.Baby_Clothes.model.Roupa;
 
-//@WebFilter(urlPatterns = {"/login.jsp", "/cadastrarFornecedor.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp",  "/listarFornecedor.jsp", "/listarLote.jsp", "/listarRoupa"})
-@WebFilter(urlPatterns = {"/login.jsp", "/listarRoupa.jsp"})
-public class FilterListarRoupa implements Filter{
+@WebFilter(urlPatterns= {"/login.jsp", "/listaFuncionario.jsp"})
+public class FilterListarFuncionario implements Filter{
 
 	@Override
 	public void destroy() {
@@ -29,28 +28,31 @@ public class FilterListarRoupa implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
+		
+		Resultado resultado = (Resultado)request.getAttribute("ResultadoFuncionarioConsultar");
 		
 		if(resultado == null) {
 			resultado = new Resultado();
 			if(resultado.getEntidades() == null) {
-				RoupaDAO dao = new RoupaDAO();
-				Roupa roupa = new Roupa();
-				List<EntidadeDominio> roupas = dao.listar(roupa); 
+				FuncionarioDAO dao = new FuncionarioDAO();
+				Funcionario funcionario  = new Funcionario();
+				List<EntidadeDominio> funcionarios = dao.listar(funcionario); 
 				
 				
-				
-				if(roupas != null && !roupas.isEmpty()) {
-					for(EntidadeDominio entidade : roupas) {
-						if(entidade.isHabilitado()) {
-							resultado.adicionarEntidades(entidade);
+				if(funcionarios != null && !funcionarios.isEmpty()) {
+					for(EntidadeDominio entidade : funcionarios) {
+						if(entidade.isHabilitado() != null) {
+							if(entidade.isHabilitado()) {
+								resultado.adicionarEntidades(entidade);
+							}
+							
 						}
 						
 					}
 				}
 				
 				
-				request.setAttribute("ResultadoRoupaConsultar", resultado);
+				request.setAttribute("ResultadoFuncionarioConsultar", resultado);
 			}
 		}
 		

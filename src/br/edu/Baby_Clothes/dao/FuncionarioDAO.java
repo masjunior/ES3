@@ -1,12 +1,19 @@
 package br.edu.Baby_Clothes.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.Baby_Clothes.dao.filtro.FiltroFuncionario;
 import br.edu.Baby_Clothes.util.Conexao;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
+import br.edu.fatec.Baby_Clothes.model.Usuario;
 
 
 
@@ -85,19 +92,141 @@ public class FuncionarioDAO implements IDAO{
 
 	@Override
 	public void remover(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
+		PreparedStatement pstm = null;
+		Funcionario funcionario = (Funcionario)entidade;
+		
+		try {
+			connection = Conexao.getConnection();
+			connection.setAutoCommit(false);
+			
+			String sql = "UPDATE usuario SET usu_habilitado = ? WHERE usu_id = ?";
+			pstm = connection.prepareStatement(sql);
+			
+			pstm.setBoolean(1, false);
+			pstm.setLong(2, funcionario.getUsuario().getId());
+			
+			pstm.executeUpdate();
+			connection.commit();
+			
+		}catch(Exception e) {
+			try {
+				connection.rollback();
+			}catch(SQLException eSQL) {
+				eSQL.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			try {
+				pstm.close();
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
 	@Override
 	public void alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
+		Funcionario funcionario = (Funcionario)entidade;
+		PreparedStatement pstm = null;
+		
+		try {
+			connection = Conexao.getConnection();
+			String sql = "UPDATE funcionario INNER JOIN usuario ON fun_usuario = usu_id SET fun_nome = ?, fun_cpf = ?, usu_habilitado = ?, usu_email = ?, usu_senha = ?, usu_nivel_acesso = ? WHERE fun_id = ?";
+			pstm = connection.prepareStatement(sql);
+			
+			pstm.setString(1, funcionario.getNome());
+			pstm.setString(2, funcionario.getCpf());
+			pstm.setBoolean(3, funcionario.isHabilitado());
+			pstm.setString(4, funcionario.getEmail());
+			pstm.setString(5, funcionario.getSenha());
+			pstm.setInt(6, funcionario.getNivelAcesso().getValor());
+			pstm.setLong(7, funcionario.getId());
+			
+			pstm.executeUpdate();
+			
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				
+				if(connection != null) {
+					connection.close();
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
 	}
 
 	@Override
 	public List<EntidadeDominio> listar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
+		Funcionario funcionario = (Funcionario)entidade;
+		PreparedStatement pstm = null;
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuDao = new UsuarioDAO();
+		
+		
+		
+		List<EntidadeDominio>funcionarios = null;
+		List<EntidadeDominio> usuarios = usuDao.listar(funcionario.getUsuario());
+		FiltroFuncionario filtro = new FiltroFuncionario();
+		String sql = filtro.gerarQuerry(funcionario);
+		
+		
+		try {
+			connection = Conexao.getConnection();
+			funcionarios = new ArrayList<EntidadeDominio>();
+			
+			pstm = connection.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				Funcionario fun = new Funcionario();
+				Usuario usu = null;
+				int i = 0;
+				
+				fun.setId(rs.getLong("fun_id"));
+				fun.setCpf(rs.getString("fun_cpf"));
+				
+				if(usuarios != null && !usuarios.isEmpty()) {
+					if(usuarios.get(i).getId() == fun.getId()) {
+						usu = (Usuario)usuarios.get(0);
+						fun.setUsuario(usuario);
+						i++;
+					}
+				}
+				
+				funcionarios.add(fun);
+				
+			}
+				
+			return funcionarios;
+				
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				
+				if(connection != null) {
+					connection.close();
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return null;
 	}
 

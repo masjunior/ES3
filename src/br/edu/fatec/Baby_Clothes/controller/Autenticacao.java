@@ -58,7 +58,7 @@ public class Autenticacao extends HttpServlet {
 			
 			
 			if(usuarioAutenticado.getNivelAcesso().equals(NivelAcesso.ADMINISTRADOR)) {
-				response.sendRedirect("listarFuncionario.jsp");
+				response.sendRedirect("listaFuncionario.jsp");
 			}else {
 //				request.getRequestDispatcher("listarFornecedor.jsp").forward(request, response);
 				

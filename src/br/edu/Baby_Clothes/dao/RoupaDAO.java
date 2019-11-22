@@ -207,29 +207,29 @@ public class RoupaDAO implements IDAO{
 			pstm = conexao.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
 			
-			while(!rs.next()) {
+			while(rs.next()) {
 				Roupa rp = new Roupa();
 				Lote lt = new Lote();
 				Fornecedor frn = new Fornecedor();
 				
-				frn.setId(rs.getLong("lot_fornecedor"));
+//				frn.setId(rs.getLong("frn_id"));
 				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
-				frn.setDataCriacao(date);
-				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
-				frn.setRazaoSocial(rs.getString("frn_razaoSocial"));
-				frn.setNomeFantasia(rs.getString("frn_nomeFantasia"));
-				frn.setRazaoResponsavel(rs.getString("frn_razaoResponsavel"));
-				frn.setCnpj(rs.getString("frn_cnpj"));
-				frn.setEmail(rs.getString("frn_email"));
-				frn.setTelefone(rs.getString("frn_telefone"));
+//				frn.setDataCriacao(date);
+//				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
+//				frn.setRazaoSocial(rs.getString("frn_razaoSocial"));
+//				frn.setNomeFantasia(rs.getString("frn_nomeFantasia"));
+//				frn.setRazaoResponsavel(rs.getString("frn_razaoResponsavel"));
+//				frn.setCnpj(rs.getString("frn_cnpj"));
+//				frn.setEmail(rs.getString("frn_email"));
+//				frn.setTelefone(rs.getString("frn_telefone"));
 				
 				lt.setId(rs.getLong("rou_lote"));
-				date = rs.getTimestamp(2).toLocalDateTime();
-				lt.setDataCriacao(date);
-				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
-				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
-				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
-				lt.setFornecedor(frn);
+//				date = rs.getTimestamp(2).toLocalDateTime();
+//				lt.setDataCriacao(date);
+//				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
+//				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
+//				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
+//				lt.setFornecedor(frn);
 
 				
 				
@@ -243,7 +243,7 @@ public class RoupaDAO implements IDAO{
 				rp.setPrecoVenda(rs.getDouble("rou_preco_venda"));
 				rp.setQuantidadeDisponivel(rs.getInt("rou_quantidade_disponivel"));
 				
-				int tamanho = rs.getInt("rou_tamaanho");
+				int tamanho = rs.getInt("rou_tamanho");
 				Tamanho tm = Tamanho.getByName(tamanho);
 				rp.setTamanho(tm);
 				
@@ -255,7 +255,7 @@ public class RoupaDAO implements IDAO{
 				
 				listaRoupa.add(rp);
 			}
-			
+			System.out.println("SALOMAO ROUPA DAO TAMANHO LISTA " + listaRoupa.size());
 			return listaRoupa;
 			
 		}catch(Exception e) {

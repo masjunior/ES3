@@ -17,7 +17,8 @@
 		<tr>
 			<th> Nome </th>
 			<th> CPF </th>
-			<th> Descrição </th>
+			<th> Email </th>
+			<th> Nivel de Acesso </th>
 		</tr>
 		<c:forEach var="func" items="${funcionarios}">
 			<tr>

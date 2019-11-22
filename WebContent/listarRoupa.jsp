@@ -50,14 +50,14 @@
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
 				<%		
-				out.println(request.getAttributeNames().nextElement().toString());
+				//out.println(request.getAttributeNames().nextElement().toString());
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
 					List<EntidadeDominio> entidades = null;
 					if(resultado != null){
 						entidades = resultado.getEntidades();	
 					}
 				if(entidades != null && !entidades.isEmpty()){
-						out.println("nao e nulo 2");
+						//out.println("nao e nulo 2");
 						for(EntidadeDominio entidade : entidades){
 							Roupa roupa = (Roupa)entidade;	
 					
