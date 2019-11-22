@@ -67,13 +67,13 @@ VALUES (3,"MODERADOR_SENIOR");
 
 /* USUARIO */
 INSERT INTO `site_roupa`.`usuario` (`usu_id`,`usu_data_criacao`, `usu_habilitado`, `usu_email`, `usu_senha`, `usu_nivel_acesso`)
-							VALUES (1, sysdate() , true,'admin@admin.com', 11111111111, 4);
+							VALUES (1, sysdate() , true,'admin@admin.com', 'admin', 4);
 INSERT INTO `site_roupa`.`usuario` (`usu_id`,`usu_data_criacao`, `usu_habilitado`, `usu_email`, `usu_senha`, `usu_nivel_acesso`)
-							VALUES (2, sysdate() , true,'junior@admin.com', 22222222222, 1);
+							VALUES (2, sysdate() , true,'junior@junior.com', 'junior', 1);
 INSERT INTO `site_roupa`.`usuario` (`usu_id`,`usu_data_criacao`, `usu_habilitado`, `usu_email`, `usu_senha`, `usu_nivel_acesso`)
-							VALUES (3, sysdate() , true,'pleno@admin.com', 33333333333, 2);
+							VALUES (3, sysdate() , true,'pleno@pleno.com', 'pleno', 2);
 INSERT INTO `site_roupa`.`usuario` (`usu_id`,`usu_data_criacao`, `usu_habilitado`, `usu_email`, `usu_senha`, `usu_nivel_acesso`)
-							VALUES (4, sysdate() , true,'senior@admin.com', 44444444444, 3);
+							VALUES (4, sysdate() , true,'senior@senior.com', 'senior', 3);
 
 /* FUNCIONARIO */
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
@@ -84,6 +84,29 @@ INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usua
 VALUES (3,"MODERADOR_PLENO",33333333333,3);
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
 VALUES (4,"MODERADOR_SENIOR",44444444444,4);
+
+/* FORNECEDOR */
+INSERT INTO `site_roupa`.`fornecedor`
+(`frn_id`, `frn_data_criacao`, `frn_habilitado`, `frn_razaoSocial`, `frn_nomeFantasia`, `frn_razaoResponsavel`, `frn_cnpj`, `frn_email`, `frn_telefone`) 
+VALUES (1,sysdate(),true,'primeiro','testeprimeiro','primeiroMarco','44030525000145','primeiro@teste.com','1111111111');
+
+/* LOTE */
+INSERT INTO `site_roupa`.`lote`
+(`lot_id`,`lot_data_criacao`,`lot_habilitado`,`lot_precoCompraUnidade`,`lot_quantidadePecas`,`lot_fornecedor`)
+VALUES
+(1,sysdate(),1,1,3000,1);
+
+/* TAMANHO */
+INSERT INTO `site_roupa`.`tamanho` (`tam_id`,`tam_descricao`) VALUES (1,"RN");
+INSERT INTO `site_roupa`.`tamanho` (`tam_id`,`tam_descricao`) VALUES (2,"P");
+INSERT INTO `site_roupa`.`tamanho` (`tam_id`,`tam_descricao`) VALUES (3,"M");
+INSERT INTO `site_roupa`.`tamanho` (`tam_id`,`tam_descricao`) VALUES (4,"G");
+INSERT INTO `site_roupa`.`tamanho` (`tam_id`,`tam_descricao`) VALUES (5,"GG");
+
+/* ROUPA */
+INSERT INTO `site_roupa`.`roupa`
+(`rou_id`,`rou_data_criacao`,`rou_habilitado`,`rou_marca`,`rou_preco_venda`,`rou_quantidade_disponivel`,`rou_tamanho`,`rou_cor`,`rou_lote`)
+VALUES(1, sysdate(),1,"marca1",2,1,1,"cor1",1);
 
 /* FOREIGN KEY */
 ALTER TABLE `site_roupa`.`usuario`  ADD CONSTRAINT `FK_USU_NVL`   FOREIGN KEY (`usu_nivel_acesso`)

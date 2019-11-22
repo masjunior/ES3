@@ -17,6 +17,7 @@ import br.edu.Baby_Clothes.dao.filtro.FiltroRoupa;
 import br.edu.Baby_Clothes.util.Conexao;
 import br.edu.fatec.Baby_Clothes.model.Cor;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
+import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
 import br.edu.fatec.Baby_Clothes.model.Tamanho;
@@ -37,7 +38,7 @@ public class RoupaDAO implements IDAO{
 		try {
 			conexao = Conexao.getConnection();
 			
-			if(roupa.getLote().getId() != null || roupa.getLote().getId() > 0) {
+			if(roupa.getLote().getId() != null ) {
 			
 				String sql = "INSERT INTO roupa (rou_data_criacao,rou_habilitado, rou_marca, rou_preco_venda, rou_quantidade_disponivel, rou_tamanho, rou_lote, rou_cor)"
 						+ " VALUES (?,?,?,?,?,?,?,?)";
@@ -52,9 +53,11 @@ public class RoupaDAO implements IDAO{
 				pstm.setString(3, roupa.getMarca());
 				pstm.setDouble(4, roupa.getPrecoVenda());
 				pstm.setInt(5, roupa.getQuantidadeDisponivel());
-				pstm.setInt(6, roupa.getTamanho().ordinal());
+				pstm.setInt(6, roupa.getTamanho().getValor());
 				pstm.setLong(7, roupa.getLote().getId());
 				pstm.setString(8, roupa.getCor().getDescricao());
+				
+				System.out.println("ROUPADAO " + roupa.getTamanho().getValor());
 				
 				pstm.executeUpdate();
 				
@@ -93,11 +96,11 @@ public class RoupaDAO implements IDAO{
 			}
 			
 		}catch(Exception e) {
-			try {
-				conexao.rollback();
-			}catch(SQLException eSQL) {
-				eSQL.printStackTrace();
-			}
+//			try {
+//				conexao.rollback();
+//			}catch(SQLException eSQL) {
+//				eSQL.printStackTrace();
+//			}
 		e.printStackTrace();
 		}finally {
 			try {
@@ -206,11 +209,33 @@ public class RoupaDAO implements IDAO{
 			
 			while(!rs.next()) {
 				Roupa rp = new Roupa();
-				Lote lote = new Lote();
+				Lote lt = new Lote();
+				Fornecedor frn = new Fornecedor();
+				
+				frn.setId(rs.getLong("lot_fornecedor"));
+				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				frn.setDataCriacao(date);
+				frn.setHabilitado(rs.getBoolean("frn_habilitado"));
+				frn.setRazaoSocial(rs.getString("frn_razaoSocial"));
+				frn.setNomeFantasia(rs.getString("frn_nomeFantasia"));
+				frn.setRazaoResponsavel(rs.getString("frn_razaoResponsavel"));
+				frn.setCnpj(rs.getString("frn_cnpj"));
+				frn.setEmail(rs.getString("frn_email"));
+				frn.setTelefone(rs.getString("frn_telefone"));
+				
+				lt.setId(rs.getLong("rou_lote"));
+				date = rs.getTimestamp(2).toLocalDateTime();
+				lt.setDataCriacao(date);
+				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
+				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
+				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
+				lt.setFornecedor(frn);
+
+				
 				
 				rp.setId(rs.getLong("rou_id"));
 				
-				LocalDateTime date = rs.getTimestamp(2).toLocalDateTime();
+				date = rs.getTimestamp(2).toLocalDateTime();
 				rp.setDataCriacao(date);
 				
 				rp.setHabilitado(rs.getBoolean("rou_habilitado"));
@@ -222,8 +247,7 @@ public class RoupaDAO implements IDAO{
 				Tamanho tm = Tamanho.getByName(tamanho);
 				rp.setTamanho(tm);
 				
-				lote.setId(rs.getLong("rou_lote"));
-				rp.setLote(lote);
+				rp.setLote(lt);
 				
 				Cor cor = new Cor();
 				cor.setDescricao(rs.getString("rou_cor"));
@@ -235,11 +259,11 @@ public class RoupaDAO implements IDAO{
 			return listaRoupa;
 			
 		}catch(Exception e) {
-			try {
-				conexao.rollback();
-			}catch(SQLException eSQL) {
-				eSQL.printStackTrace();
-			}
+//			try {
+//				conexao.rollback();
+//			}catch(SQLException eSQL) {
+//				eSQL.printStackTrace();
+//			}
 		e.printStackTrace();
 		}finally {
 			try {

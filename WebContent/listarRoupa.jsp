@@ -50,13 +50,14 @@
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
 				<%		
-					Resultado resultado = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
+				out.println(request.getAttributeNames().nextElement().toString());
+					Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
 					List<EntidadeDominio> entidades = null;
 					if(resultado != null){
 						entidades = resultado.getEntidades();	
 					}
-					
-					if(entidades != null && !entidades.isEmpty()){
+				if(entidades != null && !entidades.isEmpty()){
+						out.println("nao e nulo 2");
 						for(EntidadeDominio entidade : entidades){
 							Roupa roupa = (Roupa)entidade;	
 					
@@ -126,7 +127,6 @@
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
     <script src="plugins/bootstrap.min.js"></script>
-	<script src="JAVASCRIPT/listarFornecedor.js"></script>
 	
 
 </body>

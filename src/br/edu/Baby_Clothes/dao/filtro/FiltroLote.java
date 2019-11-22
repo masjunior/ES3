@@ -115,7 +115,7 @@ public class FiltroLote implements IFiltro {
 				sql += campos.get(I);
 			}
 			
-			System.out.println(sql);
+			System.out.println(" Filtro LOTE " + sql);
 			return sql;
 			
 		}

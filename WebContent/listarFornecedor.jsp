@@ -70,7 +70,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-					<a href="/LoteController" class="botao-remover" value="">
+					<a href="/LoteController" class="botao-alterar" value="">
 				  		<i class="material-icons medium ">update</i>
 					</a>
 				</td>

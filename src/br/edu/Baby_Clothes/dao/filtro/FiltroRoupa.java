@@ -15,7 +15,7 @@ public class FiltroRoupa implements IFiltro{
 		Roupa roupa = (Roupa)entidade;
 		List<Integer> qtdCampos = new ArrayList<Integer>();
 		Map<Integer, String> campos = new HashMap<Integer, String>();
-		String sql = "SELECT * FROM roupa";
+		String sql = "SELECT * FROM roupa ";// JOIN lote ON rou_lote = lot_id JOIN fornecedor ON lot_fornecedor = frn_id ";
 		boolean flgWhere = false;
 		
 		if(roupa.getId() != null) {
@@ -41,7 +41,7 @@ public class FiltroRoupa implements IFiltro{
 				sql += " WHERE ";
 				flgWhere = true;
 			}
-			campos.put(2, "rou+habilitado = " + roupa.isHabilitado());
+			campos.put(2, "rou_habilitado = " + roupa.isHabilitado());
 			qtdCampos.add(2);
 		}
 		
@@ -63,7 +63,7 @@ public class FiltroRoupa implements IFiltro{
 			qtdCampos.add(4);
 		}
 		
-		if(roupa.getQuantidadeDisponivel() >=0 ) {
+		if(roupa.getQuantidadeDisponivel() >0 ) {
 			if(!flgWhere) {
 				sql += " WHERE ";
 				flgWhere = true;
@@ -113,7 +113,7 @@ public class FiltroRoupa implements IFiltro{
 			
 		}
 		
-		
+		System.out.println("ESTE E DO MARCO NO FILTRO ROUPA " + sql);
 		return sql;
 		
 	}

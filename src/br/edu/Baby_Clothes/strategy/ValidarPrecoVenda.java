@@ -10,9 +10,8 @@ public class ValidarPrecoVenda implements IStrategy{
 		
 		Roupa roupa = (Roupa)entidade;
 		String msgRetorno;
-		
 		if(roupa.getLote().getPrecoCompraUnidade() < roupa.getPrecoVenda()) {
-			msgRetorno = "valor de venda inválido. Esperado um valor maior que o valor de compra!";
+			msgRetorno = "valor de venda invï¿½lido. Esperado um valor maior que o valor de compra!";
 		}else {
 			msgRetorno = null;
 		}

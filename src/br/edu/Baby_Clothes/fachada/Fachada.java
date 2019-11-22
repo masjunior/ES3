@@ -82,9 +82,11 @@ public class Fachada implements IFachada {
 		//ROUPA
 		daos.put(Roupa.class.getName(), new RoupaDAO());
 		List<IStrategy> roupaRns = new ArrayList<IStrategy>();
-		roupaRns.add(validarPrecoVenda);
+		//TODO: arrumar validar preco, esta null em compra
+		//roupaRns.add(validarPrecoVenda);
 		roupaRns.add(validarQuantidadePeca);
 		roupaRns.add(complementarDataCadastro);
+		strategies.put(Roupa.class.getName(), roupaRns);
 
 	}
 
@@ -182,11 +184,13 @@ public class Fachada implements IFachada {
 	
 	private void executarMensagem(List<IStrategy> rngEntidade, EntidadeDominio entidade) {
 		String msg = "";
-		for (IStrategy strategy : rngEntidade) {
-			msg = strategy.processar(entidade);
-			if (msg != null) {
-				sb.append(msg);
+//		if(rngEntidade != null) {
+			for (IStrategy strategy : rngEntidade) {
+				msg = strategy.processar(entidade);
+				if (msg != null) {
+					sb.append(msg);
+				}
 			}
-		}
+//		}
 	}
 }

@@ -35,26 +35,31 @@ public class RoupaVH implements IViewHelper{
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equalsIgnoreCase("")) {
 			request.setAttribute("ResultadoRoupa", resultado);
+			System.out.println("1");
 			d = request.getRequestDispatcher("cadastroProduto.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Roupa Cadastrada com Sucesso.");
 			request.setAttribute("ResultadoRoupaSalvar", resultado);
+			System.out.println("2");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Roupa Consultada.");
 			request.setAttribute("ResultadoRoupaConsultar", resultado);
+			System.out.println("3");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Roupa Alterada com Sucesso.");
 			request.setAttribute("ResultadoRoupaAlterar", resultado);
+			System.out.println("4");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("Roupa Excluida com Sucesso.");
 			request.setAttribute("ResultadoRoupaExcluir", resultado);
+			System.out.println("5");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}
@@ -67,12 +72,20 @@ public class RoupaVH implements IViewHelper{
 		Roupa roupa = new Roupa();
 		Lote lote = new Lote();
 		Cor cor = new Cor();
-		
-		Long id = Long.parseLong(request.getParameter("txtId"));
-		
-		String dataString = request.getParameter("txtData");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime data = LocalDateTime.parse(dataString, formatter);
+		Long id = null ;
+		if(request.getParameter("txtId")!= "") {
+			id = Long.parseLong(request.getParameter("txtId"));
+		}
+		String dataString = request.getParameter("txtDataCadastro");
+
+		if(dataString == null) {
+			System.out.println("data vazia");
+		}else {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			LocalDateTime data = LocalDateTime.parse(dataString, formatter);
+			
+			roupa.setDataCriacao(data);
+		}
 		
 		String habilitadoString = request.getParameter("txtHabilitado");
 		boolean habilitado = Boolean.getBoolean(habilitadoString);
@@ -80,18 +93,18 @@ public class RoupaVH implements IViewHelper{
 		String marca = request.getParameter("txtMarca");
 		Double precoVenda = Double.parseDouble(request.getParameter("txtPrecoVenda"));
 		int quantidadeDisppnivel = Integer.parseInt(request.getParameter("txtQuantidadeDisponivel"));
-		Tamanho tamanho = Tamanho.getByName(Integer.parseInt(request.getParameter("txtTamanho")));
+		String tamanho = request.getParameter("cbTamanho");
+		
 		String corString = request.getParameter("txtCor");
 		
-		Long idLote = Long.parseLong(request.getParameter("txtLote"));
+		String idLote = request.getParameter("txtLote");
 		
-		if(id != null || id > 0) {
+		if(id != null) {
 			roupa.setId(id);
 		}
 		
-		if(data != null) {
-			roupa.setDataCriacao(data);
-		}
+//		if(data != null) {
+//		}
 		
 		if(habilitado == true || habilitado == false) {
 			roupa.setHabilitado(habilitado);
@@ -110,7 +123,7 @@ public class RoupaVH implements IViewHelper{
 		}
 		
 		if(tamanho != null) {
-			roupa.setTamanho(tamanho);
+			roupa.setTamanho(Tamanho.valueOf(tamanho));
 		}
 		
 		if(corString != null || !corString.trim().equals("") || !corString.isEmpty()) {
@@ -118,8 +131,9 @@ public class RoupaVH implements IViewHelper{
 			roupa.setCor(cor);
 		}
 		
-		if(idLote != null || idLote > 0) {
-			lote.setId(idLote);
+		if(idLote != null){
+			
+			lote.setId(Long.parseLong(idLote));
 			roupa.setLote(lote);
 		}
 		

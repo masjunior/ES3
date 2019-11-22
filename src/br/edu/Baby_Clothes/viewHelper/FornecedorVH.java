@@ -88,7 +88,7 @@ public class FornecedorVH implements IViewHelper{
 		System.out.println("ID DPS IF " + fornecedor.getId());
 		
 		
-		String dataString = request.getParameter("txtData");
+		String dataString = request.getParameter("txtDataCadastro");
 		
 		
 	

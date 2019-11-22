@@ -58,6 +58,16 @@
 			 		</div>
 			 		
 			 		<div class="row d-none">
+			 			<div class="com-md-12 mb-3">
+			 				<label for="txtDataCadastro">Data de Cadastro</label>
+			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
+			 				<div class="invalid-feedback">
+			 					É obrigatório inserir uma Data de Cadastro válida.
+			 				</div>
+			 			</div>
+			 		</div>
+			 		
+			 		<div class="row d-none">
 			 		
 			 			<div class="com-md-12 mb-3">
 			 				
@@ -72,7 +82,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtMarca">Marca</label>
-							<input type="text" class="form-control" name="txtMarca" id="txtmarca" placeholder="" value="" required>
+							<input type="text" class="form-control" name="txtMarca" id="txtMarca" placeholder="" value="" required>
 							<div class="invalid-feedback">É obrigatório inserir uma marca valido!</div>
 						</div>
 					</div>
@@ -98,11 +108,11 @@
 							<label for="cbTamanho">Tamanho</label>
 							<select class="form-control" name="cbTamanho" id="cbTamanho" required>
 								<option value="">Selecione uma Opção</option>
-								<option value="RN">Recém-Nascido</option> 
-								<option value="P">Pequeno</option>
-								<option value="M">Médio</option>
-								<option value="G">Grande</option>
-								<option value="GG">Extra Grande</option>
+								<option value="RN" class="RN">Recém-Nascido</option> 
+								<option value="P" class="P">Pequeno</option>
+								<option value="M" class="M">Médio</option>
+								<option value="G" class="G">Grande</option>
+								<option value="GG" class="GG">Extra Grande</option>
 							</select>
 							<div class="invalid-feedback">É necessário a escolha de um tamanho válido!</div>
 						</div>
@@ -119,7 +129,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtLote">Lote</label>
-							<select class="form-control" nake="txtLote" id="txtLote" required>
+							<select class="form-control" name="txtLote" id="txtLote" required>
 								<opiton value="">Selecione</opiton>
 								<%
 								if(lotes != null && !lotes.isEmpty()){
