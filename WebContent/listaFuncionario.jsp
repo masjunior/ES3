@@ -58,38 +58,41 @@
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
 				
 				<%	
-				//out.println(request.getAttributeNames().nextElement());
+// 				out.println(request.getAttributeNames().nextElement());
 				Resultado resultado = (Resultado)request.getAttribute("ResultadoFuncionarioConsultar");
 				List<EntidadeDominio> entidades = null;
 				if(resultado != null){
+// 					out.println("NOT NULL RESULTADO");
+					
 						entidades = resultado.getEntidades();	
 					}
 				if(entidades != null && !entidades.isEmpty()){
+// 					out.println("NOT NULL Entidades");
 					for(EntidadeDominio entidade : entidades){
 						Funcionario funcionario = (Funcionario)entidade;	
 					
 				out.println("<tr scope = 'row'>");
 				%>
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINSTRADOR'}">
-				<td class="text-center">
-					<a href="#" class="botao-remover" value="">
-				  		<i class="material-icons medium ">update</i>
-					</a>
-				</td>
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
+					<td class="text-center">
+						<a href="#" class="botao-remover" value="">
+				  			<i class="material-icons medium ">update</i>
+						</a>
+					</td>
 				</c:if>	
 				<%
 				out.println("<input type='hidden' value='" + Math.toIntExact(funcionario.getId()) + "' class='id'>");
 				out.println("<td class='nome text-center'>"+ funcionario.getNome()+"</td>");
 				out.println("<td class='cpf text-center'>"+funcionario.getCpf()+"</td>");
 				out.println("<td class='email text-center'>"+funcionario.getEmail()+"</td>");
-				out.println("<td class='nivelAcesso text-center'>" + funcionario.getNivelAcesso() + "</td>");
+				out.println("<td class='nivelAcesso text-center'>" + funcionario.getUsuario().getNivelAcesso() + "</td>");
 				%>
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
-				<td>
-					<a href="/LoteController" class="botao-remover" value="">
-					  <i class="material-icons small">delete</i>
-					</a>
-				</td>
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
+					<td class="text-center">
+						<a href="" class="botao-remover " value="">
+					  		<i class="material-icons large text-danger ">delete</i>
+						</a>
+					</td>
 				</c:if>	
 				<%
 						}

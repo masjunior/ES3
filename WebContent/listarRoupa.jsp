@@ -23,34 +23,45 @@
 </head>
 
 <body style="margin-top:30px">
-
-	<div class="row">
+	<div>
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
 
 	<div class="row">
 		
-		<div class="container" style="margin-top: 4%">
+		<div class="container" style="margin-top: 5%">
 		
 			 <div class="col-m1 order-md-1">
 			 
-			 <table class="table">
+			 <table id="tabela-roupas" class="table table-striped table-bordered table-sm">
 					<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Marca</th>
-						<th scope="col">Preço de Venda</th>
-						<th scope="col">Quantidade Disponível</th>
-						<th scope="col">Tamanho</th>
-						<th scope="col">Cor</th>
-						<th scope="col">Lote</th>
+					<tr class="text-center">
+						<c:if test="${usuarioAutenticado.nivelAcesso != 'MODERADOR_JUNIOR' }">
+							<th class="th-sm" scope="col">#</th>
+						</c:if>
+						<th class="th-sm" scope="col">Marca</th>
+						<th class="th-sm" scope="col">Preço de Venda</th>
+						<th class="th-sm" scope="col">Quantidade Disponível</th>
+						<th class="th-sm" scope="col">Tamanho</th>
+						<th class="th-sm" scope="col">Cor</th>
+						<th class="th-sm" scope="col">Lote</th>
+						<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' }">
+							<th class="th-sm" scope="col">Excluir</th>
+						</c:if>
 					</tr>
 					</thead>
+					<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
+						<div class="row text-right" >
+							<a href="/ES3/cadastrarProduto.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+				  				NOVA ROUPA <i class="material-icons large text-right">add</i>
+							</a>
+						</div>
+					</c:if>
 					<tbody>
+					
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
 				<%		
-				//out.println(request.getAttributeNames().nextElement().toString());
 					Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
 					List<EntidadeDominio> entidades = null;
 					if(resultado != null){
@@ -60,38 +71,34 @@
 						//out.println("nao e nulo 2");
 						for(EntidadeDominio entidade : entidades){
 							Roupa roupa = (Roupa)entidade;	
-					
-					
-
-	
 				out.println("<tr scope = 'row'>");
-				out.println("<td class='id' name='id'> " + Math.toIntExact(roupa.getId()) + "</td>");
-				out.println("<td class='marca' name='marca'>"+ roupa.getMarca()+"</td>");
-				out.println("<td class='precoVenda' name='precoVenda' R$>"+roupa.getPrecoVenda()+"</td>");
-				out.println("<td class='quantidadeDisponivel' name='quantidadeDisponivel'>"+roupa.getQuantidadeDisponivel()+"</td>");
-				out.println("<td class='tamanho' name='tamanho'>"+roupa.getTamanho()+"</td>");
-				out.println("<td class='cor' name='cor'>"+roupa.getCor().getDescricao()+"</td>");
-				out.println("<td class='lote' name='lote'>"+roupa.getLote().getId()+"</td>");
+				%>
+				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
+				<td class="text-center">
+					<a href="/LoteController" class="botao-alterar" value="">
+				  		<i class="material-icons medium ">update</i>
+					</a>
+				</td>
+				</c:if>
+				
+				
+				<%
+				out.println("<input type='hidden' value='" + Math.toIntExact(roupa.getId()) + "' class='id'>");
+				out.println("<td class='marca text-center' name='marca'>"+ roupa.getMarca()+"</td>");
+				out.println("<td class='precoVenda text-center' name='precoVenda' R$>"+roupa.getPrecoVenda()+"</td>");
+				out.println("<td class='quantidadeDisponivel text-center' name='quantidadeDisponivel'>"+roupa.getQuantidadeDisponivel()+"</td>");
+				out.println("<td class='tamanho text-center' name='tamanho'>"+roupa.getTamanho()+"</td>");
+				out.println("<td class='cor text-center' name='cor'>"+roupa.getCor().getDescricao()+"</td>");
+				out.println("<td class='lote text-center' name='lote'>"+roupa.getLote().getId()+"</td>");
 				%>
 				
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
-				<td>
-					<a href="/LoteController" class="botao-remover" value="">
-				  		<i class="material-icons small">delete</i>
-					</a>
-				</td>
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
-				<td>
-					<a href="/LoteController" class="botao-editar" value="">
-				  		<i class="material-icons small">border_color</i>
+				<td class="text-center">
+					<a href="" class="botao-remover" value="">
+				  		<i class="material-icons large text-danger">delete</i>
 					</a>
 				</td>
 				</c:if>	
-				</c:if>	
-				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR'}">
-				<td>SOU JUNIOR</td>
-				</c:if>	
-						
 				<%		
 						}
 						out.println("</th>");
@@ -102,10 +109,6 @@
 					</tbody>
 				
 				</table>
-	
-	
-						
-								
 			 
 			 </div>
 			

@@ -42,7 +42,8 @@ public class RoupaVH implements IViewHelper{
 			resultado.setMensagem("Roupa Cadastrada com Sucesso.");
 			request.setAttribute("ResultadoRoupaSalvar", resultado);
 			System.out.println("2");
-			d = request.getRequestDispatcher("listarRoupa.jsp");
+			response.sendRedirect("listarRoupa.jsp");
+//			d = request.getRequestDispatcher("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Roupa Consultada.");
@@ -64,7 +65,7 @@ public class RoupaVH implements IViewHelper{
 			
 		}
 		
-		d.forward(request, response);
+	//	d.forward(request, response);
 		
 	}
 

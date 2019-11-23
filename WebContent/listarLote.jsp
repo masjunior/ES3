@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,13 +19,11 @@
 	<title>Lista de Lotes</title>
 </head>
 
-<body>
-
+<body style="margin-top:30px">
 	<div class="">
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
 
-<div class"">
 	<div class="row">
 		
 		<div class="container" style="margin-top: 5%">
@@ -57,7 +56,6 @@
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' or usuarioAutenticado.nivelAcesso == 'MODERADOR_JUNIOR' }">
 				
 				<%	
-				//out.println(request.getAttributeNames().nextElement());
 				Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				List<EntidadeDominio> entidades = null;
 				if(resultado != null){
@@ -83,9 +81,9 @@
 				out.println("<td class='nomeFantasia text-center'>"+lote.getFornecedor().getNomeFantasia()+"</td>");
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
-				<td>
+				<td class="text-center">
 					<a href="/LoteController" class="botao-remover" value="">
-					  <i class="material-icons small">delete</i>
+					  <i class="material-icons large text-danger">delete</i>
 					</a>
 				</td>
 				</c:if>	
@@ -95,13 +93,17 @@
 					}
 				%>
 				</c:if>
+				
 					</tbody>
+					
 				</table>
+				
 			 </div>
+			 
 		</div>
+		
 	</div>
-</div>
-	<div class="footer-bar">
+	<div class="" style="margin-top: 8%;">
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 

@@ -15,7 +15,7 @@ public class FiltroRoupa implements IFiltro{
 		Roupa roupa = (Roupa)entidade;
 		List<Integer> qtdCampos = new ArrayList<Integer>();
 		Map<Integer, String> campos = new HashMap<Integer, String>();
-		String sql = "SELECT * FROM roupa ";// JOIN lote ON rou_lote = lot_id JOIN fornecedor ON lot_fornecedor = frn_id ";
+		String sql = "SELECT * FROM roupa  JOIN lote ON rou_lote = lot_id JOIN fornecedor ON lot_fornecedor = frn_id ";
 		boolean flgWhere = false;
 		
 		if(roupa.getId() != null) {

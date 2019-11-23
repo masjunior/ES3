@@ -20,15 +20,17 @@
 	<title>Listar de Fornecedores</title>
 </head>
 
-<body>
+<body style="margin-top:30px">
 	<div>
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
-<div class="" >
 	
 	<div class="row">
+	
 		<div class="container" style="margin-top: 5%">
+		
 			 <div class="col-m1 order-md-1">
+			 
 			 <table id="tabela-fornecedores" class="table table-striped table-bordered table-sm">
 					<thead>
 					<tr class="text-center">
@@ -87,12 +89,11 @@
 				
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
 				<td class="text-center">
-					<a href="/LoteController" class="botao-remover " value="">
+					<a href="" class="botao-remover " value="">
 				  		<i class="material-icons large text-danger ">delete</i>
 					</a>
 				</td>
 				</c:if>	
-						
 				<%		
 						}
 						out.println("</th>");
@@ -101,14 +102,20 @@
 				</c:if>
 				
 					</tbody>
+					
 				</table>
+				
 			 </div>
+			 
 		</div>
+		
 	</div>
-</div>
-		<div class="footer-bar" >
+	
+		<div class="" style="margin-top: 8%;">
 			<c:import url="pedacos/footer.jsp" />
 		</div>
+		
+		
 	<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->

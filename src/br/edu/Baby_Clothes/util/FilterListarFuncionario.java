@@ -16,7 +16,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebFilter(urlPatterns= {"/login.jsp", "/listaFuncionario.jsp"})
+@WebFilter(urlPatterns= {"/login.jsp", "/listaFuncionario.jsp", "/listarFuncionario.jsp"})
 public class FilterListarFuncionario implements Filter{
 
 	@Override

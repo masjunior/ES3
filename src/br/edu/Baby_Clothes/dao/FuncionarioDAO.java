@@ -13,6 +13,7 @@ import br.edu.Baby_Clothes.dao.filtro.FiltroFuncionario;
 import br.edu.Baby_Clothes.util.Conexao;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
+import br.edu.fatec.Baby_Clothes.model.NivelAcesso;
 import br.edu.fatec.Baby_Clothes.model.Usuario;
 
 
@@ -33,7 +34,7 @@ public class FuncionarioDAO implements IDAO{
 			connection.setAutoCommit(false);
 			
 			StringBuilder sqlUsu = new StringBuilder();
-			sqlUsu.append("INSERT INTO site_roupa.usuario(usu_data_criacao, usu_habilitado, usu_email,usu_senha, usu_nivel_acesso, usu_id) VALUES (?,?,?,?,?,?);");
+			sqlUsu.append("INSERT INTO site_roupa.usuario(usu_data_criacao, usu_habilitado, usu_email,usu_senha, usu_nivel_acesso) VALUES (?,?,?,?,?);");
 			pst = connection.prepareStatement(sqlUsu.toString(),Statement.RETURN_GENERATED_KEYS);
 			
 			pst.setString(1, LocalDateTime.now().toString());
@@ -41,7 +42,6 @@ public class FuncionarioDAO implements IDAO{
 			pst.setString(3, funcionario.getEmail());
 			pst.setString(4, funcionario.getSenha());
 			pst.setInt(5, funcionario.getNivelAcesso().getValor());
-			pst.setInt(6, 6);
 			
 			pst.executeUpdate();
 					
@@ -133,6 +133,7 @@ public class FuncionarioDAO implements IDAO{
 		
 		try {
 			connection = Conexao.getConnection();
+			connection.setAutoCommit(false);
 			String sql = "UPDATE funcionario INNER JOIN usuario ON fun_usuario = usu_id SET fun_nome = ?, fun_cpf = ?, usu_habilitado = ?, usu_email = ?, usu_senha = ?, usu_nivel_acesso = ? WHERE fun_id = ?";
 			pstm = connection.prepareStatement(sql);
 			
@@ -146,7 +147,7 @@ public class FuncionarioDAO implements IDAO{
 			
 			pstm.executeUpdate();
 			
-			
+			connection.commit();
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -171,13 +172,11 @@ public class FuncionarioDAO implements IDAO{
 	public List<EntidadeDominio> listar(EntidadeDominio entidade) {
 		Funcionario funcionario = (Funcionario)entidade;
 		PreparedStatement pstm = null;
-		Usuario usuario = new Usuario();
 		UsuarioDAO usuDao = new UsuarioDAO();
 		
 		
 		
 		List<EntidadeDominio>funcionarios = null;
-		List<EntidadeDominio> usuarios = usuDao.listar(funcionario.getUsuario());
 		FiltroFuncionario filtro = new FiltroFuncionario();
 		String sql = filtro.gerarQuerry(funcionario);
 		
@@ -191,19 +190,22 @@ public class FuncionarioDAO implements IDAO{
 			
 			while(rs.next()) {
 				Funcionario fun = new Funcionario();
-				Usuario usu = null;
-				int i = 0;
+				Usuario usu = new Usuario();
+//				int i = 0;
+				
+				usu.setId(rs.getLong("usu_id"));
+				usu.setEmail(rs.getString("usu_email"));
+				usu.setSenha(rs.getString("usu_senha"));
+				usu.setHabilitado(rs.getBoolean("usu_habilitado"));
+				int acesso = rs.getInt("usu_nivel_acesso");
+				NivelAcesso NA = NivelAcesso.getByName(acesso);
+				usu.setNivelAcesso(NA);
 				
 				fun.setId(rs.getLong("fun_id"));
+				fun.setNome(rs.getString("fun_nome"));
 				fun.setCpf(rs.getString("fun_cpf"));
-				
-				if(usuarios != null && !usuarios.isEmpty()) {
-					if(usuarios.get(i).getId() == fun.getId()) {
-						usu = (Usuario)usuarios.get(0);
-						fun.setUsuario(usuario);
-						i++;
-					}
-				}
+				fun.setHabilitado(rs.getBoolean("usu_habilitado"));
+				fun.setUsuario(usu);
 				
 				funcionarios.add(fun);
 				

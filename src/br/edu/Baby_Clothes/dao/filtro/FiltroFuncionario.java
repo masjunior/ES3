@@ -17,7 +17,7 @@ public class FiltroFuncionario implements IFiltro{
 		Map<Integer, String> campos = new HashMap<Integer, String>();
 		boolean flgWhere = false;
 		
-		String sql = "SELECT * FROM funcionario";
+		String sql = "SELECT * FROM funcionario JOIN usuario ON usu_id = fun_usuario ";
 		
 		if(funcionario != null) {
 			

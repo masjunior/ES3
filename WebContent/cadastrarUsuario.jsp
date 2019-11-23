@@ -30,8 +30,8 @@
 			 			<div class="com-md-12 mb-3">
 			 				
 			 				<label for="txtId">ID</label>
-			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir um ID válido.</div>
+			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value='<c:out value="${txtID}"></c:out>' required>		
+			 				<div class="invalid-feedback">É obrigatório inserir um ID válido.</div>
 			 				
 			 			</div>
 			 		
@@ -43,7 +43,7 @@
 			 				
 			 				<label for="txtDataCadastro">Data de Cadastro</label>
 			 				<input type="text" class="form-control" name="txtDatacadastro" id="txtDataCadastro" placeholder="" value="" required>		
-			 				<div class="invalid-feedback">É obragatório inserir uma Data de Cadastro válida.</div>
+			 				<div class="invalid-feedback">É obrigatório inserir uma Data de Cadastro válida.</div>
 			 				
 			 			</div>
 			 		
@@ -88,15 +88,25 @@
 						<div class="input-group">
 							<select class="form-control" name="txtNivelAcesso" id="txtNivelAcesso"
 								data-placeholder="Selecione o nível de acesso" required>
-								<option value="" selected="selected" disabled>Selecione
-									um nível de acesso</option>
-								<option value="ADMINISTRADOR" name="Administrador">Administrador</option>
-								<option value="MODERADOR_JUNIOR" name="Moderador_Junior">Moderador Junior</option>
-								<option value="MODERADOR_PLENO" name="Moderador_Pleno">Moderador Pleno</option>
-								<option value="MODERADOR_SENIOR" name="Moderador_Senior">Moderador Senior</option>
+								<option value="" selected="selected" disabled>
+									Selecione um nível de acesso
+								</option>
+								<option value="ADMINISTRADOR" name="Administrador">
+									Administrador
+								</option>
+								<option value="MODERADOR_JUNIOR" name="Moderador_Junior">
+									Moderador Junior
+								</option>
+								<option value="MODERADOR_PLENO" name="Moderador_Pleno">
+									Moderador Pleno
+								</option>
+								<option value="MODERADOR_SENIOR" name="Moderador_Senior">
+									Moderador Senior
+								</option>
 							</select>
-							<div class="invalid-feedback" style="width: 100%;">É
-								obrigatório inserir um nível de acesso.</div>
+							<div class="invalid-feedback" style="width: 100%;">
+								É obrigatório inserir um nível de acesso.
+							</div>
 						</div>
 					</div>
 					<hr class="mb-4">
@@ -120,7 +130,6 @@
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
     <script src="plugins/bootstrap.min.js"></script>
-	<script src="JAVASCRIPT/listarFornecedor.js"></script>
 </body>
 
 </html>

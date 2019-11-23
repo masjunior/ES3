@@ -174,7 +174,6 @@ public class UsuarioDAO implements IDAO {
 				usr.setSenha(rs.getString("usu_senha"));
 				
 				int acesso = rs.getInt("usu_nivel_acesso");
-				String a = String.valueOf(acesso);
 				NivelAcesso NA = NivelAcesso.getByName(acesso);
 				
 				usr.setNivelAcesso(NA);
