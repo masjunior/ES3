@@ -75,7 +75,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
 					<td class="text-center">
-						<a href="#" class="botao-remover" value="">
+						<a href="#" class="botao-alterar" value="">
 				  			<i class="material-icons medium ">update</i>
 						</a>
 					</td>
@@ -95,8 +95,8 @@
 					</td>
 				</c:if>	
 				<%
+						out.println("</tr>");
 						}
-						out.println("</th>");
 					}
 				%>
 				</c:if>

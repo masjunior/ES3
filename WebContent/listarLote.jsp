@@ -88,8 +88,8 @@
 				</td>
 				</c:if>	
 				<%
+						out.println("</tr>");
 						}
-						out.println("</th>");
 					}
 				%>
 				</c:if>

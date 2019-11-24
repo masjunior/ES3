@@ -120,7 +120,7 @@ public class FornecedorDAO implements IDAO {
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE fornecedor SET frn_habilitado = ?, frn_razaoSocial = ?, frn_nomeFantasia = ?, frn_razaoResponsavel = ?, frn_cnpj = ?, frn_email = ?, frn_telefone = ?";
+			String sql = "UPDATE fornecedor SET frn_habilitado = ?, frn_razaoSocial = ?, frn_nomeFantasia = ?, frn_razaoResponsavel = ?, frn_cnpj = ?, frn_email = ?, frn_telefone = ? WHERE frn_id = ?";
 			pstm = conexao.prepareStatement(sql);
 			
 			pstm.setBoolean(1, fornecedor.isHabilitado());
@@ -130,15 +130,11 @@ public class FornecedorDAO implements IDAO {
 			pstm.setString(5, fornecedor.getCnpj());
 			pstm.setString(6, fornecedor.getEmail());
 			pstm.setString(7, fornecedor.getTelefone());
+			pstm.setLong(8, fornecedor.getId());
 			
 			pstm.executeUpdate();
 			
 		}catch(Exception e) {
-			try {
-				conexao.rollback();
-			}catch(SQLException eSQL) {
-				eSQL.printStackTrace();
-			}
 			e.printStackTrace();
 		}finally {
 			try {
@@ -183,36 +179,12 @@ public class FornecedorDAO implements IDAO {
 				frn.setEmail(rs.getString("frn_email"));
 				frn.setTelefone(rs.getString("frn_telefone"));
 				
-				/*
-				 * LoteDAO loteDao = new LoteDAO(); List<EntidadeDominio> lotesEntidade =
-				 * loteDao.listar(frn); List<Lote> lotes = new ArrayList<Lote>();
-				 * 
-				 * if(lotesEntidade != null && !lotesEntidade.isEmpty()) { for(EntidadeDominio
-				 * entidade1 : lotesEntidade) { Lote lote = (Lote)entidade1; lotes.add(lote); }
-				 * 
-				 * }
-				 */
-				
-				
-				
-				//frn.setLotes(lotes);
-				
-				
-				
 				listaFornecedores.add(frn);
 			}
 			
 			return listaFornecedores;
 			
 		}catch(Exception e) {
-			try {
-				if(conexao != null) {
-					conexao.rollback();
-				}
-				
-			}catch(SQLException eSQL) {
-				eSQL.printStackTrace();
-			}
 			e.printStackTrace();
 		}finally {
 			try {

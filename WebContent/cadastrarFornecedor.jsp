@@ -50,7 +50,7 @@
 			 		<div class="row d-none">
 			 			<div class="com-md-12 mb-3">
 			 				<label for="txtId">ID</label>
-			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
+			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="<% request.getParameter("id"); %>" required>		
 			 				<div class="invalid-feedback">
 			 					É obrigatório inserir um ID válido.
 			 				</div>

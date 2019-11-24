@@ -45,7 +45,7 @@ public class FiltroFornecedor implements IFiltro{
 				flgWhere = true;
 			}
 			
-			campos.put(1, "frn_data_criacao = " + fornecedor.getDataCriacao());
+			campos.put(1, "frn_data_criacao = " + "'" + fornecedor.getDataCriacao() + "'");
 			qtdCampos.add(1);
 		}
 		

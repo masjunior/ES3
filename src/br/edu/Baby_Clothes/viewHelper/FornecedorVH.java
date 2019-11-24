@@ -42,7 +42,7 @@ public class FornecedorVH implements IViewHelper{
 			resultado.setMensagem("Cadastro do fornecedor foi realizado com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorSalvar", resultado);
 			d = request.getRequestDispatcher("listarFornecedor.jsp");
-			d.forward(request, response);
+			response.sendRedirect("listarFornecedor.jsp");
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			System.out.println("passei no consultar do fornecedor");
@@ -55,7 +55,7 @@ public class FornecedorVH implements IViewHelper{
 			resultado.setMensagem("Alteração do fornecedor foi realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorAlterar", resultado);
 			d = request.getRequestDispatcher("listarFornecedor.jsp");
-			d.forward(request, response);
+			response.sendRedirect("listarFornecedor.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O fornecedor foi excluido com sucesso!");
@@ -64,7 +64,6 @@ public class FornecedorVH implements IViewHelper{
 //			response.sendRedirect("listarFornecedor.jsp");
 			d.forward(request, response);
 		}
-//		d.forward(request, response);
 		
 	}
 		
@@ -75,33 +74,8 @@ public class FornecedorVH implements IViewHelper{
 		
 		String operacao = request.getParameter("operacao");
 		String idString = request.getParameter("txtId");
-		Long id;
-		
-		System.out.println("ID" + idString);
-		
-		if(idString == null || idString.equals("")) {
-			 System.out.println("ID NULO");
-		}else {
-			id = Long.parseLong(idString);
-			fornecedor.setId(id);
-		}
-		
-		System.out.println("ID DPS IF " + fornecedor.getId());
-		
-		
 		String dataString = request.getParameter("txtDataCadastro");
-		
-		
-	
-		if(dataString == null) {
-			System.out.println("data vazia");
-		}else {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-			LocalDateTime date = LocalDateTime.parse(dataString, formatter);
-			fornecedor.setDataCriacao(date);
-		}
-		
-		
+		String habilitado = request.getParameter("txtHabilitado");
 		String razaoSocial = request.getParameter("txtRazaoSocial");
 		String cnpj = request.getParameter("txtCNPJ");
 		String nomeFantasia = request.getParameter("txtNomeFantasia");
@@ -109,6 +83,12 @@ public class FornecedorVH implements IViewHelper{
 		String email = request.getParameter("txtEmail");
 		String telefone = request.getParameter("txtTelefone");
 		List<Lote> lotes = new ArrayList<Lote>(); 
+		Long id;
+		
+		System.out.println("ID" + idString);
+		System.out.println("ID DPS IF " + fornecedor.getId());
+		
+		
 		
 		/*
 		 * if(id != null || id > 0) { fornecedor.setId(id); }
@@ -117,6 +97,26 @@ public class FornecedorVH implements IViewHelper{
 		/*
 		 * if(date != null) { fornecedor.setDataCriacao(date); }
 		 */
+		
+		if(idString == null || idString.equals("")) {
+			 System.out.println("ID NULO");
+		}else {
+			id = Long.parseLong(idString);
+			fornecedor.setId(id);
+		}
+		
+		if(dataString == null) {
+			System.out.println("data vazia");
+		}else {
+			LocalDateTime date = LocalDateTime.parse(dataString);
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//			LocalDateTime date = LocalDateTime.parse(dataString, formatter);
+			fornecedor.setDataCriacao(date);
+		}
+		
+		if(habilitado != null ) {
+			fornecedor.setHabilitado(Boolean.valueOf(habilitado));
+		}
 		
 		if(razaoSocial != null ) {
 			if(!razaoSocial.trim().equals("") || !razaoSocial.isEmpty()) {
