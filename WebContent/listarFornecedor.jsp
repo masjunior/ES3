@@ -72,13 +72,13 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-					<a href="/LoteController" class="botao-alterar" value="">
+					<a href="http://localhost:8080/ES3/cadastrarFornecedor.jsp" class="botao-alterar" value="">
 				  		<i class="material-icons medium ">update</i>
 					</a>
 				</td>
 				</c:if>	
 				<%
-				out.println("<input type='hidden' value='" + Math.toIntExact(fornecedor.getId()) + "' class='id'>");
+				out.println("<input type='hidden' name='id' value='" + Math.toIntExact(fornecedor.getId()) + "' class='id'>");
 				out.println("<td class='razaoSocial text-center' name='razaoSocial'>"+ fornecedor.getRazaoSocial()+"</td>");
 				out.println("<td class='cnpj text-center' name='cnpj'>"+fornecedor.getCnpj()+"</td>");
 				out.println("<td class='nomeFantasia text-center' name='nomeFantasia'>"+fornecedor.getNomeFantasia()+"</td>");

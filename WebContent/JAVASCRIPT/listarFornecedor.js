@@ -4,10 +4,10 @@
 $(".botao-remover").click(function(){
 	event.preventDefault();
 
-	console.log($(this).closest("tr"));
-	$(this).closest("tr").children().each(function(){
-		console.log($(this).text());
-	});
+//	console.log($(this).closest("tr"));
+//	$(this).closest("tr").children().each(function(){
+//	console.log($(this).text());
+//	});
 	let botao = $(this);
 	let id = $(this).closest("tr").find(".id").val();
 	let razaoSocial = $(this).closest("tr").find(".razaoSocial").text();
@@ -18,7 +18,7 @@ $(".botao-remover").click(function(){
 	let telefone = $(this).closest("tr").find(".telefone").text();
 
 	Swal.fire({
-		title: "DELETAR DELETAR?",
+		title: "DELETAR?",
 		text: "Após confirmar, não será possível retornar ",
 		icon: 'warning',
 		showCancelButton: true,
@@ -35,11 +35,13 @@ $(".botao-remover").click(function(){
 				url: "http://localhost:8080/ES3/FornecedorController",
 				async: true,
 				sucess: function(data){
+
 					Swal.fire({
 						title: "Exclusão realizada com sucesso",
 
 					})
-					botao.closest("tr").remove();
+					botao.closest("tr").fadeOut(1500);
+
 				},
 				data :{txtId : $(this).closest("tr").find(".id").val(), operacao: "EXCLUIR"},				
 			}).fail(function() {
@@ -47,19 +49,14 @@ $(".botao-remover").click(function(){
 					title: "Algo deu errado",
 
 				})
-				botao.closest("tr").remove();
+			}).done(function(){
+				botao.closest("tr").fadeOut(1500);
+				//botao.closest("tr").remove();
 			});
-
-
 		} else { 
 			return
 		}
 	});
-
-
-
-
-
 
 //	alert(id + razaoSocial + cnpj + nomeFantasia + razaoResponsavel + email + telefone );
 //	console.log("consegui o valor do id " + $(this).closest("tr").find(".id").val());
@@ -72,40 +69,47 @@ $(".botao-remover").click(function(){
 
 })
 
-$(".botao-alterar").click(function(){
-	event.preventDefault();
-
-	let botao = $(this);
-	let id = $(this).closest("tr").find(".id").val();
-	let razaoSocial = $(this).closest("tr").find(".razaoSocial").text();
-	let cnpj = $(this).closest("tr").find(".cnpj").text();
-	let nomeFantasia= $(this).closest("tr").find(".nomeFantasia").text();
-	let razaoResponsavel = $(this).closest("tr").find(".razaoResponsavel").text();
-	let email = $(this).closest("tr").find(".email").text();
-	let telefone = $(this).closest("tr").find(".telefone").text();
-
-	$.ajax({
-		type: "POST",
-		url: "http://localhost:8080/ES3/FornecedorController",
-		async: true,
-		sucess: function(data){
-		},
-		data :{
-			operacao: "ALTERAR",
-			txtId : $(id),
-			txtDataCadastro:$(razaoSocial),
-			txtNomeFantasia:$(nomeFantasia),
-			txtRazaoSocial:$(razaoSocial),
-			txtCNPJ:$(cnpj),
-			txtEmail:$(email),
-			txtRazaoResponsavel:$(razaoResponsavel),
-			txtTelefone:$(telefone)
-		},				
-	}).fail(function() {
-		Swal.fire({
-			title: "Algo deu errado",
-
-		})
-
-		})
-})
+//$(".botao-alterar").click(function(){
+////	event.preventDefault();
+//
+//	let botao = $(this);
+//	let id = $(this).closest("tr").find(".id").val();
+//	let razaoSocial = $(this).closest("tr").find(".razaoSocial").text();
+//	let cnpj = $(this).closest("tr").find(".cnpj").text();
+//	let nomeFantasia= $(this).closest("tr").find(".nomeFantasia").text();
+//	let razaoResponsavel = $(this).closest("tr").find(".razaoResponsavel").text();
+//	let email = $(this).closest("tr").find(".email").text();
+//	let telefone = $(this).closest("tr").find(".telefone").text();
+////	console.log($(this).closest("tr"));
+////	$(this).closest("tr").children().each(function(){
+////		console.log($(this).text());
+////	});
+//	
+//	console.log(email);
+//	$.ajax({
+//		type: "POST",
+//		url: "http://localhost:8080/ES3/cadastrarFornecedor.jsp",
+//		async: true,
+//		data :{
+//			"txtId" : id ,
+//			"txtDataCadastro":razaoSocial,
+//			"txtNomeFantasia":nomeFantasia,
+//			"txtRazaoSocial":razaoSocial,
+//			"txtCNPJ":cnpj,
+//			"txtEmail":email,
+//			"txtRazaoResponsavel":razaoResponsavel,
+//			"txtTelefone":telefone
+//		},				
+//	}).fail(function() {
+//		Swal.fire({
+//			title: "Algo deu errado",
+//
+//		})
+//
+//	})
+//	.done(function(){
+//		window.location.replace("http://localhost:8080/ES3/cadastrarFornecedor.jsp");
+//		botao.closest("tr").fadeOut(1500);
+//		//botao.closest("tr").remove();
+//	});
+//})

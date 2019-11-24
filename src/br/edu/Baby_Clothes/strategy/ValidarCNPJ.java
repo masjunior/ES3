@@ -21,7 +21,7 @@ public class ValidarCNPJ implements IStrategy {
 			|| cnpj.equals("88888888888888") || cnpj.equals("99999999999999")
 			|| cnpj.length() != 14) {
 			
-			msgRetorno = "CNPJ Inválido";
+			msgRetorno = "CNPJ Invï¿½lido";
 		}
 		
 		char dig13, dig14;
@@ -68,7 +68,7 @@ public class ValidarCNPJ implements IStrategy {
 			if((dig13 == cnpj.charAt(12)) && (dig14 == cnpj.charAt(13))) {
 				msgRetorno = null;
 			}else {
-				msgRetorno = "CNPJ Inválido";
+				msgRetorno = "CNPJ Invï¿½lido";
 			}
 			
 		}catch (InputMismatchException erro) {
