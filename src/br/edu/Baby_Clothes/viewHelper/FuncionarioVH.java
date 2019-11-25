@@ -34,37 +34,41 @@ public class FuncionarioVH implements IViewHelper{
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("cadastrarUsuario.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do funcion�rio foi realizado com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("listaFuncionario.jsp");
+			response.sendRedirect("listaFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			resultado.setMensagem("Consulta de funcionário realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("listaFuncionario.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Altera��o do funcion�rio foi realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("listaFuncionario.jsp");
+			response.sendRedirect("listarFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O funcion�rio foi excluido com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("listaFuncionario.jsp");
-			
+			d.forward(request, response);
 		}
 		 
-		d.forward(request, response);
+		//d.forward(request, response);
 		
 	}
 	
 	private Funcionario salvarFuncionario(HttpServletRequest request) {
 		Funcionario funcionario = new Funcionario();
 		
-		String id = request.getParameter("txtID");
+		String id = request.getParameter("txtId");
 		String dtCadastro = request.getParameter("txtDtCadastro");
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
@@ -74,7 +78,7 @@ public class FuncionarioVH implements IViewHelper{
 //		String operacao = request.getParameter("operacao");
 		
 		if(id != null ) {
-			if(!id.trim().equalsIgnoreCase("") || id.isEmpty()) {
+			if(!id.trim().equalsIgnoreCase("") || !id.isEmpty()) {
 				funcionario.setId(Long.parseLong(id));
 			}
 		}

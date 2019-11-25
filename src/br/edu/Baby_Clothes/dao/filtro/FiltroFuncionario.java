@@ -19,6 +19,7 @@ public class FiltroFuncionario implements IFiltro{
 		
 		String sql = "SELECT * FROM funcionario JOIN usuario ON usu_id = fun_usuario ";
 		
+		
 		if(funcionario != null) {
 			
 			if(funcionario.getId() != null) {
@@ -69,7 +70,7 @@ public class FiltroFuncionario implements IFiltro{
 			sql += campos.get(I);
 		}
 		
-		System.out.println("SQL FUNCIONARIO" + sql);
+		//System.out.println("SQL FUNCIONARIO" + sql);
 		return sql;
 	}
 

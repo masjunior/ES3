@@ -16,7 +16,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Funcionario;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebFilter(urlPatterns= {"/listaFuncionario.jsp", "/listarFuncionario.jsp"})
+@WebFilter(urlPatterns= {"/listaFuncionario.jsp", "/listarFuncionario.jsp", "/editarFuncionario.jsp"})
 public class FilterListarFuncionario implements Filter{
 
 	@Override
@@ -30,21 +30,26 @@ public class FilterListarFuncionario implements Filter{
 			throws IOException, ServletException {
 		
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoFuncionarioConsultar");
+		String id = (String)request.getParameter("txtId");
 		
 		if(resultado == null) {
 			resultado = new Resultado();
 			if(resultado.getEntidades() == null) {
 				FuncionarioDAO dao = new FuncionarioDAO();
 				Funcionario funcionario  = new Funcionario();
+				
+				if(id != null) {
+					funcionario.setId(Long.parseLong(id));
+				}
+				
 				List<EntidadeDominio> funcionarios = dao.listar(funcionario); 
 				
 				
 				if(funcionarios != null && !funcionarios.isEmpty()) {
 					for(EntidadeDominio entidade : funcionarios) {
-						if(entidade.isHabilitado() != null) {
-							if(entidade.isHabilitado()) {
-								resultado.adicionarEntidades(entidade);
-							}
+						Funcionario fun = (Funcionario)entidade;
+						if(fun.getUsuario().isHabilitado()) {
+							resultado.adicionarEntidades(entidade);
 							
 						}
 						

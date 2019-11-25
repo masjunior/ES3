@@ -15,7 +15,7 @@
 		<!-- 	CSS BOOTSTRAP -->
 		<link rel="stylesheet" href="_CSS/bootstrap.min.css">
 
-	<title>Lista de Lotes</title>
+	<title>Listar Funcionario</title>
 </head>
 
 <body>
@@ -40,6 +40,7 @@
 						<th class="th-sm" scope="col">Nome</th>
 						<th class="th-sm" scope="col">CPF</th>
 						<th class="th-sm" scope="col">Email</th>
+						<th class="th-sm" scope="col">Senha</th>
 						<th class="th-cm" scope="col">Nivel de Acesso</th>
 						<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR' }">
 							<th class="th-sm" scope="col">Excluir</th>
@@ -74,17 +75,25 @@
 				out.println("<tr scope = 'row'>");
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
-					<td class="text-center">
-						<a href="#" class="botao-alterar" value="">
-				  			<i class="material-icons medium ">update</i>
-						</a>
-					</td>
-				</c:if>	
+				<td class="text-center">
+				<form action="editarFuncionario.jsp" method="POST">
+				<% 
+				out.println("<input type='hidden' name='txtId' value='" + Math.toIntExact(funcionario.getId()) + "' class='id form-control'>");
+				%>
+				<button name="operacao" id="CONSULTAR" type="submit" value="CONSULTAR" style="border-width: inherit; background: border-box;">
+					<a href="" class="botao-alterar">
+				  		<i class="material-icons medium ">update</i>
+					</a>
+				</button>
+				</form>
+				</td>
+				</c:if>		
 				<%
 				out.println("<input type='hidden' value='" + Math.toIntExact(funcionario.getId()) + "' class='id'>");
 				out.println("<td class='nome text-center'>"+ funcionario.getNome()+"</td>");
 				out.println("<td class='cpf text-center'>"+funcionario.getCpf()+"</td>");
-				out.println("<td class='email text-center'>"+funcionario.getEmail()+"</td>");
+				out.println("<td class='email text-center'>"+funcionario.getUsuario().getEmail()+"</td>");
+				out.println("<td class='senha text-center'>"+funcionario.getUsuario().getSenha()+"</td>");
 				out.println("<td class='nivelAcesso text-center'>" + funcionario.getUsuario().getNivelAcesso() + "</td>");
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
@@ -119,7 +128,7 @@
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
     <script src="plugins/bootstrap.min.js"></script>
-	<script src="JAVASCRIPT/listarFornecedor.js"></script>
+	<script src="JAVASCRIPT/listarFuncionario.js"></script>
 
 </body>
 

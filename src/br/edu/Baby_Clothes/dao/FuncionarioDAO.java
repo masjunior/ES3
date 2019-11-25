@@ -57,14 +57,14 @@ public class FuncionarioDAO implements IDAO{
 			
 			//salvar funcionario
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, fun_usuario,fun_id) VALUES (?,?,?,?)");
+			sql.append("INSERT INTO site_roupa.funcionario (fun_nome, fun_cpf, fun_usuario) VALUES (?,?,?)");
 	
 			pst = connection.prepareStatement(sql.toString(),Statement.RETURN_GENERATED_KEYS);
 	
 			pst.setString(1, funcionario.getNome());
 			pst.setString(2, funcionario.getCpf());
 			pst.setInt(3, idUsuario );
-			pst.setInt(4, 5 );
+			
 			
 	
 			pst.executeUpdate();
@@ -95,15 +95,19 @@ public class FuncionarioDAO implements IDAO{
 		PreparedStatement pstm = null;
 		Funcionario funcionario = (Funcionario)entidade;
 		
+		
 		try {
 			connection = Conexao.getConnection();
 			connection.setAutoCommit(false);
 			
-			String sql = "UPDATE usuario SET usu_habilitado = ? WHERE usu_id = ?";
+			String sql = "UPDATE site_roupa.funcionario JOIN site_roupa.usuario ON fun_usuario = usu_id SET usu_habilitado = ? WHERE fun_id = ?";
 			pstm = connection.prepareStatement(sql);
 			
 			pstm.setBoolean(1, false);
-			pstm.setLong(2, funcionario.getUsuario().getId());
+			pstm.setLong(2, funcionario.getId());
+			
+			
+			
 			
 			pstm.executeUpdate();
 			connection.commit();
