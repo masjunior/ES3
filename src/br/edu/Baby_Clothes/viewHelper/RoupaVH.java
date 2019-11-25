@@ -37,31 +37,36 @@ public class RoupaVH implements IViewHelper{
 			request.setAttribute("ResultadoRoupa", resultado);
 			System.out.println("1");
 			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Roupa Cadastrada com Sucesso.");
 			request.setAttribute("ResultadoRoupaSalvar", resultado);
 			System.out.println("2");
+			d = request.getRequestDispatcher("listarRoupa.jsp");
 			response.sendRedirect("listarRoupa.jsp");
-//			d = request.getRequestDispatcher("listarRoupa.jsp");
+			
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Roupa Consultada.");
 			request.setAttribute("ResultadoRoupaConsultar", resultado);
 			System.out.println("3");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
+			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Roupa Alterada com Sucesso.");
 			request.setAttribute("ResultadoRoupaAlterar", resultado);
 			System.out.println("4");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
+			response.sendRedirect("listarRoupa.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("Roupa Excluida com Sucesso.");
 			request.setAttribute("ResultadoRoupaExcluir", resultado);
 			System.out.println("5");
 			d = request.getRequestDispatcher("listarRoupa.jsp");
+			d.forward(request, response);
 			
 		}
 		
@@ -74,6 +79,7 @@ public class RoupaVH implements IViewHelper{
 		Lote lote = new Lote();
 		Cor cor = new Cor();
 		Long id = null ;
+		
 		if(request.getParameter("txtId")!= "") {
 			id = Long.parseLong(request.getParameter("txtId"));
 		}
@@ -92,8 +98,20 @@ public class RoupaVH implements IViewHelper{
 		boolean habilitado = Boolean.getBoolean(habilitadoString);
 		
 		String marca = request.getParameter("txtMarca");
-		Double precoVenda = Double.parseDouble(request.getParameter("txtPrecoVenda"));
-		int quantidadeDisppnivel = Integer.parseInt(request.getParameter("txtQuantidadeDisponivel"));
+		
+		String precoString = request.getParameter("txtPrecoVenda");
+		double precoVenda = 0;
+		if(precoString != null) {
+			precoVenda = Double.parseDouble(precoString);
+		}
+		
+		String quantidadeString = request.getParameter("txtQuantidadeDisponivel");
+		int quantidadeDisponivel = 0;
+		
+		if(quantidadeString != null) {
+			quantidadeDisponivel = Integer.parseInt(quantidadeString);
+		}
+		
 		String tamanho = request.getParameter("cbTamanho");
 		
 		String corString = request.getParameter("txtCor");
@@ -111,7 +129,7 @@ public class RoupaVH implements IViewHelper{
 			roupa.setHabilitado(habilitado);
 		}
 		
-		if(marca != null || !marca.trim().equals("") || !marca.isEmpty()) {
+		if(marca != null && !marca.trim().equals("") && !marca.isEmpty()) {
 			roupa.setMarca(marca);
 		}
 		
@@ -119,15 +137,15 @@ public class RoupaVH implements IViewHelper{
 			roupa.setPrecoVenda(precoVenda);
 		}
 		
-		if(quantidadeDisppnivel > 0) {
-			roupa.setQuantidadeDisponivel(quantidadeDisppnivel);
+		if(quantidadeDisponivel > 0) {
+			roupa.setQuantidadeDisponivel(quantidadeDisponivel);
 		}
 		
 		if(tamanho != null) {
 			roupa.setTamanho(Tamanho.valueOf(tamanho));
 		}
 		
-		if(corString != null || !corString.trim().equals("") || !corString.isEmpty()) {
+		if(corString != null && !corString.trim().equals("") && !corString.isEmpty()) {
 			cor.setDescricao(corString);
 			roupa.setCor(cor);
 		}

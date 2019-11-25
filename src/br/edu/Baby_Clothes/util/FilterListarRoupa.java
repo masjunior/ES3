@@ -17,7 +17,7 @@ import br.edu.fatec.Baby_Clothes.model.Resultado;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
 
 //@WebFilter(urlPatterns = {"/login.jsp", "/cadastrarFornecedor.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp",  "/listarFornecedor.jsp", "/listarLote.jsp", "/listarRoupa"})
-@WebFilter(urlPatterns = {"/listarRoupa.jsp"})
+@WebFilter(urlPatterns = {"/listarRoupa.jsp", "/editarRoupa.jsp"})
 public class FilterListarRoupa implements Filter{
 
 	@Override
@@ -30,12 +30,17 @@ public class FilterListarRoupa implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
+		String id = (String)request.getParameter("txtId");
 		
 		if(resultado == null) {
 			resultado = new Resultado();
 			if(resultado.getEntidades() == null) {
 				RoupaDAO dao = new RoupaDAO();
 				Roupa roupa = new Roupa();
+				if(id != null) {
+					roupa.setId(Long.parseLong(id));
+				}
+			
 				List<EntidadeDominio> roupas = dao.listar(roupa); 
 				
 				
