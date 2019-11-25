@@ -79,7 +79,7 @@
 			 			<div class="com-md-12 mb-3">
 			 			
 			 				<label for="txtPrecoCompraUnidade">Preço por Unidade</label>
-			 				<input type="text" class="form-control" name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidadel" placeholder="" value="" required>		
+			 				<input type="number" class="form-control" name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidadel" placeholder="" value="" required min="1" step="0.01">		
 			 				<div class="invalid-feedback">É obrigatório inserir um Preço válido</div>
 			 				
 			 			</div>
@@ -104,7 +104,7 @@
 			 			
 			 				<label for="txtFornecedor">Fornecedor</label>
 			 			<!-- 	<input type="text" class="form-control" name="txtFornecedor" id="txtFornecedor" placeholder="" value="" required> -->
-			 				<select class="form-control" name="txtFornecedor" id="txtFornecedor" required>
+			 				<select class="form-control" name="cbFornecedor" id="txtcbFornecedor" required>
 			 				<option value="">Selecione</option>
 			 				
 			 				<%

@@ -69,9 +69,16 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-					<a href="#" class="botao-remover" value="">
+				<form action="/ES3/editarLote.jsp" method="POST">
+				<% 
+				out.println("<input type='hidden' name='txtId' value='" + Math.toIntExact(lote.getId()) + "' class='id form-control'>");
+				%>
+				<button name="operacao" id="CONSULTAR" type="submit" value="CONSULTAR" style="border-width: inherit; background: border-box;">
+					<a href="" class="botao-alterar">
 				  		<i class="material-icons medium ">update</i>
 					</a>
+				</button>
+				</form>
 				</td>
 				</c:if>	
 				<%
@@ -82,7 +89,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR'}">
 				<td class="text-center">
-					<a href="/LoteController" class="botao-remover" value="">
+					<a href="" class="botao-remover" value="">
 					  <i class="material-icons large text-danger">delete</i>
 					</a>
 				</td>
@@ -116,7 +123,7 @@
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
     <script src="plugins/bootstrap.min.js"></script>
-	<script src="JAVASCRIPT/listarFornecedor.js"></script>
+	<script src="JAVASCRIPT/listarLote.js"></script>
 
 </body>
 
