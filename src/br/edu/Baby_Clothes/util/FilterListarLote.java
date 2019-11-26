@@ -43,6 +43,8 @@ public class FilterListarLote implements Filter {
 				if(id != null) {
 					lote.setId(Long.parseLong(id));
 				}
+				
+				lote.setHabilitado(true);
 				List<EntidadeDominio>lotes = dao.listar(lote);
 				
 				

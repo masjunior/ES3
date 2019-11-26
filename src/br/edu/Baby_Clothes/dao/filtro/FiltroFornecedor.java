@@ -20,7 +20,7 @@ public class FiltroFornecedor implements IFiltro{
 		String querry = "SELECT * FROM fornecedor";
 		
 		
-		System.out.println("inicio IFS filtroFornecedor");
+		//System.out.println("inicio IFS filtroFornecedor");
 		
 		if(fornecedor == null) {
 			System.out.println("fornecedor nulo");
@@ -85,6 +85,7 @@ public class FiltroFornecedor implements IFiltro{
 			qtdCampos.add(5);
 		}
 		
+		System.out.println("FILTRO FORNECEDOR CNPJ " + fornecedor.getCnpj());
 		if(fornecedor.getCnpj() != null) {
 			if(!flgWhere) {
 				querry += " WHERE ";

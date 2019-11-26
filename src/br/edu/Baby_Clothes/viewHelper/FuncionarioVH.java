@@ -32,7 +32,7 @@ public class FuncionarioVH implements IViewHelper{
 		String operacao  = request.getParameter("operacao");
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
-			request.getSession().setAttribute("Resultado", resultado);
+			request.getSession().setAttribute("ResultadoFuncionario", resultado);
 			d = request.getRequestDispatcher("cadastrarUsuario.jsp");
 			d.forward(request, response);
 			

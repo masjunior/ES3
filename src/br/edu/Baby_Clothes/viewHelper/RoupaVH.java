@@ -34,9 +34,9 @@ public class RoupaVH implements IViewHelper{
 		String operacao = request.getParameter("operacao");
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equalsIgnoreCase("")) {
-			request.setAttribute("ResultadoRoupa", resultado);
-			System.out.println("1");
-			d = request.getRequestDispatcher("cadastroProduto.jsp");
+			request.getSession().setAttribute("ResultadoRoupa", resultado);
+			//System.out.println("1");
+			d = request.getRequestDispatcher("cadastrarProduto.jsp");
 			d.forward(request, response);
 			
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {

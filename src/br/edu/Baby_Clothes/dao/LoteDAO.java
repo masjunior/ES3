@@ -106,6 +106,8 @@ public class LoteDAO implements IDAO{
 		Lote lote = (Lote)entidade;
 		PreparedStatement pstm = null;
 		
+		System.out.println("LOTE ID DAO" + lote.getId());
+		
 		try {
 			conexao = Conexao.getConnection();
 			conexao.setAutoCommit(false);

@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Funcionario" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Roupa" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Lote" %>
 <%@ page import="java.util.List" %>
@@ -33,7 +34,12 @@
 		 */
 		 
 		 Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
-		 List<EntidadeDominio>lotes = resultado.getEntidades();
+		 List<EntidadeDominio>lotes = null;
+		 if(resultado != null){
+			 if(resultado.getEntidades() != null){
+					lotes = resultado.getEntidades();
+				}
+		 }
 	
 	%>
 	<div>
@@ -44,6 +50,21 @@
 	
 		<div class="container" style="margin-top: 4%">
 			<div class="col-ml-12 order-md-1">
+			 <%
+			 
+			 Resultado resultado2 = (Resultado)request.getSession().getAttribute("ResultadoRoupa");
+			 List<EntidadeDominio> entidades = null;
+			 Roupa roupa = null;
+			 
+			 if(resultado2 != null){
+				 	out.println("<p style='color:red; font-size:32px;'>"+resultado2.getMensagem()+"</p>");
+				 entidades = resultado2.getEntidades();
+				 
+				 if(entidades != null && !entidades.isEmpty()){
+					 roupa = (Roupa)entidades.get(0);
+				 }
+			 }
+			 %>
 				<form class="needs-validation" action="RoupaController" method="post" novalidate>
 				
 					<div class="row d-none">
@@ -83,7 +104,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtMarca">Marca</label>
-							<input type="text" class="form-control" name="txtMarca" id="txtMarca" placeholder="" value="" required>
+							<input type="text" class="form-control" name="txtMarca" id="txtMarca" placeholder="" value="<%if(roupa != null){out.println(roupa.getMarca());} %>" required>
 							<div class="invalid-feedback">É obrigatório inserir uma marca valido!</div>
 						</div>
 					</div>
@@ -91,7 +112,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtPrecoVenda">Preço de Venda</label>
-							<input type="text" class="form-control" name="txtPrecoVenda" id="txtPrecoVenda" placeholder="" value="" required>
+							<input type="text" class="form-control" name="txtPrecoVenda" id="txtPrecoVenda" placeholder="" value="<%if(roupa != null){out.println(roupa.getPrecoVenda());} %>" required>
 							<div class="invalid-feedback">É necessário inserir um preço valido!</div>
 						</div>
 					</div>
@@ -99,7 +120,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtQuantidadeDisponivel">Quantidade disponível</label>
-							<input type="number" class="form-control" name="txtQuantidadeDisponivel" id="txtQuantidadeDisponivel" min="0" step="1" placeholde="" value="" required>
+							<input type="number" class="form-control" name="txtQuantidadeDisponivel" id="txtQuantidadeDisponivel" min="0" step="1" placeholde="" value="<%if(roupa != null){out.println(roupa.getQuantidadeDisponivel());} %>" required>
 							<div class="invalid-feedback">É obrigatório inserir uma quantidade valida</div>
 						</div>
 					</div>
@@ -122,7 +143,7 @@
 					<div class="row">
 						<div class="com-md-12 mb-3">
 							<label for="txtCor">Cor</label>
-							<input type="text" class="form-control" name="txtCor" id="txtCor" placeholder="" value="" required>
+							<input type="text" class="form-control" name="txtCor" id="txtCor" placeholder="" value="<%if(roupa != null){if(roupa.getCor() != null){out.println(roupa.getCor().getDescricao());}} %>" required>
 							<div class="invalid-feedback">Necessário inserir uma Cor válida!</div>
 						</div>
 					</div>
@@ -133,7 +154,15 @@
 							<select class="form-control" name="txtLote" id="txtLote" required>
 								<opiton value="">Selecione</opiton>
 								<%
+								if(roupa != null){
+									if(roupa.getLote() != null){
+										out.println("<option value='" + roupa.getLote().getId() + "' selected>" + roupa.getLote().getId() + "</option>");	
+									}
+									
+								}
+								
 								if(lotes != null && !lotes.isEmpty()){
+									
 									for(EntidadeDominio entidade : lotes){
 										Lote lote = (Lote)entidade;
 										

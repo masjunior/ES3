@@ -21,7 +21,7 @@ public class ValidarCPF implements IStrategy {
 			|| cpf.equals("88888888888") || cpf.equals("99999999999")
 			|| cpf.length() != 11) {
 			
-//			msgRetorno = "CPF Invï¿½lido";
+			msgRetorno = "CPF Invï¿½lido";
 		}
 		
 		char dig10, dig11;
@@ -33,7 +33,7 @@ public class ValidarCPF implements IStrategy {
 			for(i = 0; i < 9; i++) {
 				//Converte a letra em numero pela tabela ASCII
 				numero = (int)(cpf.charAt(i) - 48);
-				soma = soma + (numero + peso);
+				soma = soma + (numero * peso);
 				peso--;
 			}
 		
@@ -62,12 +62,12 @@ public class ValidarCPF implements IStrategy {
 			
 			//Verifica se os digitos calculados conferem os digitos informados
 			if((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
-//				msgRetorno = null;
+				
 			}else {
-//				msgRetorno = "CPF Invï¿½lido";
+				msgRetorno = "CPF Inválido";
 			}
 		}catch (InputMismatchException erro){
-//				msgRetorno = "Um erro inesperado aconteceu, tente novamente mais tarde!";
+				msgRetorno = "Um erro inesperado aconteceu, tente novamente mais tarde!";
 		}
 		
 	

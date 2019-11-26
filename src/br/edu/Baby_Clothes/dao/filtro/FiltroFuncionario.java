@@ -17,7 +17,7 @@ public class FiltroFuncionario implements IFiltro{
 		Map<Integer, String> campos = new HashMap<Integer, String>();
 		boolean flgWhere = false;
 		
-		String sql = "SELECT * FROM funcionario JOIN usuario ON usu_id = fun_usuario ";
+		String sql = "SELECT * FROM funcionario JOIN usuario ON usu_id = fun_usuario";
 		
 		
 		if(funcionario != null) {
@@ -36,7 +36,7 @@ public class FiltroFuncionario implements IFiltro{
 					sql += " WHERE ";
 					flgWhere = true;
 				}
-				campos.put(1, "fun_nome = " + funcionario.getNome());
+				campos.put(1, "fun_nome LIKE '%" + funcionario.getNome() + "%'");
 				qtdCampos.add(1);
 			}
 			
@@ -45,7 +45,7 @@ public class FiltroFuncionario implements IFiltro{
 					sql += " WHERE ";
 					flgWhere = true;
 				}
-				campos.put(2,"fun_cpf = " + funcionario.getCpf());
+				campos.put(2,"fun_cpf LIKE '%" + funcionario.getCpf() + "%'");
 				qtdCampos.add(2);
 			}
 			
@@ -70,7 +70,7 @@ public class FiltroFuncionario implements IFiltro{
 			sql += campos.get(I);
 		}
 		
-		//System.out.println("SQL FUNCIONARIO" + sql);
+		System.out.println("SQL FUNCIONARIO" + sql);
 		return sql;
 	}
 

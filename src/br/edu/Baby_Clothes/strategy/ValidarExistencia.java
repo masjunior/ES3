@@ -13,28 +13,30 @@ public class ValidarExistencia implements IStrategy{
 
 	@Override
 	public String processar(EntidadeDominio entidade) {
-		String retorno  = null;
+		String retorno  = "";
 		
 		IDAO dao = null;
 		if(entidade.getClass().getName().equals(Fornecedor.class.getName())) {
 			Fornecedor fornecedor = (Fornecedor)entidade;
 			dao = new FornecedorDAO();
 			
-			System.out.println("ID FORNECEDOR " + fornecedor.getId());
+//			System.out.println("ID FORNECEDOR " + fornecedor.getId());
 			
 			List<EntidadeDominio>entidadesRetorno = dao.listar(fornecedor);
 			
-			//System.out.println("ID ENTIDADE 0" + entidadesRetorno.get(0).getId());
+			//System.out.println("TAMANHO LISTA VALIDAR EXISTENCIA FORNECEDOR" + entidadesRetorno.size());
 			
 			if(entidadesRetorno != null && !entidadesRetorno.isEmpty()) {
-				System.out.println("FORNECEDOR CADASTRADO");
+				//System.out.println("FORNECEDOR CADASTRADO");
 				retorno += "Fornecedor já cadastrado";
 			}
 		}else if(entidade.getClass().getName().equals(Funcionario.class.getName())) {
 			Funcionario funcionario = (Funcionario)entidade;
 			dao = new FuncionarioDAO();
+			List<EntidadeDominio>entidadesRetorno = dao.listar(funcionario);
 			
-			if(dao.listar(funcionario).size() != 0) {
+			if(entidadesRetorno != null && !entidadesRetorno.isEmpty()) {
+				System.out.println("Funcionario ja cadastrado");
 				retorno += "Funcionário já cadastrado";
 			}
 		}

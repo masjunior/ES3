@@ -54,7 +54,7 @@ public class Fachada implements IFachada {
 		funcionarioRns.add(validarCPF);
 		funcionarioRns.add(complementarDataCadastro);
 		funcionarioRns.add(validarSenha);
-		//funcionarioRns.add(validarExistencia);
+		funcionarioRns.add(validarExistencia);
 
 		strategies.put(Funcionario.class.getName(), funcionarioRns);
 		
@@ -83,7 +83,7 @@ public class Fachada implements IFachada {
 		daos.put(Roupa.class.getName(), new RoupaDAO());
 		List<IStrategy> roupaRns = new ArrayList<IStrategy>();
 		//TODO: arrumar validar preco, esta null em compra
-		//roupaRns.add(validarPrecoVenda);
+		roupaRns.add(validarPrecoVenda);
 		roupaRns.add(validarQuantidadePeca);
 		roupaRns.add(complementarDataCadastro);
 		strategies.put(Roupa.class.getName(), roupaRns);
@@ -101,7 +101,7 @@ public class Fachada implements IFachada {
 		
 		executarMensagem(strategy, entidade);
 		
-		System.out.println("tamanho SB " + sb.length());
+		//System.out.println("tamanho SB " + sb.length());
 		
 		// se tem msg de erro ele não salva
 		if (sb.length() == 0 || sb.toString().trim().equals("")) {

@@ -82,7 +82,7 @@
 				</td>
 				</c:if>	
 				<%
-				out.println("<input type='hidden' value='" + Math.toIntExact(lote.getId()) + "' class='id'>");
+				out.println("<input type='hidden' value='" + Math.toIntExact(lote.getId()) + "' class='txtLoteId'>");
 				out.println("<td class='precoCompraUnidade text-center'> R$"+ lote.getPrecoCompraUnidade()+"</td>");
 				out.println("<td class='quantidadePecas text-center'>"+lote.getQuantidadePecas()+"</td>");
 				out.println("<td class='nomeFantasia text-center'>"+lote.getFornecedor().getNomeFantasia()+"</td>");
