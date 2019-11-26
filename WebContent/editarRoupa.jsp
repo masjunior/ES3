@@ -3,6 +3,7 @@
 <%@ page import="br.edu.fatec.Baby_Clothes.model.EntidadeDominio" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Lote" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Roupa" %>
+<%@ page import="br.edu.fatec.Baby_Clothes.model.Tamanho" %>
 <%@ page import="br.edu.fatec.Baby_Clothes.model.Resultado" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
@@ -31,9 +32,13 @@
 	
 					<%
 				 Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
+					Resultado resultadoLote = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				 List<EntidadeDominio> entidades = null;
+				 List<EntidadeDominio> entidadesLotes = null;
 				 Roupa roupa = null;
-				  
+				 Lote lote = null;
+				 Tamanho tamanho = null;
+				 
 				 if(resultado != null){
 					 entidades = resultado.getEntidades();
 					 
@@ -41,14 +46,12 @@
 						 roupa = (Roupa)entidades.get(0);
 					 }
 				 }
-				 
-				 
 				 %>
 					<form class="needs-validation" action="RoupaController" method="post" novalidate>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
-								<label for="txtId">ID</label> <input type="text" class="form-control" name="txtId" id="txtId"
-									placeholder="" value="<% if(roupa != null){out.println(roupa.getId());} %>" required>
+								<label for="txtRoupaId">ID</label>
+								 <input type="text" class="form-control" name="txtRoupaId" id="txtRoupaId" placeholder="" value="<% if(roupa != null){out.println(roupa.getId());} %>" required>
 								<div class="invalid-feedback">É obrigatório inserir um ID válido.</div>
 							</div>
 						</div>
@@ -76,18 +79,15 @@
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
-								<label for="txtPrecoVenda">Preço de Venda</label> <input type="number" class="form-control" name="txtPrecoVenda"
-									id="txtPrecoVenda" placeholder=""
-									value="<%if(roupa != null){out.println(roupa.getPrecoVenda());} %>" required min="1" step="1">
+								<label for="txtPrecoVenda">Preço de Venda</label>
+									<input type="text" class="form-control" name="txtPrecoVenda" id="txtPrecoVenda" placeholder="" value="<%if(roupa != null){out.println(roupa.getPrecoVenda());} %>" required min="1" step="1">
 								<div class="invalid-feedback">É obrigatório inserir um Preço válido.</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
 								<label for="txtQuantidadeDisponivel">Quantidade Disponível</label>
-								<input type="number" class="form-control" name="txtQuantidadeDisponivel"
-									id="txtQuantidadeDisponivel" placeholder=""
-									value="<%if(roupa != null){out.println(roupa.getQuantidadeDisponivel());} %>" required min="1" step="1">
+								<input type="text" class="form-control" name="txtQuantidadeDisponivel" id="txtQuantidadeDisponivel" placeholder="" value="<%if(roupa != null){out.println(roupa.getQuantidadeDisponivel());} %>" required min="1" step="1">
 								<div class="invalid-feedback">É obrigatório inserir um Fornecedor válido.</div>
 							</div>
 						</div>
@@ -96,6 +96,10 @@
 								<label for="cbTamanho">Tamanho</label>
 								<select class="form-control" name="cbTamanho" id="cbTamanho" required>
 								<option value="">Selecione uma Opção</option>
+								
+							<%
+							out.println("<option value='" + roupa.getTamanho()+"' selected>"+ roupa.getTamanho() + "</option>");
+							%>
 								<option value="RN" <%if(roupa != null){if(roupa.getTamanho().equals("RN")){out.println("selected");}};%> class="RN">Recém-Nascido</option> 
 								<option value="P"  <%if(roupa != null){if(roupa.getTamanho().equals("P")){out.println("selected");}};%>class="P">Pequeno</option>
 								<option value="M"  <%if(roupa != null){if(roupa.getTamanho().equals("M")){out.println("selected");}};%>class="M">Médio</option>
@@ -108,24 +112,35 @@
 						<div class="row">
 							<div class="com-md-12 mb-3">
 								<label for="txtCor">Cor</label>
-								<input type="text" class="form-control" name="txtCor"
-									id="txtCor" placeholder=""
-									value="<%if(roupa != null){out.println(roupa.getCor().getDescricao());} %>" required min="1" step="1">
+								<input type="text" class="form-control" name="txtCor" id="txtCor" placeholder="" value="<%if(roupa != null){out.println(roupa.getCor().getDescricao());} %>" required min="1" step="1">
 								<div class="invalid-feedback">É obrigatório inserir uma Cor válida.</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
 								<label for="txtLote">Lote</label>
-								<input type="number" class="form-control" name="txtLote"
-									id="txtLote" placeholder=""
-									value="<%if(roupa != null){out.println(roupa.getLote().getId());} %>" required min="1" step="1">
+								<select class="form-control" name="txtLote" id="txtLote" required>
+									<%
+									 out.println("<option value='" + roupa.getLote().getId()+"' selected>"+roupa.getLote().getId()+"</option>");
+									 if(resultadoLote != null){
+										 entidadesLotes = resultadoLote.getEntidades();
+										 
+										 if(entidadesLotes != null){
+											 for(EntidadeDominio entidadeLote : entidadesLotes){
+												 lote = (Lote)entidadeLote;
+													if(lote.getId() != roupa.getLote().getId()){
+														 out.println("<option value='"+lote.getId()+"'>"+lote.getId()+"</option>");
+													}
+											 }
+										 }
+									 }
+									%>
+								</select>
 								<div class="invalid-feedback">É obrigatório inserir um Lote válido.</div>
 							</div>
 						</div>
 						<hr class="mb-4">
-						<button class="btn btn-primary btn-lg btn-block" name="operacao" id="ALTERAR" type="submit"
-							value="ALTERAR">ALTERAR</button>
+						<button class="btn btn-primary btn-lg btn-block" name="operacao" id="ALTERAR" type="submit" value="ALTERAR">ALTERAR</button>
 					</form>
 				</div>
 			</div>

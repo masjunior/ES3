@@ -41,7 +41,7 @@ $(".botao-remover").click(function(){
 					botao.closest("tr").fadeOut(1500);
 
 				},
-				data :{txtLoteId : $(this).closest("tr").find(".id").val(), operacao: "EXCLUIR"},				
+				data :{txtLoteId : $(this).closest("tr").find(".txtRoupaId").val(), operacao: "EXCLUIR"},				
 			}).fail(function() {
 				Swal.fire({
 					title: "Algo deu errado",

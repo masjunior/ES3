@@ -156,7 +156,8 @@ public class RoupaDAO implements IDAO{
 		
 		try {
 			conexao = Conexao.getConnection();
-			String sql = "UPDATE roupa SET rou_habilitado = ?, rou_marca = ?, rou_preco_venda = ?, rou_quantidade_diosponivel = ?, rou_tamanho = ?, rou_lote = ?, rou_cor = ? WHERE"
+			conexao.setAutoCommit(false);
+			String sql = "UPDATE roupa SET rou_habilitado = ?, rou_marca = ?, rou_preco_venda = ?, rou_quantidade_disponivel = ?, rou_tamanho = ?, rou_lote = ?, rou_cor = ? WHERE"
 					+ " rou_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
@@ -165,12 +166,15 @@ public class RoupaDAO implements IDAO{
 			pstm.setString(2, roupa.getMarca());
 			pstm.setDouble(3, roupa.getPrecoVenda());
 			pstm.setInt(4, roupa.getQuantidadeDisponivel());
-			pstm.setInt(5, roupa.getTamanho().ordinal());
+			pstm.setInt(5, roupa.getTamanho().getValor());
 			pstm.setLong(6, roupa.getLote().getId());
-			pstm.setLong(7, roupa.getId());
-			pstm.setString(8, roupa.getCor().getDescricao());
+			pstm.setString(7, roupa.getCor().getDescricao());
+			pstm.setLong(8, roupa.getId());
 			
+			System.out.println("ROUPA DAO ID " + roupa.getId());
+			System.out.println("ROUPA DAO Habilitado " + roupa.isHabilitado());
 			pstm.executeUpdate();
+			conexao.commit();
 			
 			
 		}catch(Exception e) {

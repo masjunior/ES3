@@ -50,8 +50,8 @@
 			 		
 			 			<div class="com-md-12 mb-3">
 			 				
-			 				<label for="txtId">ID</label>
-			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="" required>		
+			 				<label for="txtRoupaId">ID</label>
+			 				<input type="text" class="form-control" name="txtRoupaId" id="txtRoupaId" placeholder="" value="" required>		
 			 				<div class="invalid-feedback">É obragatório inserir um ID válido.</div>
 			 				
 			 			</div>

@@ -9,7 +9,7 @@ $(".botao-remover").click(function(){
 //	console.log($(this).text());
 //	});
 	let botao = $(this);
-	let id = $(this).closest("tr").find(".id").val();
+	let id = $(this).closest("tr").find(".txtRoupaId").val();
 	let marca = $(this).closest("tr").find(".marca").text();
 	let precoVenda = $(this).closest("tr").find(".precoVenda").text();
 	let quantidadeDisponivel= $(this).closest("tr").find(".quantidadeDisponivel").text();
@@ -43,7 +43,7 @@ $(".botao-remover").click(function(){
 					botao.closest("tr").fadeOut(1500);
 
 				},
-				data :{txtId : $(this).closest("tr").find(".id").val(), operacao: "EXCLUIR"},				
+				data :{txtRoupaId : $(this).closest("tr").find(".txtRoupaId").val(), operacao: "EXCLUIR"},				
 			}).fail(function() {
 				Swal.fire({
 					title: "Algo deu errado",

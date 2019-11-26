@@ -77,7 +77,7 @@
 				<td class="text-center">
 				<form action="/ES3/editarRoupa.jsp" method="POST">
 				<% 
-				out.println("<input type='hidden' name='txtId' value='" + Math.toIntExact(roupa.getId()) + "' class='id form-control'>");
+				out.println("<input type='hidden' name='txtRoupaId' value='" + Math.toIntExact(roupa.getId()) + "' class='txtRoupaId form-control'>");
 				%>
 				<button name="operacao" id="CONSULTAR" type="submit" value="CONSULTAR" style="border-width: inherit; background: border-box;">
 					<a href="" class="botao-alterar">

@@ -30,7 +30,7 @@ public class FilterListarRoupa implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoRoupaConsultar");
-		String id = (String)request.getParameter("txtId");
+		String id = (String)request.getParameter("txtRoupaId");
 		
 		if(resultado == null) {
 			resultado = new Resultado();

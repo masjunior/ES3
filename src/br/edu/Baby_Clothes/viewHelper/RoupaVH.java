@@ -80,22 +80,21 @@ public class RoupaVH implements IViewHelper{
 		Cor cor = new Cor();
 		Long id = null ;
 		
-		if(request.getParameter("txtId")!= "") {
-			id = Long.parseLong(request.getParameter("txtId"));
+		if(request.getParameter("txtRoupaId")!= "") {
+			id = Long.parseLong(request.getParameter("txtRoupaId"));
 		}
 		String dataString = request.getParameter("txtDataCadastro");
 
 		if(dataString == null) {
 			System.out.println("data vazia");
 		}else {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-			LocalDateTime data = LocalDateTime.parse(dataString, formatter);
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			LocalDateTime data = LocalDateTime.parse(dataString);
 			
 			roupa.setDataCriacao(data);
 		}
 		
 		String habilitadoString = request.getParameter("txtHabilitado");
-		boolean habilitado = Boolean.getBoolean(habilitadoString);
 		
 		String marca = request.getParameter("txtMarca");
 		
@@ -125,9 +124,11 @@ public class RoupaVH implements IViewHelper{
 //		if(data != null) {
 //		}
 		
-		if(habilitado == true || habilitado == false) {
-			roupa.setHabilitado(habilitado);
+		if(habilitadoString != null) {
+			roupa.setHabilitado(Boolean.valueOf(habilitadoString));
 		}
+		
+		System.out.println("RopuaVH Habilitado " + roupa.isHabilitado());
 		
 		if(marca != null && !marca.trim().equals("") && !marca.isEmpty()) {
 			roupa.setMarca(marca);
