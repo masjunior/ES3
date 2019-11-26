@@ -43,17 +43,17 @@
 								<div class="form-label-group">
 									<label for="inputPassword">Senha</label> <input type="password"
 										id="txtSenha" name="txtSenha" class="form-control"
-										placeholder="*******" required="required"> <a
-										class="d-block small" href="#">Esqueceu sua senha?</a>
+										placeholder="*******" required="required">
+<!-- 										 <a class="d-block small" href="#">Esqueceu sua senha?</a> -->
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="checkbox">
-									<label> <input type="checkbox" value="remember-me">
-										Lembrar senha
-									</label>
-								</div>
-							</div>
+<!-- 							<div class="form-group"> -->
+<!-- 								<div class="checkbox"> -->
+<!-- 									<label> <input type="checkbox" value="remember-me"> -->
+<!-- 										Lembrar senha -->
+<!-- 									</label> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<button type="submit" class="btn btn-primary btn-block"
 								name="btnOperacao" value="CONSULTAR">Entrar</button>
 						</form>

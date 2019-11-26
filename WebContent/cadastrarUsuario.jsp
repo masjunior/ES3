@@ -25,6 +25,8 @@
 		<c:import url="pedacos/navbar.jsp" />
 	</div>
 
+<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR' }">
+
 	<div class="row" >
 
 		<div class="container" style=" margin-top: 4%;">
@@ -140,7 +142,11 @@
 		<c:import url="pedacos/footer.jsp" />
 	</div>
 	
+</c:if>
 
+<c:if test="${usuarioAutenticado.nivelAcesso != 'ADMINISTRADOR' }">
+<h1 style="margin-top: 10%; text-align: center;">Você não possui permissão de acesso.</h1>
+</c:if>
 		<!-- Principal JavaScript do Bootstrap
     ================================================== -->
 	<!-- Foi colocado no final para a página carregar mais rápido -->
@@ -150,6 +156,7 @@
 	<script src="plugins/jquery-3.1.1.min.js"></script>
     <script src="plugins/popper.min.js"></script>
     <script src="plugins/bootstrap.min.js"></script>
+
 </body>
 
 </html>
