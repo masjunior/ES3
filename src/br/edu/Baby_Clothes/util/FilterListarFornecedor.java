@@ -18,7 +18,7 @@ import br.edu.fatec.Baby_Clothes.model.Resultado;
 
 
 //@WebFilter(urlPatterns = {"/login.jsp", "/cadastrarFornecedor.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp",  "/listarFornecedor.jsp", "/listarLote.jsp"})
-@WebFilter(urlPatterns = { "/listarFornecedor.jsp", "/cadastroLote.jsp", "/editarFornecedor.jsp"})
+@WebFilter(urlPatterns = { "/listarFornecedor.jsp", "/cadastroLote.jsp", "/editarFornecedor.jsp", "/editarLote.jsp"})
 public class FilterListarFornecedor implements Filter {
 
 	@Override

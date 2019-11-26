@@ -52,7 +52,7 @@ public class FuncionarioVH implements IViewHelper{
 			resultado.setMensagem("Altera��o do funcion�rio foi realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
 			d = request.getRequestDispatcher("listaFuncionario.jsp");
-			response.sendRedirect("listarFuncionario.jsp");
+			response.sendRedirect("listaFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O funcion�rio foi excluido com sucesso!");
@@ -70,12 +70,12 @@ public class FuncionarioVH implements IViewHelper{
 		
 		String id = request.getParameter("txtId");
 		String dtCadastro = request.getParameter("txtDtCadastro");
+		String habilitado = request.getParameter("txtHabilitado");
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
 		String email = request.getParameter("txtEmail");
 		String senha = request.getParameter("txtCPF");
 		String nivelAcesso = request.getParameter("txtNivelAcesso");
-//		String operacao = request.getParameter("operacao");
 		
 		if(id != null ) {
 			if(!id.trim().equalsIgnoreCase("") || !id.isEmpty()) {
@@ -85,9 +85,15 @@ public class FuncionarioVH implements IViewHelper{
 		
 		if(dtCadastro != null) {
 			if( !dtCadastro.trim().equalsIgnoreCase("") || dtCadastro.isEmpty()) {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM--dd HH:mm:ss");
-				funcionario.setDataCriacao(LocalDateTime.parse(dtCadastro, formatter));
+				LocalDateTime date = LocalDateTime.parse(dtCadastro);
+//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM--dd HH:mm:ss");
+//				funcionario.setDataCriacao(LocalDateTime.parse(dtCadastro, formatter));
+				funcionario.setDataCriacao(date);
 			}
+		}
+		
+		if(habilitado != null ) {
+			funcionario.setHabilitado(Boolean.valueOf(habilitado));
 		}
 			
 		if(nome != null) {

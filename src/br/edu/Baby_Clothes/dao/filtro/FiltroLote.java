@@ -44,7 +44,7 @@ public class FiltroLote implements IFiltro {
 			
 		//Cria SQL para consultar o lote inteiro
 		}else if(etd.getClass().getName().equalsIgnoreCase(Lote.class.getName())) {
-			Lote lote = (Lote)etd;
+			Lote lote = (Lote)entidade;
 			qtdCampos = new ArrayList<Integer>();
 			campos = new HashMap<Integer, String>();
 			

@@ -72,9 +72,8 @@ public class FornecedorVH implements IViewHelper{
 	private Fornecedor criarFornecedor(HttpServletRequest request) {
 		Fornecedor fornecedor = new Fornecedor();
 		
-		String operacao = request.getParameter("operacao");
 		String idString = request.getParameter("txtId");
-		String dataString = request.getParameter("txtDataCadastro");
+		String dtCadastro = request.getParameter("txtDataCadastro");
 		String habilitado = request.getParameter("txtHabilitado");
 		String razaoSocial = request.getParameter("txtRazaoSocial");
 		String cnpj = request.getParameter("txtCNPJ");
@@ -105,10 +104,10 @@ public class FornecedorVH implements IViewHelper{
 			fornecedor.setId(id);
 		}
 		
-		if(dataString == null) {
+		if(dtCadastro == null) {
 			System.out.println("data vazia");
 		}else {
-			LocalDateTime date = LocalDateTime.parse(dataString);
+			LocalDateTime date = LocalDateTime.parse(dtCadastro);
 //			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //			LocalDateTime date = LocalDateTime.parse(dataString, formatter);
 			fornecedor.setDataCriacao(date);

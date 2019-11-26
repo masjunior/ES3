@@ -72,12 +72,9 @@ public class LoteVH implements IViewHelper{
 		
 		String dataString = request.getParameter("txtData");
 		
-		
-		String idString = request.getParameter("txtId");
-		
+		String idString = request.getParameter("txtLoteId");
 		
 		String habilitadoString = request.getParameter("txtHabilitado");
-		
 		
 		String precoString = request.getParameter("txtPrecoCompraUnidade");
 		double precoCompraUnidade = 0;

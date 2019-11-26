@@ -179,7 +179,7 @@ public class LoteDAO implements IDAO{
 
 	@Override
 	public List<EntidadeDominio> listar(EntidadeDominio entidade) {
-		Lote lote;
+		Lote lotenovo;
 		PreparedStatement pstm = null;
 		List<EntidadeDominio> listaLotes = null;
 		
@@ -188,13 +188,13 @@ public class LoteDAO implements IDAO{
 		
 		if(entidade.getClass().getName().equals(Fornecedor.class.getName())) {
 			Fornecedor fornecedor = (Fornecedor)entidade;
-			lote = new Lote();
-			lote.setFornecedor(fornecedor);
+			lotenovo = new Lote();
+			lotenovo.setFornecedor(fornecedor);
 		}else  {
-			lote = (Lote)entidade;
+			lotenovo = (Lote)entidade;
 		}
 		
-		String sql = filtro.gerarQuerry(lote);
+		String sql = filtro.gerarQuerry(lotenovo);
 		
 		try {
 			conexao = Conexao.getConnection();

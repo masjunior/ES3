@@ -46,7 +46,7 @@
 				 
 				 
 				 %>
-					<form class="needs-validation" action="LoteController" method="post" novalidate>
+					<form class="needs-validation" action="FuncionarioController" method="post" novalidate>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
 								<label for="txtId">ID</label> <input type="text" class="form-control" name="txtId" id="txtId"

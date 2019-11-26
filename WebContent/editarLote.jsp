@@ -51,37 +51,37 @@
 					<form class="needs-validation" action="LoteController" method="post" novalidate>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
-								<label for="txtId">ID</label> <input type="text" class="form-control" name="txtId" id="txtId"
-									placeholder="" value="<% if(lote != null){out.println(lote.getId());} %>" required>
+								<label for="txtLoteId">ID</label>
+								 <input type="text" class="form-control" name="txtLoteId" id="txtLoteId"	placeholder="" value="<% if(lote != null){out.println(lote.getId());} %>" required>
 								<div class="invalid-feedback">É obrigatório inserir um ID válido.</div>
 							</div>
 						</div>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
-								<label for="txtDataCadastro">Data de Cadastro</label> <input type="text" class="form-control"
-									name="txtDataCadastro" id="txtDataCadastro" placeholder="" value="<%if(lote != null){out.println(lote.getDataCriacao());} %>" required>
+								<label for="txtDataCadastro">Data de Cadastro</label>
+								 <input type="text" class="form-control" name="txtDataCadastro" id="txtDataCadastro" placeholder="" value="<%if(lote != null){out.println(lote.getDataCriacao());} %>" required>
 								<div class="invalid-feedback">É obrigatório inserir uma Data de Cadastro válida.</div>
 							</div>
 						</div>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
-								<label for="txtHabilitado">HABILITADO?</label> <input type="text" class="form-control"
-									name="txtHabilitado" id="txtHabilitado" placeholder="" value="<%if(lote != null){out.println(lote.isHabilitado());} %>" required>
+								<label for="txtHabilitado">HABILITADO?</label>
+								 <input type="text" class="form-control" name="txtHabilitado" id="txtHabilitado" placeholder="" value="<%if(lote != null){out.println(lote.isHabilitado());} %>" required>
 								<div class="invalid-feedback">É obrigatório inserir uma Data de Cadastro válida.</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
-								<label for="txtPrecoCompraUnidade">Preço de compra por Unidade</label> <input type="number" class="form-control"
-									name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidade" placeholder=""
+								<label for="txtPrecoCompraUnidade">Preço de compra por Unidade</label>
+								<input type="text" class="form-control" name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidade" placeholder=""
 									value="<%if(lote != null){out.println(lote.getPrecoCompraUnidade());} %>" required min="1" step="0.01">
 								<div class="invalid-feedback">É obrigatório inserir um valor válido.</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
-								<label for="txtQuantidadePecas">Quantidade de Peças</label> <input type="number" class="form-control" name="txtQuantidadePecas"
-									id="txtQuantidadePecas" placeholder=""
+								<label for="txtQuantidadePecas">Quantidade de Peças</label>
+								<input type="text" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder=""
 									value="<%if(lote != null){out.println(lote.getQuantidadePecas());} %>" required min="1" step="1">
 								<div class="invalid-feedback">É obrigatório inserir uma Quantidade válida.</div>
 							</div>
@@ -89,28 +89,25 @@
 						<div class="row">
 							<div class="com-md-12 mb-3">
 								<label for="txtFornecedor">Fornecedor</label>
-								<select class="form-control" name="cbFornecedor" if="cbFornecedor" required>
+								<select class="form-control" name="cbFornecedor" id="cbFornecedor" required>
 									<%
-									if(resultado2 != null){
+									 out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
+									 if(resultado2 != null){
 										 entidades2 = resultado2.getEntidades();
 										 
-										 if(entidades2 != null && !entidades2.isEmpty()){
+										 if(entidades2 != null){
 											 for(EntidadeDominio entidade2 : entidades2){
 												 fornecedor = (Fornecedor)entidade2;
-												 
-												 if(fornecedor.getId() != lote.getFornecedor().getId()){
-													 //out.println("<option value='>" + fornecedor.getId()+"' selected>"+fornecedor.getNomeFantasia()+"</option>");
-													 out.println("<option value='"+fornecedor.getId()+"'>"+fornecedor.getNomeFantasia()+"</option>");
-												 }else{
-													 //out.println("<option value='"+fornecedor.getId()+"'>"+fornecedor.getNomeFantasia()+"</option>");
-													 out.println("<option value='>" + fornecedor.getId()+"' selected>"+fornecedor.getNomeFantasia()+"</option>");
-												 }
+													if(lote.getFornecedor().getId() != fornecedor.getId()){
+														 out.println("<option value='"+fornecedor.getId()+"'>"+fornecedor.getNomeFantasia()+"</option>");
+													}
 											 }
 										 }
 									 }
 									
 									
 									%>
+								
 								</select>
 								<div class="invalid-feedback">É obrigatório inserir um Fornecedor válido.</div>
 							</div>

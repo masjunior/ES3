@@ -46,9 +46,9 @@
 				 }
 			 }
 			 %>
-			 	<form class="needs-validation" action="FornecedorController" method="post" novalidate>
+			 	<form class="needs-validation col-md-6 mx-auto" action="FornecedorController" method="post" novalidate>
 			 		<div class="row d-none">
-			 			<div class="com-md-12 mb-3">
+			 			<div class="form-group mb-3">
 			 				<label for="txtId">ID</label>
 			 				<input type="text" class="form-control" name="txtId" id="txtId" placeholder="" value="<% request.getParameter("id"); %>" required>		
 			 				<div class="invalid-feedback">
@@ -113,7 +113,7 @@
 			 		<div class="row">
 			 			<div class="com-md-12 mb-3">
 			 				<label for="txtTelefone">Telefone</label>
-			 				<input type="text" class="form-control" name="txtTelefone" id="txtTelefone" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getTelefone());} %>" required>		
+			 				<input type="text" maxlength="11" class="form-control" name="txtTelefone" id="txtTelefone" placeholder="" value="<%if(fornecedor != null){out.println(fornecedor.getTelefone());} %>" required>		
 			 				<div class="invalid-feedback">
 			 					É obrigatório inserir um Telefone válido.
 			 				</div>

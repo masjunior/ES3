@@ -176,9 +176,6 @@ public class FuncionarioDAO implements IDAO{
 	public List<EntidadeDominio> listar(EntidadeDominio entidade) {
 		Funcionario funcionario = (Funcionario)entidade;
 		PreparedStatement pstm = null;
-		UsuarioDAO usuDao = new UsuarioDAO();
-		
-		
 		
 		List<EntidadeDominio>funcionarios = null;
 		FiltroFuncionario filtro = new FiltroFuncionario();

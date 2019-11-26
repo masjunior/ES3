@@ -31,6 +31,7 @@ public class FilterListarLote implements Filter {
 			throws IOException, ServletException {
 		
 		Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
+		String id = (String)request.getParameter("txtLoteId");
 		
 		if(resultado == null) {
 			resultado = new Resultado();
@@ -39,6 +40,9 @@ public class FilterListarLote implements Filter {
 				System.out.println("ENTROU IF CONSULTA");
 				LoteDAO dao = new LoteDAO();
 				Lote lote = new Lote();
+				if(id != null) {
+					lote.setId(Long.parseLong(id));
+				}
 				List<EntidadeDominio>lotes = dao.listar(lote);
 				
 				
