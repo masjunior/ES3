@@ -30,7 +30,7 @@
 				<div class="col-m1 order-md-1">
 	
 					<%
-				 Resultado resultado = (Resultado)request.getAttribute("ResultadoFuncionarioConsultar");
+				 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoFuncionarioConsultar");
 				 
 				 List<EntidadeDominio> entidades = null;
 				 Funcionario funcionario = null;

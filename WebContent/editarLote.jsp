@@ -91,7 +91,10 @@
 								<label for="txtFornecedor">Fornecedor</label>
 								<select class="form-control" name="cbFornecedor" id="cbFornecedor" required>
 									<%
-									 out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
+									if(lote.getFornecedor() != null){
+										out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
+									}
+									 
 									 if(resultado2 != null){
 										 entidades2 = resultado2.getEntidades();
 										 
