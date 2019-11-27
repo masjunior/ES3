@@ -77,13 +77,13 @@ INSERT INTO `site_roupa`.`usuario` (`usu_id`,`usu_data_criacao`, `usu_habilitado
 
 /* FUNCIONARIO */
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
-VALUES (1,"ADMINISTRADOR",11111111111,1);
+VALUES (1,"ADMINISTRADOR",84411511053,1);
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
-VALUES (2,"MODERADOR_JUNIOR",22222222222,2);
+VALUES (2,"MODERADOR_JUNIOR",15258065057,2);
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
-VALUES (3,"MODERADOR_PLENO",33333333333,3);
+VALUES (3,"MODERADOR_PLENO",86669975082,3);
 INSERT INTO `site_roupa`.`funcionario` (`fun_id`,`fun_nome`,`fun_cpf`, `fun_usuario`)
-VALUES (4,"MODERADOR_SENIOR",44444444444,4);
+VALUES (4,"MODERADOR_SENIOR",04157904095,4);
 
 /* FORNECEDOR */
 INSERT INTO `site_roupa`.`fornecedor`
