@@ -56,7 +56,7 @@ public class FornecedorDAO implements IDAO {
 			
 		}catch(Exception e) {
 			try {
-				System.out.println("entrei no exception");
+//				System.out.println("entrei no exception");
 				conexao.rollback();
 				
 			}catch(SQLException eSQL) {
@@ -152,7 +152,7 @@ public class FornecedorDAO implements IDAO {
 		Fornecedor fornecedor =(Fornecedor)entidade;
 		PreparedStatement pstm = null;
 		
-		System.out.println("ID FORNECEDOR DAO" + fornecedor.getId());
+//		System.out.println("ID FORNECEDOR DAO" + fornecedor.getId());
 		
 		List<EntidadeDominio> listaFornecedores = null;
 		FiltroFornecedor filtro = new FiltroFornecedor();

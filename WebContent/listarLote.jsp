@@ -69,7 +69,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-				<form action="/ES3/editarLote.jsp" method="POST">
+				<form action="editarLote.jsp" method="POST">
 				<% 
 				out.println("<input type='hidden' name='txtLoteId' value='" + Math.toIntExact(lote.getId()) + "' class='txtLoteId form-control'>");
 				%>

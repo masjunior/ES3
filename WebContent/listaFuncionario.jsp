@@ -76,7 +76,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
 				<td class="text-center">
-				<form action="editarFuncionario.jsp" method="POST">
+				<form action="FuncionarioController" method="POST">
 				<% 
 				out.println("<input type='hidden' name='txtId' value='" + Math.toIntExact(funcionario.getId()) + "' class='id form-control'>");
 				%>

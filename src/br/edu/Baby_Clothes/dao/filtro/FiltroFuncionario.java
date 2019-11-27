@@ -70,7 +70,7 @@ public class FiltroFuncionario implements IFiltro{
 			sql += campos.get(I);
 		}
 		
-		System.out.println("SQL FUNCIONARIO" + sql);
+//		System.out.println("SQL FUNCIONARIO" + sql);
 		return sql;
 	}
 

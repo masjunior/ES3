@@ -23,11 +23,11 @@ public class FiltroFornecedor implements IFiltro{
 		//System.out.println("inicio IFS filtroFornecedor");
 		
 		if(fornecedor == null) {
-			System.out.println("fornecedor nulo");
+//			System.out.println("fornecedor nulo");
 		}
 		
 		if(fornecedor.getId() == null) {
-			System.out.println("Id nulo");
+//			System.out.println("Id nulo");
 			
 		}else if(fornecedor.getId() > 0) {
 			if(!flgWhere) {
@@ -85,7 +85,7 @@ public class FiltroFornecedor implements IFiltro{
 			qtdCampos.add(5);
 		}
 		
-		System.out.println("FILTRO FORNECEDOR CNPJ " + fornecedor.getCnpj());
+//		System.out.println("FILTRO FORNECEDOR CNPJ " + fornecedor.getCnpj());
 		if(fornecedor.getCnpj() != null) {
 			if(!flgWhere) {
 				querry += " WHERE ";
@@ -121,7 +121,7 @@ public class FiltroFornecedor implements IFiltro{
 			querry += campos.get(I);
 		}
 		
-		System.out.println(querry);
+//		System.out.println(querry);
 		
 		return querry;
 		

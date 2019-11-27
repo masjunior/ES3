@@ -72,9 +72,9 @@ public class FuncionarioDAO implements IDAO{
 			connection.commit();
 		
 		}catch (Exception e) {
-			System.out.println("teste erro " + e.toString());
+//			System.out.println("teste erro " + e.toString());
 			try {
-				System.out.println("passei");
+//				System.out.println("passei");
 				connection.rollback();
 			}catch (SQLException ee) {
 				ee.printStackTrace();

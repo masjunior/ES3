@@ -159,7 +159,7 @@ public class UsuarioDAO implements IDAO {
 			
 //			conexao.setAutoCommit(false);
 			pstm = conexao.prepareStatement(sql);
-			System.out.println(sql);
+//			System.out.println(sql);
 //			conexao.commit();
 			ResultSet rs = pstm.executeQuery();
 			
@@ -262,7 +262,7 @@ public class UsuarioDAO implements IDAO {
 			}
 		}
 		
-		System.out.println("vou retornar null");
+//		System.out.println("vou retornar null");
 		return null;
 	}
 	

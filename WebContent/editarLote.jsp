@@ -30,7 +30,7 @@
 				<div class="col-m1 order-md-1">
 	
 					<%
-				 Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
+				 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoLoteConsulta");
 				 Resultado resultado2 = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 				 List<EntidadeDominio> entidades = null;
 				 Lote lote = null;
@@ -91,7 +91,10 @@
 								<label for="txtFornecedor">Fornecedor</label>
 								<select class="form-control" name="cbFornecedor" id="cbFornecedor" required>
 									<%
+									if(lote.getFornecedor() != null){
+										
 									 out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
+									}
 									 if(resultado2 != null){
 										 entidades2 = resultado2.getEntidades();
 										 

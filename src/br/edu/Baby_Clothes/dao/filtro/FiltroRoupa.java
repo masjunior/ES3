@@ -113,7 +113,7 @@ public class FiltroRoupa implements IFiltro{
 			
 		}
 		
-		System.out.println("ESTE E DO MARCO NO FILTRO ROUPA " + sql);
+//		System.out.println("ESTE E DO MARCO NO FILTRO ROUPA " + sql);
 		return sql;
 		
 	}

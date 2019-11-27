@@ -33,7 +33,7 @@ public class FiltroLote implements IFiltro {
 			Fornecedor fornecedor = (Fornecedor)etd;
 			
 			if(fornecedor == null) {
-				System.out.println("fornecedor nulo");
+//				System.out.println("fornecedor nulo");
 			}else if(fornecedor.getId() > 0) {
 				sql += " WHERE lot_fornecedor = " + fornecedor.getId();
 				
@@ -49,7 +49,7 @@ public class FiltroLote implements IFiltro {
 			campos = new HashMap<Integer, String>();
 			
 			if(lote.getId() == null) {
-				System.out.println("ID LOTE NULO");
+//				System.out.println("ID LOTE NULO");
 			}else {
 				if(lote.getId() > 0) {
 					if(!flgWhere) {
@@ -115,7 +115,7 @@ public class FiltroLote implements IFiltro {
 				sql += campos.get(I);
 			}
 			
-			System.out.println(" Filtro LOTE " + sql);
+//			System.out.println(" Filtro LOTE " + sql);
 			return sql;
 			
 		}

@@ -30,7 +30,7 @@
 				<div class="col-m1 order-md-1">
 	
 					<%
-				 Resultado resultado = (Resultado)request.getAttribute("ResultadoFuncionarioConsultar");
+				 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoFuncionarioConsultar");
 				 
 				 List<EntidadeDominio> entidades = null;
 				 Funcionario funcionario = null;
@@ -94,7 +94,7 @@
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
-								<label for="txtSenha">CPF</label> <input type="text" class="form-control" name="txtSenha"
+								<label for="txtSenha">Senha</label> <input type="text" class="form-control" name="txtSenha"
 									id="txtSenha" placeholder=""
 									value="<%if(funcionario != null){out.println(funcionario.getUsuario().getSenha());} %>" required>
 								<div class="invalid-feedback">É obrigatório inserir uma Senha válido.</div>

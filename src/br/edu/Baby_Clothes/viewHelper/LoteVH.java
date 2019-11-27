@@ -42,9 +42,10 @@ public class LoteVH implements IViewHelper{
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")) {
 			resultado.setMensagem("Consulta Realizada");
-			request.setAttribute("ResultadoConsultaLote", resultado);
+			request.setAttribute("ResultadoLoteConsulta", resultado);
 			d = request.getRequestDispatcher("listarLote.jsp");
 			d.forward(request, response);
+//			response.sendRedirect("editarLote.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Alteração realizada com Sucesso.");

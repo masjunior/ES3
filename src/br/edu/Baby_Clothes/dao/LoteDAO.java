@@ -106,7 +106,7 @@ public class LoteDAO implements IDAO{
 		Lote lote = (Lote)entidade;
 		PreparedStatement pstm = null;
 		
-		System.out.println("LOTE ID DAO" + lote.getId());
+//		System.out.println("LOTE ID DAO" + lote.getId());
 		
 		try {
 			conexao = Conexao.getConnection();
@@ -258,7 +258,7 @@ public class LoteDAO implements IDAO{
 				listaLotes.add(lt);
 				
 			}
-			System.out.println("TAMANHO LISTA" + listaLotes.size());
+//			System.out.println("TAMANHO LISTA" + listaLotes.size());
 			return listaLotes;
 			
 		}catch(Exception e) {

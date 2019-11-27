@@ -37,7 +37,7 @@ public class FilterListarLote implements Filter {
 			resultado = new Resultado();
 			
 			if(resultado.getEntidades() == null) {
-				System.out.println("ENTROU IF CONSULTA");
+//				System.out.println("ENTROU IF CONSULTA");
 				LoteDAO dao = new LoteDAO();
 				Lote lote = new Lote();
 				if(id != null) {
@@ -50,7 +50,7 @@ public class FilterListarLote implements Filter {
 				
 				
 				if(lotes == null || lotes.isEmpty()) {
-					System.out.println("LISTA NULA");
+//					System.out.println("LISTA NULA");
 				}
 				
 				if(lotes != null && !lotes.isEmpty()) {
@@ -63,7 +63,7 @@ public class FilterListarLote implements Filter {
 				}
 				
 				
-			System.out.println("Tamanho LIsta Filter" + resultado.getEntidades().size());
+//			System.out.println("Tamanho LIsta Filter" + resultado.getEntidades().size());
 			request.setAttribute("ResultadoLoteConsulta", resultado);
 			}
 		}
