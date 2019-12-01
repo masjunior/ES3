@@ -11,7 +11,7 @@
 	<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR' }">
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="listaFuncionario.jsp">Listar Funcionário</a></li>
+				<li class="nav-item"><a class="nav-link" href="listarFuncionario.jsp">Listar Funcionário</a></li>
 				<li class="nav-item"><a class="nav-link" href="cadastrarUsuario.jsp">Cadastrar Funcionário</a></li>
 			</ul>
 

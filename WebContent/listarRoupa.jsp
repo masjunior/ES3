@@ -52,7 +52,7 @@
 					</thead>
 					<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
 						<div class="row text-right" >
-							<a href="/ES3/cadastrarProduto.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+							<a href="/ES3/cadastrarRoupa.jsp" class="botao-cadastrar col-12 text-truncate " value="">
 				  				NOVA ROUPA <i class="material-icons large text-right">add</i>
 							</a>
 						</div>

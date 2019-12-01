@@ -39,8 +39,8 @@ public class FuncionarioVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("SALVAR")) {
 			resultado.setMensagem("Cadastro do funcion�rio foi realizado com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("listaFuncionario.jsp");
-			response.sendRedirect("listaFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFuncionario.jsp");
+			response.sendRedirect("listarFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
 			resultado.setMensagem("Consulta de funcionário realizada com sucesso!");
@@ -53,13 +53,13 @@ public class FuncionarioVH implements IViewHelper{
 		}else if(operacao.equalsIgnoreCase("ALTERAR")) {
 			resultado.setMensagem("Altera��o do funcion�rio foi realizada com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("listaFuncionario.jsp");
-			response.sendRedirect("listaFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFuncionario.jsp");
+			response.sendRedirect("listarFuncionario.jsp");
 			
 		}else if(operacao.equalsIgnoreCase("EXCLUIR")) {
 			resultado.setMensagem("O funcion�rio foi excluido com sucesso!");
 			request.getSession().setAttribute("Resultado", resultado);
-			d = request.getRequestDispatcher("listaFuncionario.jsp");
+			d = request.getRequestDispatcher("listarFuncionario.jsp");
 			d.forward(request, response);
 		}
 		 

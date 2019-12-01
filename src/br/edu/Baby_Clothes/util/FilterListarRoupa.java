@@ -16,7 +16,7 @@ import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
 
-//@WebFilter(urlPatterns = {"/login.jsp", "/cadastrarFornecedor.jsp", "/cadastroLote.jsp", "/cadastrarProduto.jsp",  "/listarFornecedor.jsp", "/listarLote.jsp", "/listarRoupa"})
+//@WebFilter(urlPatterns = {"/login.jsp", "/cadastrarFornecedor.jsp", "/cadastrarLote.jsp", "/cadastrarRoupa.jsp",  "/listarFornecedor.jsp", "/listarLote.jsp", "/listarRoupa"})
 @WebFilter(urlPatterns = {"/listarRoupa.jsp", "/editarRoupa.jsp"})
 public class FilterListarRoupa implements Filter{
 
