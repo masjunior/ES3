@@ -10,6 +10,7 @@ package br.edu.fatec.Baby_Clothes.model;
 public class Roupa extends EntidadeDominio {
 	
 	private String marca;
+	private Double precoCompra;
 	private Double precoVenda;
 	private int quantidadeDisponivel;
 	private Tamanho tamanho;
@@ -17,18 +18,20 @@ public class Roupa extends EntidadeDominio {
 	private Cor cor;
 	
 	
-	public Cor getCor() {
-		return cor;
-	}
-	public void setCor(Cor cor) {
-		this.cor = cor;
-	}
 	public String getMarca() {
 		return marca;
 	}
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+	
+	public Double getPrecoCompra() {
+		return precoCompra;
+	}
+	public void setPrecoCompra(Double precoCompra) {
+		this.precoCompra = precoCompra;
+	}
+	
 	public Double getPrecoVenda() {
 		return precoVenda;
 	}
@@ -52,5 +55,12 @@ public class Roupa extends EntidadeDominio {
 	}
 	public void setLote(Lote lote) {
 		this.lote = lote;
-	} 
+	}
+	
+	public Cor getCor() {
+		return cor;
+	}
+	public void setCor(Cor cor) {
+		this.cor = cor;
+	}
 }

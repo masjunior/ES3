@@ -15,7 +15,6 @@ import br.edu.Baby_Clothes.util.Conexao;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Fornecedor;
 import br.edu.fatec.Baby_Clothes.model.Lote;
-import br.edu.fatec.Baby_Clothes.model.Roupa;
 
 public class LoteDAO implements IDAO{
 
@@ -31,8 +30,8 @@ public class LoteDAO implements IDAO{
 			
 			if(lote.getFornecedor().getId() != null || lote.getFornecedor().getId() <= 0) {
 				conexao.setAutoCommit(false);
-				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
-						+ "(?,?,?,?,?)";
+				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_quantidadePecas, lot_fornecedor) VALUES"
+						+ "(?,?,?,?)";
 				
 				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				
@@ -41,9 +40,8 @@ public class LoteDAO implements IDAO{
 				pstm.setDate(1, sqlDate);
 				
 				pstm.setBoolean(2, true);
-				pstm.setDouble(3, lote.getPrecoCompraUnidade());
-				pstm.setInt(4, lote.getQuantidadePecas());
-				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
+				pstm.setInt(3, lote.getQuantidadePecas());
+				pstm.setInt(4, Math.toIntExact(lote.getFornecedor().getId()));
 				
 				pstm.executeUpdate();
 				
@@ -63,8 +61,8 @@ public class LoteDAO implements IDAO{
 				lote.getFornecedor().setId(id);
 				
 				conexao.setAutoCommit(false);
-				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_precoCompraUnidade, lot_quantidadePecas, lot_fornecedor) VALUES"
-						+ "(?,?,?,?,?)";
+				String sql = "INSERT INTO lote(lot_data_criacao, lot_habilitado, lot_quantidadePecas, lot_fornecedor) VALUES"
+						+ "(?,?,?,?)";
 				
 				pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				
@@ -73,9 +71,8 @@ public class LoteDAO implements IDAO{
 				pstm.setDate(1, sqlDate);
 				
 				pstm.setBoolean(2, true);
-				pstm.setDouble(3, lote.getPrecoCompraUnidade());
-				pstm.setInt(4, lote.getQuantidadePecas());
-				pstm.setInt(5, Math.toIntExact(lote.getFornecedor().getId()));
+				pstm.setInt(3, lote.getQuantidadePecas());
+				pstm.setInt(4, Math.toIntExact(lote.getFornecedor().getId()));
 				
 				pstm.executeUpdate();
 				
@@ -148,15 +145,14 @@ public class LoteDAO implements IDAO{
 		try {
 			conexao = Conexao.getConnection();
 			conexao.setAutoCommit(false);
-			String sql = "UPDATE lote SET lot_habilitado = ?, lot_precoCompraUnidade = ?, lot_quantidadePecas = ?, lot_fornecedor = ? WHERE lot_id = ?";
+			String sql = "UPDATE lote SET lot_habilitado = ?, lot_quantidadePecas = ?, lot_fornecedor = ? WHERE lot_id = ?";
 			
 			pstm = conexao.prepareStatement(sql);
 			
 			pstm.setBoolean(1, lote.isHabilitado());
-			pstm.setDouble(2, lote.getPrecoCompraUnidade());
-			pstm.setInt(3, lote.getQuantidadePecas());
-			pstm.setInt(4, Math.toIntExact(lote.getFornecedor().getId()));
-			pstm.setInt(5, Math.toIntExact(lote.getId()));
+			pstm.setInt(2, lote.getQuantidadePecas());
+			pstm.setInt(3, Math.toIntExact(lote.getFornecedor().getId()));
+			pstm.setInt(4, Math.toIntExact(lote.getId()));
 			
 			pstm.executeUpdate();
 			conexao.commit();
@@ -228,37 +224,13 @@ public class LoteDAO implements IDAO{
 				date = rs.getTimestamp(2).toLocalDateTime();
 				lt.setDataCriacao(date);
 				lt.setHabilitado(rs.getBoolean("lot_habilitado"));
-				lt.setPrecoCompraUnidade(rs.getDouble("lot_precoCompraUnidade"));
 				lt.setQuantidadePecas(rs.getInt("lot_quantidadePecas"));
 				lt.setFornecedor(frn);
 				
 			
-//				  FornecedorDAO dao = new FornecedorDAO(); 
-//				  List<EntidadeDominio> fornecedores = dao.listar(frn);
-				  
-//				  if(fornecedores != null && !fornecedores.isEmpty()) { 
-//					  for(EntidadeDominio entidade3 : fornecedores) {
-//						  Fornecedor frn2 = (Fornecedor)entidade3;
-//						  lt.setFornecedor(frn2);
-//					  }
-//				  }
-				 
-				
-				
-				
-				
-				/*
-				 * RoupaDAO rDao = new RoupaDAO(); List<EntidadeDominio> roupas =
-				 * rDao.listar(lt); List<Roupa> listaRoupas = (List<Roupa>)(Roupa)roupas;
-				 * lt.setRoupas(listaRoupas);
-				 * 
-				 * listaLotes.add(lt);
-				 */
-				
 				listaLotes.add(lt);
 				
 			}
-//			System.out.println("TAMANHO LISTA" + listaLotes.size());
 			return listaLotes;
 			
 		}catch(Exception e) {

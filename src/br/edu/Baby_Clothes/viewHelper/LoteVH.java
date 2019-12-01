@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -77,16 +76,6 @@ public class LoteVH implements IViewHelper{
 		
 		String habilitadoString = request.getParameter("txtHabilitado");
 		
-		String precoString = request.getParameter("txtPrecoCompraUnidade");
-		double precoCompraUnidade = 0;
-		
-		if(precoString == null || precoString.equals("")) {
-			System.out.println("PRECO VAZIO");
-		}else {
-			precoCompraUnidade = Double.parseDouble(precoString);
-		}
-		
-		
 		String quantidadeString = request.getParameter("txtQuantidadePecas");
 		int quantidadePecas = 0;
 		
@@ -115,10 +104,6 @@ public class LoteVH implements IViewHelper{
 		
 		if(habilitadoString != null) {
 			lote.setHabilitado(Boolean.parseBoolean(habilitadoString));
-		}
-		
-		if(precoCompraUnidade > 0) {
-			lote.setPrecoCompraUnidade(precoCompraUnidade);
 		}
 		
 		if(quantidadePecas > 0) {

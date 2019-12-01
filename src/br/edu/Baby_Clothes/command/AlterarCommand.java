@@ -6,8 +6,8 @@ import br.edu.fatec.Baby_Clothes.model.Resultado;
 public class AlterarCommand extends AbstractCommand{
 
 	@Override
-	public Resultado executar(EntidadeDominio entidade) {
-		return fachada.alterar(entidade);
+	public Resultado executar(EntidadeDominio entidade, String operacao) {
+		return fachada.alterar(entidade, operacao);
 	}
 
 }

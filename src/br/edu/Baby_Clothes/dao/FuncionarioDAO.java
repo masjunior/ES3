@@ -146,6 +146,7 @@ public class FuncionarioDAO implements IDAO{
 			pstm.setBoolean(3, funcionario.isHabilitado());
 			pstm.setString(4, funcionario.getEmail());
 			pstm.setString(5, funcionario.getSenha());
+			System.err.println("FUNCIOINARIO DAO " + funcionario.getSenha());
 			pstm.setInt(6, funcionario.getNivelAcesso().getValor());
 			pstm.setLong(7, funcionario.getId());
 			

@@ -34,7 +34,7 @@ public class FornecedorVH implements IViewHelper{
 		String operacao  = request.getParameter("operacao");
 		
 		if(resultado.getMensagem() != null && !resultado.getMensagem().trim().equals("")) {
-			System.out.println("mensagem no fornecedor VH " + resultado.getMensagem());
+//			System.out.println("mensagem no fornecedor VH " + resultado.getMensagem());
 			request.getSession().setAttribute("ResultadoFornecedor", resultado);
 			d = request.getRequestDispatcher("cadastrarFornecedor.jsp");
 			d.forward(request, response);
@@ -45,7 +45,7 @@ public class FornecedorVH implements IViewHelper{
 			response.sendRedirect("listarFornecedor.jsp");
 
 		}else if(operacao.equalsIgnoreCase("CONSULTAR")){
-			System.out.println("passei no consultar do fornecedor");
+//			System.out.println("passei no consultar do fornecedor");
 			resultado.setMensagem("Consulta de fornecedor realizada com sucesso!");
 			request.getSession().setAttribute("ResultadoFornecedorConsultar", resultado);
 			d = request.getRequestDispatcher("listarFornecedor.jsp");
@@ -84,8 +84,8 @@ public class FornecedorVH implements IViewHelper{
 		List<Lote> lotes = new ArrayList<Lote>(); 
 		Long id;
 		
-		System.out.println("ID" + idString);
-		System.out.println("ID DPS IF " + fornecedor.getId());
+//		System.out.println("ID" + idString);
+//		System.out.println("ID DPS IF " + fornecedor.getId());
 		
 		
 		
@@ -98,7 +98,7 @@ public class FornecedorVH implements IViewHelper{
 		 */
 		
 		if(idString == null || idString.equals("")) {
-			 System.out.println("ID NULO");
+//			 System.out.println("ID NULO");
 		}else {
 			id = Long.parseLong(idString);
 			fornecedor.setId(id);

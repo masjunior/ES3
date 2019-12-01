@@ -30,7 +30,6 @@ CREATE TABLE `site_roupa`.`lote` (
   `lot_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `lot_data_criacao` DATETIME NOT NULL,
   `lot_habilitado` BOOLEAN NOT NULL,
-  `lot_precoCompraUnidade` DOUBLE NOT NULL,
   `lot_quantidadePecas` INT NOT NULL,
   `lot_fornecedor` INT NOT NULL );
 
@@ -43,11 +42,13 @@ CREATE TABLE `site_roupa`.`roupa` (
   `rou_data_criacao` DATETIME NOT NULL,
   `rou_habilitado` BOOLEAN NOT NULL,
 	`rou_marca` VARCHAR(45) NOT NULL,
+    `rou_preco_compra` DOUBLE NOT NULL,
   `rou_preco_venda` DOUBLE NOT NULL,
   `rou_quantidade_disponivel` INT NOT NULL,
   `rou_tamanho` INT NOT NULL,
   `rou_cor` VARCHAR(45) NOT NULL,
   `rou_lote` INT NOT NULL);
+
 
 CREATE TABLE `site_roupa`.`tamanho` (
   `tam_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

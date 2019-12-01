@@ -57,7 +57,7 @@ public class Controller extends HttpServlet{
 		ICommand command = commands.get(operacao);
 		
 		
-		Resultado resultado = command.executar(entidade);
+		Resultado resultado = command.executar(entidade, operacao);
 		
 		viewHelper.setView(resultado, request, response);
 		

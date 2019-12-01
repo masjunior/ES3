@@ -91,7 +91,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Resultado salvar(EntidadeDominio entidade) {
+	public Resultado salvar(EntidadeDominio entidade, String operacao) {
 		resultado = new Resultado();
 		nomeClasse = entidade.getClass().getName();
 		strategy = strategies.get(nomeClasse);
@@ -99,7 +99,7 @@ public class Fachada implements IFachada {
 
 		
 		
-		executarMensagem(strategy, entidade);
+		executarMensagem(strategy, entidade, operacao);
 		
 		//System.out.println("tamanho SB " + sb.length());
 		
@@ -124,12 +124,12 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Resultado alterar(EntidadeDominio entidade) {
+	public Resultado alterar(EntidadeDominio entidade, String operacao) {
 		resultado = new Resultado();
 		sb.setLength(0);
 		
 		nomeClasse = entidade.getClass().getName();
-		executarMensagem(strategies.get(nomeClasse), entidade);
+		executarMensagem(strategies.get(nomeClasse), entidade, operacao);
 		
 		if(sb.toString().trim().equalsIgnoreCase("")) {
 			try {
@@ -147,7 +147,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Resultado excluir(EntidadeDominio entidade) {
+	public Resultado excluir(EntidadeDominio entidade, String operacao) {
 		resultado = new Resultado();
 		String nomeClasse = entidade.getClass().getName();
 		dao = daos.get(nomeClasse);
@@ -164,7 +164,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Resultado consultar(EntidadeDominio entidade) {
+	public Resultado consultar(EntidadeDominio entidade, String operacao) {
 		sb.setLength(0);
 		resultado = new Resultado();
 		
@@ -182,15 +182,25 @@ public class Fachada implements IFachada {
 		
 	}
 	
-	private void executarMensagem(List<IStrategy> rngEntidade, EntidadeDominio entidade) {
+	private void executarMensagem(List<IStrategy> rngEntidade, EntidadeDominio entidade, String operacao) {
 		String msg = "";
-//		if(rngEntidade != null) {
+		if(operacao.equals("ALTERAR")) {
+			for (IStrategy strategy : rngEntidade) {
+				if(!strategy.getClass().getSimpleName().equals("ValidarExistencia")) {
+					msg = strategy.processar(entidade);
+					if (msg != null) {
+						sb.append(msg);
+					}
+				}
+			}
+		}else {
 			for (IStrategy strategy : rngEntidade) {
 				msg = strategy.processar(entidade);
 				if (msg != null) {
 					sb.append(msg);
 				}
 			}
-//		}
+			
+		}
 	}
 }

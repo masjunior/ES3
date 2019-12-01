@@ -1,10 +1,6 @@
 package br.edu.Baby_Clothes.strategy;
 
-import java.util.List;
-
-import br.edu.Baby_Clothes.dao.LoteDAO;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
-import br.edu.fatec.Baby_Clothes.model.Lote;
 import br.edu.fatec.Baby_Clothes.model.Roupa;
 
 public class ValidarPrecoVenda implements IStrategy{
@@ -15,18 +11,14 @@ public class ValidarPrecoVenda implements IStrategy{
 		Roupa roupa = (Roupa)entidade;
 		String msgRetorno = "";
 		
-		Lote lote = roupa.getLote();
-		LoteDAO dao = new LoteDAO();
-		
-		List<EntidadeDominio>lotes = dao.listar(lote);
-		lote = (Lote)lotes.get(0);
-		double valorCompra = lote.getPrecoCompraUnidade();
+		double valorCompra = roupa.getPrecoCompra();
+		double valorVenda = roupa.getPrecoVenda();
 		
 		
 		
-		if(valorCompra > roupa.getPrecoVenda()) {
-			System.out.println("preço vendo invalido");
-			msgRetorno = "Preço de venda inválido";
+		if(valorCompra > valorVenda) {
+//			System.out.println("preï¿½o vendo invalido");
+			msgRetorno = "Preï¿½o de venda invï¿½lido";
 		}
 		
 		

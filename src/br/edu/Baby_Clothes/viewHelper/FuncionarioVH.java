@@ -76,7 +76,7 @@ public class FuncionarioVH implements IViewHelper{
 		String nome = request.getParameter("txtNome");
 		String cpf = request.getParameter("txtCPF");
 		String email = request.getParameter("txtEmail");
-		String senha = request.getParameter("txtCPF");
+		String senha = request.getParameter("txtSenha");
 		String nivelAcesso = request.getParameter("txtNivelAcesso");
 		
 		if(id != null ) {

@@ -10,17 +10,11 @@ import java.util.List;
  *
  */
 public class Lote extends EntidadeDominio{
-	private Double precoCompraUnidade;
 	private int quantidadePecas;
 	private List<Roupa> roupas;
 	private Fornecedor fornecedor;
 	// TODO Validar existencia
-	public Double getPrecoCompraUnidade() {
-		return precoCompraUnidade;
-	}
-	public void setPrecoCompraUnidade(Double precoCompraUnidade) {
-		this.precoCompraUnidade = precoCompraUnidade;
-	}
+
 	public int getQuantidadePecas() {
 		return quantidadePecas;
 	}

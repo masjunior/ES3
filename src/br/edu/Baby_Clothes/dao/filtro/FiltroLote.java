@@ -81,22 +81,13 @@ public class FiltroLote implements IFiltro {
 				
 			}
 			
-			if(lote.getPrecoCompraUnidade() != null) {
-				if(!flgWhere) {
-					sql += " WHERE ";
-					flgWhere = true;
-				}
-				campos.put(3, "lot_precoCompraUnidade = " + lote.getPrecoCompraUnidade());
-				qtdCampos.add(3);
-			}
-			
 			if(lote.getQuantidadePecas() > 0) {
 				if(!flgWhere) {
 					sql += " WHERE ";
 					flgWhere = true;
 				}
-				campos.put(4, "lot_quantidadePecas = " + lote.getQuantidadePecas());
-				qtdCampos.add(4);
+				campos.put(3, "lot_quantidadePecas = " + lote.getQuantidadePecas());
+				qtdCampos.add(3);
 			}
 			
 			if(lote.getFornecedor() != null) {
@@ -104,8 +95,8 @@ public class FiltroLote implements IFiltro {
 					sql += " WHERE ";
 					flgWhere = true;
 				}
-				campos.put(5, "lot_fornecedor = " + lote.getFornecedor().getId());
-				qtdCampos.add(5);
+				campos.put(4, "lot_fornecedor = " + lote.getFornecedor().getId());
+				qtdCampos.add(4);
 			}
 			
 			for(Integer I : qtdCampos) {

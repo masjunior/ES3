@@ -30,7 +30,7 @@
 				<div class="col-m1 order-md-1">
 	
 					<%
-				 Resultado resultado = (Resultado)request.getSession().getAttribute("ResultadoLoteConsulta");
+				 Resultado resultado = (Resultado)request.getAttribute("ResultadoLoteConsulta");
 				 Resultado resultado2 = (Resultado)request.getAttribute("ResultadoFornecedorConsultar");
 				 List<EntidadeDominio> entidades = null;
 				 Lote lote = null;
@@ -72,14 +72,6 @@
 						</div>
 						<div class="row">
 							<div class="com-md-12 mb-3">
-								<label for="txtPrecoCompraUnidade">Preço de compra por Unidade</label>
-								<input type="text" class="form-control" name="txtPrecoCompraUnidade" id="txtPrecoCompraUnidade" placeholder=""
-									value="<%if(lote != null){out.println(lote.getPrecoCompraUnidade());} %>" required min="1" step="0.01">
-								<div class="invalid-feedback">É obrigatório inserir um valor válido.</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="com-md-12 mb-3">
 								<label for="txtQuantidadePecas">Quantidade de Peças</label>
 								<input type="text" class="form-control" name="txtQuantidadePecas" id="txtQuantidadePecas" placeholder=""
 									value="<%if(lote != null){out.println(lote.getQuantidadePecas());} %>" required min="1" step="1">
@@ -91,7 +83,7 @@
 								<label for="txtFornecedor">Fornecedor</label>
 								<select class="form-control" name="cbFornecedor" id="cbFornecedor" required>
 									<%
-										out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
+// 										out.println("<option value='" + lote.getFornecedor().getId()+"' selected>"+lote.getFornecedor().getNomeFantasia()+"</option>");
 									 
 									 if(resultado2 != null){
 										 entidades2 = resultado2.getEntidades();
@@ -99,9 +91,7 @@
 										 if(entidades2 != null){
 											 for(EntidadeDominio entidade2 : entidades2){
 												 fornecedor = (Fornecedor)entidade2;
-													if(lote.getFornecedor().getId() != fornecedor.getId()){
 														 out.println("<option value='"+fornecedor.getId()+"'>"+fornecedor.getNomeFantasia()+"</option>");
-													}
 											 }
 										 }
 									 }

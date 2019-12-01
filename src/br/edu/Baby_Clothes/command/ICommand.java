@@ -5,6 +5,6 @@ import br.edu.fatec.Baby_Clothes.model.Resultado;
 
 public interface ICommand {
 
-	public Resultado executar(EntidadeDominio entidade);
+	public Resultado executar(EntidadeDominio entidade, String operacao);
 	
 }
