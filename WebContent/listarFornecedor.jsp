@@ -50,7 +50,7 @@
 					</thead>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
 				<div class="row text-right" >
-					<a href="/ES3/cadastrarFornecedor.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+					<a href="/es3_2020/cadastrarFornecedor.jsp" class="botao-cadastrar col-12 text-truncate " value="">
 		  				NOVO FORNECEDOR <i class="material-icons large text-right">add</i>
 					</a>
 				</div>
@@ -72,7 +72,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-				<form action="/ES3/editarFornecedor.jsp" method="POST">
+				<form action="/es3_2020/editarFornecedor.jsp" method="POST">
 				<% 
 				out.println("<input type='hidden' name='txtId' value='" + Math.toIntExact(fornecedor.getId()) + "' class='id form-control'>");
 				%>

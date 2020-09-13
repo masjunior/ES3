@@ -49,7 +49,7 @@
 					</thead>
 					<c:if test="${usuarioAutenticado.nivelAcesso == 'ADMINISTRADOR'}">
 						<div class="row text-right" >
-							<a href="/ES3/cadastrarUsuario.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+							<a href="/es3_2020/cadastrarUsuario.jsp" class="botao-cadastrar col-12 text-truncate " value="">
 				  				NOVO FUNCIONÁRIO <i class="material-icons large text-right">add</i>
 							</a>
 						</div>

@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.edu.Baby_Clothes.command.AlterarCommand;
-import br.edu.Baby_Clothes.command.ConsultarCommand;
-import br.edu.Baby_Clothes.command.ExcluirCommand;
-import br.edu.Baby_Clothes.command.ICommand;
-import br.edu.Baby_Clothes.command.SalvarCommand;
-import br.edu.Baby_Clothes.viewHelper.FornecedorVH;
-import br.edu.Baby_Clothes.viewHelper.FuncionarioVH;
-import br.edu.Baby_Clothes.viewHelper.IViewHelper;
-import br.edu.Baby_Clothes.viewHelper.LoteVH;
-import br.edu.Baby_Clothes.viewHelper.RoupaVH;
+import br.edu.fatec.Baby_Clothes.command.AlterarCommand;
+import br.edu.fatec.Baby_Clothes.command.ConsultarCommand;
+import br.edu.fatec.Baby_Clothes.command.ExcluirCommand;
+import br.edu.fatec.Baby_Clothes.command.ICommand;
+import br.edu.fatec.Baby_Clothes.command.SalvarCommand;
+import br.edu.fatec.Baby_Clothes.viewHelper.FornecedorVH;
+import br.edu.fatec.Baby_Clothes.viewHelper.FuncionarioVH;
+import br.edu.fatec.Baby_Clothes.viewHelper.IViewHelper;
+import br.edu.fatec.Baby_Clothes.viewHelper.LoteVH;
+import br.edu.fatec.Baby_Clothes.viewHelper.RoupaVH;
 import br.edu.fatec.Baby_Clothes.model.EntidadeDominio;
 import br.edu.fatec.Baby_Clothes.model.Resultado;
 
-@WebServlet(urlPatterns = {"/FuncionarioController", "/RoupaController", "/FornecedorController", "/LoteController"})
+@WebServlet(urlPatterns = {"/FuncionarioController", "/ProdutoController", "/FornecedorController", "/LoteController"})
 public class Controller extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -38,10 +38,10 @@ public class Controller extends HttpServlet{
 		commands.put("EXCLUIR", new ExcluirCommand());
 		commands.put("CONSULTAR", new ConsultarCommand());
 		viewHelpers = new HashMap<String, IViewHelper>();
-		viewHelpers.put("/ES3/FuncionarioController", new FuncionarioVH());
-		viewHelpers.put("/ES3/RoupaController", new RoupaVH());
-		viewHelpers.put("/ES3/FornecedorController", new FornecedorVH());
-		viewHelpers.put("/ES3/LoteController", new LoteVH());
+		viewHelpers.put("/es3_2020/FuncionarioController", new FuncionarioVH());
+		viewHelpers.put("/es3_2020/ProdutoController", new RoupaVH());
+		viewHelpers.put("/es3_2020/FornecedorController", new FornecedorVH());
+		viewHelpers.put("/es3_2020/LoteController", new LoteVH());
 	}
 	
 	

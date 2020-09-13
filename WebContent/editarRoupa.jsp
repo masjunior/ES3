@@ -47,7 +47,7 @@
 					 }
 				 }
 				 %>
-					<form class="needs-validation" action="RoupaController" method="post" novalidate>
+					<form class="needs-validation" action="ProdutoController" method="post" novalidate>
 						<div class="row d-none">
 							<div class="com-md-12 mb-3">
 								<label for="txtRoupaId">ID</label>

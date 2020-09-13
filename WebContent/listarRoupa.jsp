@@ -52,7 +52,7 @@
 					</thead>
 					<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' or usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO' }">
 						<div class="row text-right" >
-							<a href="/ES3/cadastrarRoupa.jsp" class="botao-cadastrar col-12 text-truncate " value="">
+							<a href="/es3_2020/cadastrarRoupa.jsp" class="botao-cadastrar col-12 text-truncate " value="">
 				  				NOVA ROUPA <i class="material-icons large text-right">add</i>
 							</a>
 						</div>
@@ -75,7 +75,7 @@
 				%>
 				<c:if test="${usuarioAutenticado.nivelAcesso == 'MODERADOR_SENIOR' || usuarioAutenticado.nivelAcesso == 'MODERADOR_PLENO'}">
 				<td class="text-center">
-				<form action="/ES3/editarRoupa.jsp" method="POST">
+				<form action="/es3_2020/editarRoupa.jsp" method="POST">
 				<% 
 				out.println("<input type='hidden' name='txtRoupaId' value='" + Math.toIntExact(roupa.getId()) + "' class='txtRoupaId form-control'>");
 				%>

@@ -32,7 +32,7 @@ $(".botao-remover").click(function(){
 		if(result.value){
 			$.ajax({
 				type: "POST",
-				url: "http://localhost:8080/ES3/FuncionarioController",
+				url: "http://localhost:8080/es3_2020/FuncionarioController",
 				async: true,
 				sucess: function(data){
 

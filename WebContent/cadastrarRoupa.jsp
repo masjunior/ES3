@@ -68,7 +68,7 @@
 				 }
 			 }
 			 %>
-				<form class="needs-validation" action="RoupaController" method="post" novalidate>
+				<form class="needs-validation" action="ProdutoController" method="post" novalidate>
 				
 					<div class="row d-none">
 			 		
